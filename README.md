@@ -10,20 +10,26 @@
 
 ## 图片来源
 #### [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS")
-日本写真网站，图片优质清晰
+日本精品写真网站
 > 分辨率：360*508 女友数量：600+ 适用于媒体服务器
 
 #### [S1](https://www.s1s1s1.com/ "S1S1S1")
-S1 No. 1 Style官方网站
+S1 No. 1 Style 官方网站，以人气与美形著称
 
 旗下知名小姐姐：三上悠亜、羽咲みはる、吉高寧々、架乃ゆら
 > 分辨率：470*600 女友数量：300+ 适用于媒体服务器
 
 #### [Prestige](https://www.prestige-av.com/ "Prestige")
-蚊香社官方网站
+蚊香社官方网站，号称绝对美少女制造商
 
 旗下知名小姐姐：永瀬みなも、有村のぞみ、園田みおん、藤江史帆
 > 分辨率：360*508 女友数量：200+ 适用于媒体服务器
+
+#### [FALENO](https://faleno.jp/ "FALENO")
+FALENO官方网站，U-next 旗下公司
+
+旗下知名小姐姐：二階堂夢、吉高寧々、美乃すずめ、佐藤ゆか
+> 分辨率：1500*2125 女友数量：10+ 适用于媒体服务器
 
 #### [KMP](https://www.km-produce.com/ "KM Produce")
 KM Produce 官方网站
