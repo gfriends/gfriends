@@ -11,11 +11,13 @@
 ## 图片来源
 
 ### 第三方内容生产商
+<style> table th:first-of-type { width: 100px; } </style>
 | 品牌 | 分辨率 |女友数量|简介|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360*508 | 600+ | 专门给女友拍写真的网站 | **大图** |
 
 ### 专属女友制造商
+<style> table th:first-of-type { width: 100px; } </style>
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [Moodyz](https://www.moodyz.com/ "MOODYZ") | 230*300 |1100+|高桥しょう子、西宫このみ、伊东ちなみ、千早希||
@@ -28,15 +30,17 @@
 | [Attackers](https://www.attackers.net/ "Attackers") | 216*270 |N/A|明里つむぎ、岬ななみ、二宮ひかり、結城のの|*正在更新中*|
 
 ### 美少女制造商
+<style> table th:first-of-type { width: 100px; } </style>
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
-| [Prestige <br> 蚊香社](https://www.prestige-av.com/ "Prestige 蚊香社") | 119*170|200+|永瀬みなも、有村のぞみ、園田みおん、藤江史帆|绝对美少女制造商|
+| [Prestige 蚊香社](https://www.prestige-av.com/ "Prestige 蚊香社") | 119*170|200+|永瀬みなも、有村のぞみ、園田みおん、藤江史帆|绝对美少女制造商|
 | [kawaii*](https://www.kawaiikawaii.jp/ "kawaii*") | 640*896|300+|ひなみちゃん、伊藤舞雪、宇佐木あいか、有栖るる|**大图**<br>“女子大生”系列|
 | [未満](http://www.miman.jp/ "未満") |290*390|100+|あやみ旬果、さくらゆら、高岡美鈴、高梨ゆあ|“巨ru少女”系列|
 | [无垢](http://www.muku.tv/ "无垢") |110*70|300+|河南実里、高杉麻里、本橋実来、大島美緒|“JK制服美少女”系列|
 | [ミニマム](https://www.minimum-av.com/ "ミニマム") | 0|0||*计划更新*|
 
 ### 单体女友制造商
+<style> table th:first-of-type { width: 100px; } </style>
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [Wanz Factory](https://www.wanz-factory.com/ "Wanz Factory") | 280*280 |200+|椎名そら、つぼみ、水野朝陽、浅井ルリ子||
@@ -47,6 +51,7 @@
 | [痴女天堂](https://www.bi-av.com/ "痴女天堂") | 300*300|300+|大槻ひびき、沖田杏梨、大浦真奈美、渚みつき|“痴*女”系列|
 
 ### 人*妻专门制造商
+<style> table th:first-of-type { width: 100px; } </style>
 | 品牌 | 分辨率 |女友数量|旗下知名大姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [Madonna](https://www.madonna-av.com/ "Madonna") | 230*300|30+|美森けい、谷花紗耶、桜井ゆみ、今井ひまり||
