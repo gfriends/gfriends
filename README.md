@@ -1,5 +1,5 @@
 # 女友头像仓库
-媒体服务器演员头像仓库<br>推荐搭配任一搜刮整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
+媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 使用说明
 1. 本项目以抓取官方高质量大图为主要目标，满足数量需求为次要。
@@ -23,9 +23,9 @@
 ### 专属女友制造商
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
-| [S1 No. 1 Style](https://www.s1s1s1.com/ "S1 No. 1 Style") | 470*600 |300+|三上悠亜、羽咲みはる、吉高寧々、架乃ゆら|★<br>人气与美形著称|
+| [S1 No. 1 Style](https://www.s1s1s1.com/ "S1 No. 1 Style") | 470*600 |300+|三上悠亜、羽咲みはる、桜羽のどか、架乃ゆら|★<br>人气与美形著称|
 | [MUTEKI](https://www.mutekimuteki.com/ "MUTEKI") | 640*906|50+|深山あすか、水瀬ちあき、松本菜奈実、夢川エマ|★ <br> “偶像艺人”系列|
-| [FaleNO](https://faleno.jp/ "FaleNO") | 1500*2125 |10+|二階堂夢、吉高寧々、美乃すずめ、佐藤ゆか|★ <br> U-next 旗下公司|
+| [FaleNO](https://faleno.jp/ "FaleNO") | 1500*2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|★ <br> U-next 旗下公司|
 | [Attackers](https://www.attackers.net/ "Attackers") | 216*270 |1000+|明里つむぎ、岬ななみ、二宮ひかり、結城のの|☆<br>“凌辱剧情”系列|
 | [Moodyz](https://www.moodyz.com/ "MOODYZ") | 230*300 |1100+|高桥しょう子、西宫このみ、伊东ちなみ、千早希|☆|
 | [Premium](http://www.premium-beauty.com/ "Premium") | 208*276 |100+|樱木凛、星野美优、冬月枫、二宫沙树|☆|
