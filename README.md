@@ -1,5 +1,5 @@
 # 女友头像仓库
-媒体服务器演员头像仓库，推荐搭配归类整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT") 及 Emby、Jellyfin、Flex 等媒体服务器使用。
+媒体服务器演员头像仓库<br>推荐搭配任一搜刮整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 使用说明
 1. 本项目以抓取官方高质量大图为主要目标，满足数量需求为次要。
