@@ -7,6 +7,16 @@
 3. *Filetree.json* 为JSON格式的文件树，可供程序调用搜索。
 4. 欢迎提交新来源网站和演员图片，图片版权归相应网站及演员所属经纪公司所有。
 
+## 快速开始
+如果你不会或只是懒得写程序调用本仓库，可以使用该工具。它由 JavScraper 提供，帮助你方便的导入头像至 Emby、Jellyfin。
+1. 下载本项目中的女友头像，并下载 [导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/tag/v1.22.27.1109 "JAVSDT")，解压编辑 `Config.json`文件
+- **url**：Emby/Jellyfin 服务器的地址
+- **api_key**：Emby/Jellyfin 服务器的 API 密钥
+- **dir**：女友头像所在文件夹
+2. 执行程序导入头像
+- Windows 运行 `Emby.Actress.exe`
+- Linux/Mac 执行 `dotnet Emby.Actress.dll`
+
 ## 更新计划
 这是个低优先级项目，随缘更新
 1. 女友中文姓名匹配（当前没有找到可行的解决方案，欢迎 PR 思路）
@@ -61,3 +71,4 @@
 | [Madonna](https://www.madonna-av.com/ "Madonna") | 230*300|30+|美森けい、谷花紗耶、桜井ゆみ、今井ひまり|☆|
 | [溜池ゴロー](http://www.tameikegoro.jp/ "溜池ゴロー") |100*100|500+|めぐり、本田岬、かすみ果穂、さとう遥希|MOODYZ 旗下公司|
 | [Das!](http://www.dasdas.jp/ "Das!") |280*280|300+|あべみかこ、冴月りん、跡美しゅり、一ノ瀬梓|“强X”系列|
+
