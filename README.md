@@ -10,7 +10,7 @@
 ## 快速开始
 如果你懒得写或不会写程序调用本仓库，可以通过这些工具方便的导入头像。
 
-#### Emby / Jellyfin
+### Emby / Jellyfin
 由 *JavScraper* 提供
 
 1. 根据需求下载本仓库中的女友头像，并下载 [导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/tag/v1.22.27.1109 "JAVSDT")，编辑 `Config.json`文件。
@@ -21,8 +21,8 @@
 - Windows 运行 `Emby.Actress.exe`
 - Linux/Mac 执行 `dotnet Emby.Actress.dll`
 
-#### Plex
-该插件由 *ddd354* 提供
+### Plex
+由 *ddd354* 提供
 
 无需预先下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器。
 
