@@ -4,18 +4,23 @@
 ## 使用说明
 1. 本项目以抓取官方高质量大图为主要目标，满足数量需求为次要。
 2. 头像图片为自动化抓取，部分人工筛选。不同网站图片有重复，多源混用需自行校验。
-3. *Filetree.json* 为JSON格式的文件树，可供程序调用搜索。
+3. `Filetree.json` 为JSON格式的文件树，可供你的程序调用搜索。
 4. 欢迎提交新来源网站和演员图片，图片版权归相应网站及演员所属经纪公司所有。
 
 ## 快速开始
-如果你不会或只是懒得写程序调用本仓库，可以使用该工具。它由 JavScraper 提供，帮助你方便的导入头像至 Emby、Jellyfin。
-1. 下载本项目中的女友头像，并下载 [导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/tag/v1.22.27.1109 "JAVSDT")，解压编辑 `Config.json`文件
+如果你懒得写或不会写程序调用本仓库，可以通过这些工具方便的导入头像。
+#### Emby / Jellyfin
+该程序由 *JavScraper* 提供
+1. 根据需求下载本仓库中的女友头像，并下载 [导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/tag/v1.22.27.1109 "JAVSDT")，编辑 `Config.json`文件。
 - **url**：Emby/Jellyfin 服务器的地址
 - **api_key**：Emby/Jellyfin 服务器的 API 密钥
 - **dir**：女友头像所在文件夹
 2. 执行程序导入头像
 - Windows 运行 `Emby.Actress.exe`
 - Linux/Mac 执行 `dotnet Emby.Actress.dll`
+#### Plex
+该插件由 *ddd354* 提供
+无需预先下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器。
 
 ## 更新计划
 这是个低优先级项目，随缘更新
