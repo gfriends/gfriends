@@ -8,22 +8,25 @@
 4. 欢迎提交新来源网站和演员图片，图片版权归相应网站及演员所属经纪公司所有。
 
 ## 更新计划
-本项目最大的坑已经填上：简中/繁中/日文姓名匹配工作已经完成，无须修改你的程序即可正常使用，暂时没有其它的更新计划了。
+暂时没有更新计划。<br>
 不过，系统还会定期抓取后述标注★官网的新入职女友上传至仓库。
 
 ## 快速开始
-如果你懒得写或不会写程序调用本仓库，可以通过这些工具方便的导入头像。
+可以通过这些工具方便的导入头像。
 
 ### Emby / Jellyfin
+
+#### Windows
+无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases/download/v1.2/Gfriends.zip)，编辑 `Config.json`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+
+#### Linux / Mac
 由 *JavScraper* 提供
 
-1. 根据需求下载本仓库中的女友头像，并下载 [Windows 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-Windows.zip "导入工具") 或 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
-- **url**：Emby/Jellyfin 服务器的地址
-- **api_key**：Emby/Jellyfin 服务器的 API 密钥
+1. 根据需求下载本仓库中的女友头像，并下载 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
+- **url**：Emby / Jellyfin 服务器的地址
+- **api_key**：Emby / Jellyfin 服务器的 API 密钥
 - **dir**：女友头像所在文件夹，如果填入完整路径请使用 "/" 替换 "\\"
-2. 执行程序导入头像
-- Windows 运行 `Emby.Actress.exe`，若无法运行请安装依赖 [.NET Framework 4.6.1](https://support.microsoft.com/zh-cn/help/3102436/the-net-framework-4-6-1-offline-installer-for-windows)
-- Linux/Mac 运行 `dotnet Emby.Actress.dll`，若无法运行请安装依赖 [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download/dotnet-core/current/runtime)
+2. 运行 `dotnet Emby.Actress.dll`，若无法运行请安装依赖 [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download/dotnet-core/current/runtime)
 
 ### Plex
 由 *ddd354* 提供
