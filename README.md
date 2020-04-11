@@ -21,7 +21,7 @@
 ### Emby / Jellyfin
 
 #### Windows
-无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases/download/v1.2/Gfriends.zip)，编辑 `Config.json`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases/download/v1.2/Gfriends.Inputer.zip)，编辑 `Config.json`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 #### Linux / Mac
 由 *JavScraper* 提供
