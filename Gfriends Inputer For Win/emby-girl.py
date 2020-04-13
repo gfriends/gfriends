@@ -2,6 +2,10 @@
 # By xinxin8816, Many thanks for junerain123, ddd354, moyy996.
 #new add by xp2020rlby 
 #新增本地文件导入，不用连接git（快）
+#代码部分增加如下：
+#1. 新增一个fix_size_l函数用于本地图片的裁剪和存放，图片存放在Handled文件夹内
+#2. 在打开对应头像部分和寻找json文件部分都增加了本地文件夹导入的功能，本地和仓库导入两者用if else分隔，简单修改了一些变量以便两个功能可以在一个函数内执行
+#3.新增读入config文件的本地头像包目录部分
 import requests, os, json, ssl, urllib.request
 from configparser import RawConfigParser
 from base64 import b64encode
