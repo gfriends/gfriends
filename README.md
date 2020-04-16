@@ -43,8 +43,8 @@ Tag v2.0后端进行了大量改写，排序将更智能，文件树可能不会
 ### 第三方内容生产商
 | 品牌 | 分辨率 |女友数量|简介|备注|
 | :----: | :----: | :----: | :----: | :----: |
-| [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360*508 | 600+ | 非常著名的美女摄影写真机构 | ★ |
-| [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640*960 | 30+ | X-City 旗下的写真分支 | ★ |
+| [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360*508 | 600+ | 著名的美女摄影写真机构 | ★ |
+| [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640*960 | 30+ | X-City 旗下的写真分支 | *New Add!* ★ |
 
 ### 专属女友制造商
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
