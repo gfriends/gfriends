@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-1.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-Success.2020.4.20-green.svg)
+![TotalNumber](https://img.shields.io/badge/TotalNum-1.20w-Blue.png)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-Success.2020.4.20-green.png)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 使用说明
