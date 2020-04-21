@@ -22,12 +22,12 @@
 ### Emby / Jellyfin
 
 #### Windows
-无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases/download/v1.2/Gfriends.Inputer.zip)，编辑 `Config.json`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 #### Linux / Mac
 由 *JavScraper* 提供
 
-1. 根据需求下载本仓库中的女友头像，并下载 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
+1. 根据需求下载本仓库中的女友头像，并下载 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip)，编辑 `Config.json`文件
 - **url**：Emby / Jellyfin 服务器的地址
 - **api_key**：Emby / Jellyfin 服务器的 API 密钥
 - **dir**：女友头像所在文件夹，如果填入完整路径请使用 "/" 替换 "\\"
