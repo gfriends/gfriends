@@ -26,8 +26,9 @@ def get_gfriends_map(repository_url):
 	request_url = repository_url+'Filetree.json'
 	response = requests.get(request_url)
 	if response.status_code != 200:
-		print('无法连接头像仓库，请检查配置和网络 {}'.format(response.code))
-		return {}
+		print('无法连接头像仓库，请检查配置和网络 {}'.format(response.status_code))
+		os.system('pause')
+		exit()
 	
 	map_json = loads(response.content)
 	output = {}
