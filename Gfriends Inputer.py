@@ -7,16 +7,16 @@ from configparser import RawConfigParser
 from base64 import b64encode
 from traceback import format_exc
 from json import loads
-from PIL import Image
+from PIL import Image,ImageFilter
 
 def fix_size(path):
-	f_pic = Image.open(path)
-	(x,y) = f_pic.size
-	if not 2/3-0.1 <= x/y <= 2/3+0.1: #仅处理会过度拉伸的图片
-		cropped = f_pic.crop((0, 0, x, 3/2*x))  #裁剪长纵图(x/y>2/3)
-		new_f_pic = Image.new("RGB",(int(x),int(3/2*x)),(0,0,0))
-		new_f_pic.paste(cropped,(0,int((3/2*x-y)/2))) #为长横图(x/y<2/3)上下增加黑边
-		new_f_pic.save(path)
+	pic = Image.open(path)
+	(x,y) = pic.size
+	if not 2/3-0.05 <= x/y <= 2/3+0.05: #仅处理会过度拉伸的图片
+		fixed_pic = pic.resize((int(x), int(3/2*x))) #拉伸图片
+		fixed_pic = fixed_pic.filter(ImageFilter.GaussianBlur(radius=50)) #高斯模糊
+		fixed_pic.paste(pic,(0,int((3/2*x-y)/2))) #粘贴原图
+		fixed_pic.save(path)
 
 def get_gfriends_map(repository_url):
 	print('下载头像仓库文件树...')
@@ -84,26 +84,16 @@ host url = http://localhost:8096/
 # Emby/Jellyfin API 密匙
 api id = 
 
-# 裁剪或增加黑边来满足尺寸需求，以牺牲质量为代价但避免部分头像被拉伸
-是否处理下载的头像？ = 否
+# 处理以满足尺寸需求，能避免部分头像被拉伸但会牺牲一定质量
+是否处理下载的头像？ = 是
 
 是否覆盖以前上传的头像？ = 是'''
-		f_txt = open("config.ini", 'a', encoding="utf-8")
-		f_txt.write(content)
-		f_txt.close()
+		write_txt("config.ini",content)
 		print('没有找到配置文件 config.ini，已为阁下生成，请修改配置后重新运行程序\n')
 		os.system('pause')
 		exit()
 
-os.system('title Gfriends 一键导入工具')
-print('Gfriends 一键导入工具')
-print('https://github.com/xinxin8816/gfriends')
-(repository_url,host_url,api_key,overwrite,fixsize) = read_config()
-
-num_suc = 0
-num_fail = 0
-num_exist = 0
-try:
+def read_persons(host_url,api_key):
 	print('读取 Emby / Jellyfin 演员...')
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
@@ -115,9 +105,25 @@ try:
 		print('连接 Emby / Jellyfin 服务器未知错误', host_url, '\n')
 	if rqs_emby.status_code == 401:
 		print('无权访问 Emby / Jellyfin 服务器，请检查 Api id\n')
-	list_persons = loads(rqs_emby.text)['Items']
-	num_persons = len(list_persons)
+	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
+	return output
+
+def write_txt(filename,content):
+	txt = open(filename, 'a', encoding="utf-8")
+	txt.write(content)
+	txt.close()
+
+os.system('title Gfriends 一键导入工具')
+print('Gfriends 一键导入工具')
+print('https://github.com/xinxin8816/gfriends')
+(repository_url,host_url,api_key,overwrite,fixsize) = read_config()
+
+num_suc = 0
+num_fail = 0
+num_exist = 0
+try:
+	list_persons = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
 	folder_path = './Downloads/'
 	if os.path.exists(folder_path) == False:
@@ -126,35 +132,30 @@ try:
 		actor_name = dic_each_actor['Name']
 		if get_gfriends_link(actor_name) == None:
 			print('>>仓库未收录：', actor_name)
-			f_txt = open("未收录的演员清单.txt", 'a', encoding="utf-8")
-			f_txt.write(actor_name + '\n')
-			f_txt.close()
+			write_txt("未收录的演员清单.txt",actor_name + '\n')
 			num_fail += 1
 		else:
-			f_txt = open("已匹配的演员清单.txt", 'a', encoding="utf-8")
-			f_txt.write(actor_name + '\n')
-			f_txt.close()
+			write_txt("已匹配的演员清单.txt",actor_name + '\n')
 			if dic_each_actor['ImageTags']:
 				num_exist += 1
 				if not overwrite:
 					continue
 			print('>>从仓库下载：',get_gfriends_link(actor_name))
-			f_pic = requests.get(get_gfriends_link(actor_name))
+			pic = requests.get(get_gfriends_link(actor_name))
 			with open("Downloads/"+actor_name+".jpg","wb") as code:
-				code.write(f_pic.content)
+				code.write(pic.content)
 			if fixsize:
-				fix_size("Downloads/"+name+".jpg")
-			f_pic = open("Downloads/"+actor_name+".jpg", 'rb')
-			b6_pic = b64encode(f_pic.read())
-			f_pic.close()
+				fix_size("Downloads/"+actor_name+".jpg")
+			pic = open("Downloads/"+actor_name+".jpg", 'rb')
+			b6_pic = b64encode(pic.read())
+			pic.close()
 			url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
 			requests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
 			print('>>设置成功：', actor_name)
 			num_suc += 1
-	print('\nEmby / Jellyfin 拥有演员', num_persons, '人，其中已有头像', num_exist, '人')
-	print('本次成功导入', num_suc, '人')
-	print('仓库未收录', num_fail, '人')
-	print('已保存至“未收录的演员清单.txt”\n')
+	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，其中已有头像', num_exist, '人')
+	print('本次成功导入', num_suc, '人，已保存至“已匹配的演员清单.txt”')
+	print('仓库未收录', num_fail, '人，已保存至“未收录的演员清单.txt”\n')
 	os.system('pause')
 except:
 	print(format_exc())
