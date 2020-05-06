@@ -1,11 +1,11 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-1.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--6-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--6-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 使用说明
 1. 本项目以抓取官方高质量大图为主要目标，满足数量需求为次要。
 2. 头像图片为自动化抓取，部分人工筛选。
-3. `Filetree.json` 为JSON格式的文件树，可供程序调用搜索。
+3. `Filetree.json` 为已按质量排序的文件树，可供程序调用搜索。
 4. 欢迎提交新来源网站和演员图片，图片版权归相应网站及演员所属经纪公司所有。
 
 ## 更新计划
@@ -44,7 +44,8 @@
 | :----: | :----: | :----: | :----: | :----: |
 | [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360*508 | 600+ | 著名的美女摄影写真机构 | ★ |
 | [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640*960 | 30+ | X-City 旗下的写真分支 | ★ |
-| [LovePop](https://lovepop.net/ "Lovepop") | 384*576 | 70+ | 美少女写真摄影机构 | *New Add!* ★ |
+| [LovePop](https://lovepop.net/ "Lovepop") | 384*576 | 70+ | 美少女写真摄影机构 | ★ |
+| [FANZA](http://dmm.co.jp/ "FANZA") | 128*128 | 1.5W+ | DMM小图，仅作为补充 | *New Add!* |
 
 ### 品牌官方
 | 品牌 | 分辨率 |女友数量|旗下知名小姐姐|备注|
@@ -74,12 +75,12 @@
 | [Madonna](https://www.madonna-av.com/ "Madonna") | 230*300|30+|美森けい、谷花紗耶、桜井ゆみ、今井ひまり|☆|
 | [溜池ゴロー](http://www.tameikegoro.jp/ "溜池ゴロー") |100*100|500+|めぐり、本田岬、かすみ果穂、さとう遥希|MOODYZ 旗下公司|
 | [Das!](http://www.dasdas.jp/ "Das!") |280*280|300+|あべみかこ、冴月りん、跡美しゅり、一ノ瀬梓|“强X”系列|
-| [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116*236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果| *New Add!* ☆|
+| [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116*236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|☆|
 
 ## 免责声明
 1. 本项目作者旨在学习 Python 后端，提高编程水平。
 2. 项目仅用于技术、学术交流，严禁用于商业和其他盈利目的。
-3. 请自觉遵守当地法律法规，产生一切违法后果由用户自行承担。
+3. 请自觉遵守当地法律法规，产生的一切后果由用户自行承担。
 4. 作者保留最终决定权和最终解释权。
 
 若您不同意上述任一条款，请勿直接或间接使用本项目。
