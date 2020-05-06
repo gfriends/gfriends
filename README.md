@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-1.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--4--30-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-1.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--6-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 使用说明
@@ -11,7 +11,7 @@
 ## 更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 ★ 官网）<br>
 ✔ 匹配简中/繁中/日文姓名<br>
-✔ 移除低质量和重复头像<br>
+✔ 移除低质且重复的头像<br>
 ✔ 处理以匹配 Emby 的特殊尺寸（需使用 Windows 导入工具）
 
 ## 快速开始
