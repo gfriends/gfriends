@@ -2,12 +2,13 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # By xinxin8816, Many thanks for junerain123, ddd354, moyy996.
 
-import requests, os
+import requests, os, sys
 from configparser import RawConfigParser
 from base64 import b64encode
 from traceback import format_exc
 from json import loads
 from PIL import Image,ImageFilter
+from alive_progress import alive_bar
 
 def fix_size(path):
 	pic = Image.open(path)
@@ -31,12 +32,12 @@ def get_gfriends_map(repository_url):
 			response = session.get(request_url, proxies = proxies)
 	except:
 		print(format_exc())
-		print('网络连接异常且重试' + max_retries + '次失败')
+		print('网络连接异常且重试 ' + max_retries + ' 次失败')
 		print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-		exit()
+		sys.exit()
 	if response.status_code != 200:
 		print('女友仓库返回了一个错误： {}'.format(response.status_code))
-		exit()
+		sys.exit()
 	
 	map_json = loads(response.content)
 	output = {}
@@ -107,7 +108,7 @@ max retry = 5
 		write_txt("config.ini",content)
 		print('没有找到配置文件 config.ini，已为阁下生成，请修改配置后重新运行程序\n')
 		os.system('pause')
-		exit()
+		sys.exit()
 
 def read_persons(host_url,api_key):
 	print('读取 Emby / Jellyfin 演员...')
@@ -116,14 +117,14 @@ def read_persons(host_url,api_key):
 		rqs_emby = requests.get(url=host_url_persons)
 	except requests.exceptions.ConnectionError:
 		print('连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
-		exit()
+		sys.exit()
 	except:
 		print(format_exc())
 		print('连接 Emby / Jellyfin 服务器未知错误', host_url, '\n')
-		exit()
+		sys.exit()
 	if rqs_emby.status_code == 401:
 		print('无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
-		exit()
+		sys.exit()
 	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
 	return output
@@ -142,7 +143,6 @@ os.system('cls')
 num_suc = 0
 num_fail = 0
 num_exist = 0
-index = 1
 try:
 	print('Gfriends 一键导入工具')
 	print('https://github.com/xinxin8816/gfriends')
@@ -166,47 +166,47 @@ try:
 	folder_path = './Downloads/'
 	if os.path.exists(folder_path) == False:
 		os.makedirs(folder_path)
-	for dic_each_actor in list_persons:
-		actor_name = dic_each_actor['Name']
-		progress_rate = format(index/len(list_persons)*100,'.1f')
-		if get_gfriends_link(actor_name) == None:
-			print('(', progress_rate, '%) >>未收录：', actor_name)
-			write_txt("未收录的演员清单.txt",actor_name + '\n')
-			num_fail += 1
-		else:
-			write_txt("已匹配的演员清单.txt",actor_name + '\n')
-			if dic_each_actor['ImageTags']:
-				num_exist += 1
-				if not overwrite:
-					print('(', progress_rate, '%) >>跳过：', actor_name)
-					index += 1
+	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
+		for dic_each_actor in list_persons:
+			actor_name = dic_each_actor['Name']
+			bar()
+			if get_gfriends_link(actor_name) == None:
+				print('>> 未收录：', actor_name)
+				write_txt("未收录的演员清单.txt",actor_name + '\n')
+				num_fail += 1
+			else:
+				write_txt("已匹配的演员清单.txt",actor_name + '\n')
+				if dic_each_actor['ImageTags']:
+					num_exist += 1
+					if not overwrite:
+						print('>> 跳过：', actor_name)
+						continue
+				print('>> 下载并导入：',get_gfriends_link(actor_name))
+				try:
+					if proxy == '不使用':
+						pic = session.get(get_gfriends_link(actor_name))
+					else:
+						pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
+				except (KeyboardInterrupt):
+					sys.exit()
+				except:
+					with bar.pause():
+						print(format_exc())
+						print('网络连接异常且重试 ' + max_retries + ' 次失败')
+						print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+						print('继续运行则跳过下载此头像：'+ actor_name)
+						os.system('pause')
 					continue
-			print('(', progress_rate, '%) >>下载并导入：',get_gfriends_link(actor_name))
-			try:
-				if proxy == '不使用':
-					pic = session.get(get_gfriends_link(actor_name))
-				else:
-					pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
-			except (KeyboardInterrupt):
-				exit()
-			except:
-				print(format_exc())
-				print('网络连接异常且重试' + max_retries + '次失败')
-				print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-				print('继续运行则跳过下载此头像：'+ actor_name)
-				os.system('pause')
-				continue
-			with open("Downloads/"+actor_name+".jpg","wb") as code:
-				code.write(pic.content)
-			if fixsize:
-				fix_size("Downloads/"+actor_name+".jpg")
-			pic = open("Downloads/"+actor_name+".jpg", 'rb')
-			b6_pic = b64encode(pic.read())
-			pic.close()
-			url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
-			session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
-			num_suc += 1
-		index += 1
+				with open("Downloads/"+actor_name+".jpg","wb") as code:
+					code.write(pic.content)
+				if fixsize:
+					fix_size("Downloads/"+actor_name+".jpg")
+				pic = open("Downloads/"+actor_name+".jpg", 'rb')
+				b6_pic = b64encode(pic.read())
+				pic.close()
+				url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+				session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
+				num_suc += 1
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
 	print('本次成功导入', num_suc, '人')
 	print('仓库未收录', num_fail, '人\n')
