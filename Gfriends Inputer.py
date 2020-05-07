@@ -24,10 +24,18 @@ def get_gfriends_map(repository_url):
 		repository_url = 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/'
 	github_template = repository_url+'{}/{}/{}'
 	request_url = repository_url+'Filetree.json'
-	response = requests.get(request_url)
+	try:
+		if proxy == '不使用':
+			response = session.get(request_url)
+		else:
+			response = session.get(request_url, proxies = proxies)
+	except:
+		print(format_exc())
+		print('网络连接异常且重试' + max_retries + '次失败')
+		print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+		exit()
 	if response.status_code != 200:
-		print('无法连接头像仓库，请检查配置和网络 {}'.format(response.status_code))
-		os.system('pause')
+		print('女友仓库返回了一个错误： {}'.format(response.status_code))
 		exit()
 	
 	map_json = loads(response.content)
@@ -53,37 +61,45 @@ def get_gfriends_link(name):
 
 def read_config():
 	if os.path.exists('config.ini'):
-		print('推荐开启全局代理以加快下载速度\n')
-		os.system('pause')
 		config_settings = RawConfigParser()
 		try:
 			config_settings.read('config.ini', encoding='UTF-8')
-			repository_url = config_settings.get("gfriends", "repository url")
-			host_url = config_settings.get("gfriends", "host url")
-			api_key = config_settings.get("gfriends", "api id")
-			overwrite = True if config_settings.get("gfriends", "是否覆盖以前上传的头像？") == '是' else False
-			fixsize = True if config_settings.get("gfriends", "是否处理下载的头像？") == '是' else False
+			repository_url = config_settings.get("下载设置", "repository url")
+			host_url = config_settings.get("媒体服务器", "host url")
+			api_key = config_settings.get("媒体服务器", "api id")
+			max_retries = config_settings.get("下载设置", "max retry")
+			proxy = config_settings.get("下载设置", "proxy")
+			overwrite = True if config_settings.get("导入设置", "是否覆盖以前上传的头像？") == '是' else False
+			fixsize = True if config_settings.get("导入设置", "是否处理下载的头像？") == '是' else False
 			# 修正用户的URL
 			if not host_url.endswith('/'):
 				host_url += '/'
 			if not repository_url.endswith('/'):
 				repository_url += '/'
-			return (repository_url,host_url,api_key,overwrite,fixsize)
+			return (repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy)
 		except:
 			print(format_exc())
 			print('无法读取 config.ini')
 			os.system('pause')
 	else:
-		content='''[gfriends]
-# 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/
-repository url = 默认
-	
+		content='''[媒体服务器]
 # Emby/Jellyfin 服务器地址
 host url = http://localhost:8096/
 	
 # Emby/Jellyfin API 密匙
 api id = 
 
+[下载设置]
+# 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/，网络不稳定可使用仓库备用镜像：https://gfriends.imfast.io/
+repository url = 默认
+
+# HTTP局部代理地址，格式为"IP:端口"，推荐开启全局代理而不是使用此处的局部代理
+proxy = 不使用
+
+# 最大重试次数，若网络连接不稳定，丢包率或延迟较高，可适当增加重试次数
+max retry = 5
+
+[导入设置]
 # 处理以满足尺寸需求，能避免部分头像被拉伸但会牺牲一定质量
 是否处理下载的头像？ = 是
 
@@ -100,11 +116,14 @@ def read_persons(host_url,api_key):
 		rqs_emby = requests.get(url=host_url_persons)
 	except requests.exceptions.ConnectionError:
 		print('连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
+		exit()
 	except:
 		print(format_exc())
 		print('连接 Emby / Jellyfin 服务器未知错误', host_url, '\n')
+		exit()
 	if rqs_emby.status_code == 401:
-		print('无权访问 Emby / Jellyfin 服务器，请检查 Api id\n')
+		print('无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
+		exit()
 	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
 	return output
@@ -114,21 +133,36 @@ def write_txt(filename,content):
 	txt.write(content)
 	txt.close()
 
+
 os.system('title Gfriends 一键导入工具')
-print('Gfriends 一键导入工具')
-print('https://github.com/xinxin8816/gfriends')
-(repository_url,host_url,api_key,overwrite,fixsize) = read_config()
+print('读取配置文件 config.ini')
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy) = read_config()
+os.system('cls')
 
 num_suc = 0
 num_fail = 0
 num_exist = 0
 index = 1
 try:
+	print('Gfriends 一键导入工具')
+	print('https://github.com/xinxin8816/gfriends')
+	#局部代理
+	if proxy == '不使用':
+		print('推荐开启全局代理以加快下载速度\n')
+	else:
+		print('已配置 HTTP 局部代理：' + proxy + '，请确保其可用\n')
+		proxies={
+		'http':'http://' + proxy,
+		'https':'https://' + proxy
+		}
+	os.system('pause')
+	#持久会话
 	session = requests.Session()
-	session.mount('http://', requests.adapters.HTTPAdapter(max_retries=4))
-	session.mount('https://', requests.adapters.HTTPAdapter(max_retries=4))
+	session.mount('http://', requests.adapters.HTTPAdapter(max_retries=max_retries))
+	session.mount('https://', requests.adapters.HTTPAdapter(max_retries=max_retries))
 	list_persons = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
+	#下载文件夹
 	folder_path = './Downloads/'
 	if os.path.exists(folder_path) == False:
 		os.makedirs(folder_path)
@@ -148,7 +182,20 @@ try:
 					index += 1
 					continue
 			print('(', progress_rate, '%) >>下载并导入：',get_gfriends_link(actor_name))
-			pic = session.get(get_gfriends_link(actor_name))
+			try:
+				if proxy == '不使用':
+					pic = session.get(get_gfriends_link(actor_name))
+				else:
+					pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
+			except (KeyboardInterrupt):
+				exit()
+			except:
+				print(format_exc())
+				print('网络连接异常且重试' + max_retries + '次失败')
+				print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+				print('继续运行则跳过下载此头像：'+ actor_name)
+				os.system('pause')
+				continue
 			with open("Downloads/"+actor_name+".jpg","wb") as code:
 				code.write(pic.content)
 			if fixsize:
@@ -164,7 +211,10 @@ try:
 	print('本次成功导入', num_suc, '人')
 	print('仓库未收录', num_fail, '人\n')
 	os.system('pause')
+except (KeyboardInterrupt, SystemExit):
+	print('强制停止或已知致命错误！')
+	os.system('pause')
 except:
 	print(format_exc())
-	print('强制停止或致命错误退出')
+	print('未知致命错误！')
 	os.system('pause')
