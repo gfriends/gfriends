@@ -122,7 +122,11 @@ print('https://github.com/xinxin8816/gfriends')
 num_suc = 0
 num_fail = 0
 num_exist = 0
+index = 1
 try:
+	session = requests.Session()
+	session.mount('http://', requests.adapters.HTTPAdapter(max_retries=4))
+	session.mount('https://', requests.adapters.HTTPAdapter(max_retries=4))
 	list_persons = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
 	folder_path = './Downloads/'
@@ -130,8 +134,9 @@ try:
 		os.makedirs(folder_path)
 	for dic_each_actor in list_persons:
 		actor_name = dic_each_actor['Name']
+		progress_rate = format(index/len(list_persons)*100,'.1f')
 		if get_gfriends_link(actor_name) == None:
-			print('>>仓库未收录：', actor_name)
+			print('(', progress_rate, '%) >>未收录：', actor_name)
 			write_txt("未收录的演员清单.txt",actor_name + '\n')
 			num_fail += 1
 		else:
@@ -139,9 +144,11 @@ try:
 			if dic_each_actor['ImageTags']:
 				num_exist += 1
 				if not overwrite:
+					print('(', progress_rate, '%) >>跳过：', actor_name)
+					index += 1
 					continue
-			print('>>从仓库下载：',get_gfriends_link(actor_name))
-			pic = requests.get(get_gfriends_link(actor_name))
+			print('(', progress_rate, '%) >>下载并导入：',get_gfriends_link(actor_name))
+			pic = session.get(get_gfriends_link(actor_name))
 			with open("Downloads/"+actor_name+".jpg","wb") as code:
 				code.write(pic.content)
 			if fixsize:
@@ -150,12 +157,12 @@ try:
 			b6_pic = b64encode(pic.read())
 			pic.close()
 			url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
-			requests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
-			print('>>设置成功：', actor_name)
+			session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
 			num_suc += 1
-	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，其中已有头像', num_exist, '人')
-	print('本次成功导入', num_suc, '人，已保存至“已匹配的演员清单.txt”')
-	print('仓库未收录', num_fail, '人，已保存至“未收录的演员清单.txt”\n')
+		index += 1
+	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
+	print('本次成功导入', num_suc, '人')
+	print('仓库未收录', num_fail, '人\n')
 	os.system('pause')
 except:
 	print(format_exc())
