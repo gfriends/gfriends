@@ -18,8 +18,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - name: git Actions
-      uses: srt32/git-actions@v0.0.3
+    - uses: actions/checkout@v2.1.0
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
