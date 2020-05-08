@@ -18,26 +18,27 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
-
+    - name: git-bash
+      uses: fnkr/github-action-git-bash@v1.1
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Install dependencies
+    - name: Download and install dependencies
       run: |
+        git clone https://github.com/xinxin8816/gfriends.git
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build with pyinstaller (windows)
       if: matrix.os == 'windows-latest'
       run: |
-        pyinstaller -F
+        pyinstaller -F "Gfriends Inputer.py"
     - name: Build with pyinstaller (mac/ubuntu)
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
       run: |
-        pyinstaller -F
+        pyinstaller -F "Gfriends Inputer.py"
     - name: Upload build artifact
       uses: actions/upload-artifact@v1
       with:
-        name: AV_Data_Capture-${{ matrix.os }}
+        name: Gfriends_Inputer-${{ matrix.os }}
         path: dist
