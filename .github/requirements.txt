@@ -1,0 +1,4 @@
+alive-progress
+requests
+Pillow
+pyinstaller

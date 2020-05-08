@@ -3,11 +3,9 @@ name: Build-Inputer
 on:
   push:
     branches:
-      - master
       - dev
   pull_request:
     branches:
-      - master
       - dev
 
 jobs:
@@ -19,6 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2.1.0
+        path:'.github'
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
