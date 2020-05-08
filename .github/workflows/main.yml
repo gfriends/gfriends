@@ -16,18 +16,19 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2.1.0
-      with:
-       repository: xinxin8816/gfriends
-       path: .github
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
     - name: Download and install dependencies
       run: |
-        git clone https://github.com/xinxin8816/gfriends.git
+        mkdir project
+        cd project
+        git init
+        git remote add -f origin https://github.com/xinxin8816/gfriends.git
+        git config core.sparsecheckout true
+        echo ".github/*"> .git/info/sparse-checkout
+        git pull origin master
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build with pyinstaller (windows)
