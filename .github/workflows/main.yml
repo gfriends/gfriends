@@ -19,6 +19,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.1.0
       with:
+       repository: xinxin8816/gfriends
        path: .github
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
