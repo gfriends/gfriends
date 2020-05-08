@@ -24,7 +24,10 @@ def get_gfriends_map(repository_url):
 	if repository_url == '默认/':
 		repository_url = 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/'
 	github_template = repository_url+'{}/{}/{}'
-	request_url = repository_url+'Filetree.json'
+	if aifix:
+		request_url = repository_url+'Filetree.json'
+	else:
+		request_url = repository_url+'Filetree-NonFix.json'
 	try:
 		if proxy == '不使用':
 			response = session.get(request_url)
@@ -70,6 +73,7 @@ def read_config():
 			api_key = config_settings.get("媒体服务器", "api id")
 			max_retries = config_settings.get("下载设置", "max retry")
 			proxy = config_settings.get("下载设置", "proxy")
+			aifix = True if config_settings.get("下载设置", "AI fix") == '是' else False
 			overwrite = True if config_settings.get("导入设置", "是否覆盖以前上传的头像？") == '是' else False
 			fixsize = True if config_settings.get("导入设置", "是否处理下载的头像？") == '是' else False
 			# 修正用户的URL
@@ -77,7 +81,7 @@ def read_config():
 				host_url += '/'
 			if not repository_url.endswith('/'):
 				repository_url += '/'
-			return (repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy)
+			return (repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix)
 		except:
 			print(format_exc())
 			print('无法读取 config.ini')
@@ -91,17 +95,20 @@ host url = http://localhost:8096/
 api id = 
 
 [下载设置]
-# 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/，网络不稳定可使用仓库备用镜像：https://gfriends.imfast.io/
+# 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/，备用镜像：https://gfriends.imfast.io/
 repository url = 默认
 
-# HTTP局部代理地址，格式为"IP:端口"，推荐开启全局代理而不是使用此处的局部代理
+# 在不可避免下载低质量头像时，自动挑选经AI算法放大优化的副本，质量更高但更占空间
+AI fix = 是
+
+# HTTP代理地址，格式为"IP:端口"，推荐开启全局代理而不是使用此处
 proxy = 不使用
 
-# 最大重试次数，若网络连接不稳定，丢包率或延迟较高，可适当增加重试次数
-max retry = 5
+# 最大重试次数，若网络不稳定、丢包率或延迟较高，可适当增加重试次数
+max retry = 3
 
 [导入设置]
-# 处理以满足尺寸需求，能避免部分头像被拉伸但会牺牲一定质量
+# 高斯模糊处理尺寸不合规的头像，能避免这些头像被拉伸但会牺牲一定质量
 是否处理下载的头像？ = 是
 
 是否覆盖以前上传的头像？ = 是'''
@@ -137,7 +144,7 @@ def write_txt(filename,content):
 
 os.system('title Gfriends 一键导入工具')
 print('读取配置文件 config.ini')
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix) = read_config()
 os.system('cls')
 
 num_suc = 0
