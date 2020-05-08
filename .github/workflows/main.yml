@@ -1,4 +1,4 @@
-name: BuildUp
+name: Build-Inputer
 
 on:
   push:
