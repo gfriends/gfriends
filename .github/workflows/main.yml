@@ -28,7 +28,7 @@ jobs:
         git remote add -f origin https://github.com/xinxin8816/gfriends.git
         git config core.sparsecheckout true
         echo Inputer/* >> .git/info/sparse-checkout
-        git pull origin master
+        git pull origin dev
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build with pyinstaller
