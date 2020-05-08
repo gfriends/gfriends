@@ -18,8 +18,8 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - name: git-bash
-      uses: fnkr/github-action-git-bash@v1.1
+    - name: git Actions
+      uses: srt32/git-actions@v0.0.3
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
@@ -32,11 +32,11 @@ jobs:
     - name: Build with pyinstaller (windows)
       if: matrix.os == 'windows-latest'
       run: |
-        pyinstaller -F "Gfriends Inputer.py"
+        pyinstaller -F 'Gfriends Inputer.py'
     - name: Build with pyinstaller (mac/ubuntu)
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
       run: |
-        pyinstaller -F "Gfriends Inputer.py"
+        pyinstaller -F 'Gfriends Inputer.py'
     - name: Upload build artifact
       uses: actions/upload-artifact@v1
       with:
