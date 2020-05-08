@@ -19,7 +19,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.1.0
       with:
-       path: $GITHUB_WORKSPACE/.github
+       path: .github
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
