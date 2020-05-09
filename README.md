@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--8-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--9-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 快速开始
@@ -32,7 +32,8 @@
 无需预先下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器。
 
 ## 进阶说明
-本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。<br>
+本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
+
 `Filetree.json` 为已按质量排序的文件树，可供程序调用搜索。女友仓库不能保证 AI 优化的图片完美无瑕，若您不想获取这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可。
 
 ### 上传新的演员图片
