@@ -1,0 +1,53 @@
+name: Build-Inputer
+
+on:
+  push:
+    paths:
+    - '**.py'
+    - '**.yml'
+  pull_request:
+    paths:
+    - '**.py'
+    - '**.yml'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+    - name: Set Up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Build For Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        curl -O https://eternallybored.org/misc/wget/1.20.3/64/wget.exe #curl直接Py源码失败？
+        ./wget.exe 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        python -m pip install --upgrade pip
+        pip install alive-progress
+        pip install requests
+        pip install Pillow
+        pip install pyinstaller
+        pyinstaller -F 'Gfriends Inputer.py'
+
+    - name: Build For Mac/Linux
+      if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
+      run: |
+        wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        python -m pip install --upgrade pip
+        pip install alive-progress
+        pip install requests
+        pip install Pillow
+        pip install pyinstaller
+        pyinstaller -F 'Gfriends Inputer.py'
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: Gfriends-Inputer-${{ matrix.os }}
+        path: dist
