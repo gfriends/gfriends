@@ -7,18 +7,19 @@
 
 ### Emby / Jellyfin
 
-无需预先下载本仓库的女友头像，仅需下载 [Gfriends 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+无需预先下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 <details>
 
-<summary>Plan B</summary>
+<summary>从本地导入的备选方案</summary>
 由 JavScraper 提供<br>
-不推荐，因为下载全部头像会消耗大量时间
+不推荐此方法，因为下载全部头像会消耗大量时间
 
 1. 根据需求下载本仓库中的女友头像，并下载 [Windows 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-Windows.zip "导入工具") 或 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
 - **url**：Emby / Jellyfin 服务器的地址
 - **api_key**：Emby / Jellyfin 服务器的 API 密钥
 - **dir**：女友头像所在文件夹，如果填入完整路径请使用 "/" 替换 "\\"
+
 2. 执行程序导入头像
 - Windows 运行 `Emby.Actress.exe`，若无法运行请安装依赖 [.NET Framework 4.6.1](https://support.microsoft.com/zh-cn/help/3102436/the-net-framework-4-6-1-offline-installer-for-windows)
 - Linux / Mac 运行 `dotnet Emby.Actress.dll`，若无法运行请安装依赖 [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download/dotnet-core/current/runtime)
@@ -34,10 +35,10 @@
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。 `Filetree.json` 为已按质量排序的文件树，`Filetree-NonFix.json` 为没有 AI 优化头像的文件树，二者均可供程序调用搜索。
 
 ### 上传新的演员图片
-女友仓库欢迎提交优质的演员头像图片或写真。不过首先，优质头像应尽可能满足这几点：
+欢迎提交优质的演员头像图片或写真。不过首先，优质头像应 **尽可能** 满足：
 
-1. 足够养眼，以女友为主体。
-2. 接近 3:2 的长宽比，且宽度宜在 300px 以上。
+1. 以女友为主体的特写或近景，且足够养眼。
+2. 接近 3:2 的长宽比，宽度宜在 300px 以上。
 
 如果您的图片符合上述要求，则可以：
 
@@ -45,18 +46,18 @@
 2. 轻击 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片。
 3. 轻击 “Commit” 提交然后 “Pull Requests”。在经过审核后，您的美图就可以和大家分享了。
 
-此外，如果您有大量的图片想要上传，可能您需要了解一点 Git 再操作，也可以直接联系我。
+此外，如果您有大量的图片想要上传，则最好了解一点 Git 命令，也可以提交一个 issues 求助。
 
 ### 提交来源网站
 
-首先，该优质网站除了满足上述图片要求，还应尽可能满足：每一位女友只有一张或少量的图片。以避免二次人工筛选。
+首先，该优质网站上的图片除了满足上述要求，还应尽可能满足：每一位女友只有一张或少量的图片，以避免二次人工筛选。
 
-如果您有这样的来源网站，那就太完美了~ 您只需提交一个 Issues，告诉我网站地址即可。我会抽空改写后端适配它，之后会自动完成这一切。
+如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issues 告诉我地址即可。
 
 ### 更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配简体中文 / 繁体中文 / 日文姓名<br>
-✔ 高斯模糊处理以匹配 Emby 的特殊尺寸（需使用 Windows 导入工具）<br>
+✔ 高斯模糊处理以匹配 Emby 的特殊尺寸（需使用 Gfriends Inputer 导入）<br>
 ✔ AI 算法放大并优化低分辨率头像（仅后述标注 *➡*）
 
 ## 图片来源
