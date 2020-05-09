@@ -41,10 +41,11 @@ def get_gfriends_map(repository_url):
 	if response.status_code != 200:
 		print('女友仓库返回了一个错误： {}'.format(response.status_code))
 		sys.exit()
-	
-	map_json = loads(response.content)
+	if aifix:
+		map_json = loads(response.text)
+	else:
+		map_json = loads(response.text.replace('AI-Fix-',''))
 	output = {}
-	
 	first_lvls = map_json.keys()
 	for first in first_lvls:
 		second_lvls = map_json[first].keys()
