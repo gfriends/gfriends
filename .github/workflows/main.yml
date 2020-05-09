@@ -22,14 +22,12 @@ jobs:
         python-version: 3.7
     - name: Download and install dependencies
       run: |
-        mkdir project
-        cd project
-        git init
-        git remote add -f origin https://github.com/xinxin8816/gfriends.git
-        git config core.sparsecheckout true
-        git pull origin master
+        wget https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends%20Inputer.py -O 'Gfriends Inputer.py'
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install alive-progress
+        pip install requests
+        pip install Pillow
+        pip install pyinstaller
     - name: Build with pyinstaller
       run: |
         pyinstaller -F 'Gfriends Inputer.py'
