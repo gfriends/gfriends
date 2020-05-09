@@ -23,19 +23,22 @@ jobs:
       with:
         python-version: 3.7
 
-    - name: Download Sources For Windows
+    - name: Build For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -O 'Gfriends Inputer.py' 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl --output 'Gfriends Inputer.py' --url 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         curl --help
+        python -m pip install --upgrade pip
+        pip install alive-progress
+        pip install requests
+        pip install Pillow
+        pip install pyinstaller
+        pyinstaller -F 'Gfriends Inputer.py'
 
-    - name: Download Sources For Mac/Linux
+    - name: Build For Mac/Linux
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
       run: |
         wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
-
-    - name: Install Dependencies and Build
-      run: |
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
