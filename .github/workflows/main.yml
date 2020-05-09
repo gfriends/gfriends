@@ -26,7 +26,7 @@ jobs:
     - name: Build For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl --output 'Gfriends Inputer.py' --url 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl -o 'Gfriends Inputer.py' 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         curl --help
         python -m pip install --upgrade pip
         pip install alive-progress
