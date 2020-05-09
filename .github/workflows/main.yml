@@ -26,14 +26,14 @@ jobs:
     - name: Build For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -o 'Gfriends Inputer.py' 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl -o Inputer.py 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         curl --help
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
         pip install Pillow
         pip install pyinstaller
-        pyinstaller -F 'Gfriends Inputer.py'
+        pyinstaller -F Inputer.py
 
     - name: Build For Mac/Linux
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
