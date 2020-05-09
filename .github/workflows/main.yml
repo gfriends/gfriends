@@ -24,12 +24,12 @@ jobs:
     - name: Download Sources For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -O 'Gfriends Inputer.py' 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl -O 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
 
     - name: Download Sources For Mac/Linux
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
       run: |
-        wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py' -O 'Gfriends Inputer.py'
+        wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
 
     - name: Install Dependencies and Build
       run: |
