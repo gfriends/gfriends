@@ -4,9 +4,11 @@ on:
   push:
     paths:
     - '**.py'
+    - '**.yml'
   pull_request:
     paths:
     - '**.py'
+    - '**.yml'
 
 jobs:
   build:
@@ -21,18 +23,22 @@ jobs:
       with:
         python-version: 3.7
 
-    - name: Download Sources For Windows
+    - name: Build For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -O 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl -O https://eternallybored.org/misc/wget/1.20.3/64/wget.exe #curl直接Py源码失败？
+        ./wget.exe 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        python -m pip install --upgrade pip
+        pip install alive-progress
+        pip install requests
+        pip install Pillow
+        pip install pyinstaller
+        pyinstaller -F 'Gfriends Inputer.py'
 
-    - name: Download Sources For Mac/Linux
+    - name: Build For Mac/Linux
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
       run: |
         wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
-
-    - name: Install Dependencies and Build
-      run: |
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
