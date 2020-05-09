@@ -4,9 +4,11 @@ on:
   push:
     paths:
     - '**.py'
+    - '**.yml'
   pull_request:
     paths:
     - '**.py'
+    - '**.yml'
 
 jobs:
   build:
@@ -24,7 +26,8 @@ jobs:
     - name: Download Sources For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -O 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl -O 'Gfriends Inputer.py' 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
+        curl --help
 
     - name: Download Sources For Mac/Linux
       if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
