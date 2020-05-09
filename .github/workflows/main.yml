@@ -26,8 +26,8 @@ jobs:
     - name: Build For Windows
       if: matrix.os == 'windows-latest'
       run: |
-        curl -o Inputer.py 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
-        curl --help
+        curl -O https://eternallybored.org/misc/wget/1.20.3/64/wget.exe
+        ./wget.exe 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
