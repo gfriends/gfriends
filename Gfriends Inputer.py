@@ -120,6 +120,7 @@ max retry = 3
 
 def read_persons(host_url,api_key):
 	print('读取 Emby / Jellyfin 演员...')
+	emby=True
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
 		rqs_emby = requests.get(url=host_url_persons)
@@ -133,9 +134,14 @@ def read_persons(host_url,api_key):
 	if rqs_emby.status_code == 401:
 		print('无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
 		sys.exit()
+	if rqs_emby.status_code == 404:
+		print('可能是新版 Jellyfin，尝试重新读取')
+		emby=False
+		host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
+		rqs_emby = requests.get(url=host_url_persons)
 	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
-	return output
+	return (output,emby)
 
 def write_txt(filename,content):
 	txt = open(filename, 'a', encoding="utf-8")
@@ -168,7 +174,7 @@ try:
 	session = requests.Session()
 	session.mount('http://', requests.adapters.HTTPAdapter(max_retries=max_retries))
 	session.mount('https://', requests.adapters.HTTPAdapter(max_retries=max_retries))
-	list_persons = read_persons(host_url,api_key)
+	(list_persons,emby) = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
 	#下载文件夹
 	folder_path = './Downloads/'
@@ -212,7 +218,10 @@ try:
 				pic = open("Downloads/"+actor_name+".jpg", 'rb')
 				b6_pic = b64encode(pic.read())
 				pic.close()
-				url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+				if emby:
+					url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+				else:
+					url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
 				session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
 				num_suc += 1
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
