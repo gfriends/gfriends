@@ -1,6 +1,6 @@
 # 女友头像仓库
 ![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--9-green.svg)<br>
-媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/moyy996/AVDC "AVDC") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
+媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 快速开始
 对于一般用户来说，可以通过这些工具方便的导入头像。
@@ -12,8 +12,7 @@
 <details>
 
 <summary>从本地导入的备选方案</summary>
-由 JavScraper 提供<br>
-不推荐此方法，因为下载全部头像会消耗大量时间
+<p>由 JavScraper 提供。不推荐下载全部头像，这样会消耗大量时间。<p>
 
 1. 根据需求下载本仓库中的女友头像，并下载 [Windows 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-Windows.zip "导入工具") 或 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
 - **url**：Emby / Jellyfin 服务器的地址
