@@ -120,7 +120,7 @@ max retry = 3
 
 def read_persons(host_url,api_key):
 	print('读取 Emby / Jellyfin 演员...')
-	emby=True
+	emby = True
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
 		rqs_emby = requests.get(url=host_url_persons)
@@ -135,10 +135,15 @@ def read_persons(host_url,api_key):
 		print('无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
 		sys.exit()
 	if rqs_emby.status_code == 404:
-		print('可能是新版 Jellyfin，尝试重新读取')
-		emby=False
-		host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
-		rqs_emby = requests.get(url=host_url_persons)
+		try:
+			print('可能是新版 Jellyfin，尝试重新读取')
+			emby = False
+			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
+			rqs_emby = requests.get(url=host_url_persons)
+		except:
+			print(format_exc())
+			print('读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本', host_url, '\n')
+			sys.exit()
 	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
 	return (output,emby)
