@@ -68,7 +68,7 @@ def read_config():
 	if os.path.exists('config.ini'):
 		config_settings = RawConfigParser()
 		try:
-			config_settings.read('config.ini', encoding='UTF-8')
+			config_settings.read('config.ini', encoding='UTF-8-SIG')
 			repository_url = config_settings.get("下载设置", "repository url")
 			host_url = config_settings.get("媒体服务器", "host url")
 			api_key = config_settings.get("媒体服务器", "api id")
@@ -136,7 +136,7 @@ def read_persons(host_url,api_key):
 		sys.exit()
 	if rqs_emby.status_code == 404:
 		try:
-			print('可能是新版 Jellyfin，尝试重新读取')
+			print('可能是新版 Jellyfin，尝试重新读取...')
 			emby = False
 			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 			rqs_emby = requests.get(url=host_url_persons)
