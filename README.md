@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--19-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--5--27-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 快速开始
@@ -47,23 +47,23 @@
 2. 轻击 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片。
 3. 轻击 “Commit” 提交然后 “Pull Requests”。在经过审核后，您的美图就可以和大家分享了。
 
-此外，如果您有大量的图片想要上传，则最好了解一点 Git 命令，也可以提交一个 issues 求助。
+此外，如果您有大量的图片想要上传，则最好使用 Git 命令，也可以提交一个 issue 求助。
 
 ### 提交来源网站
 
-首先，该优质网站上的图片除了满足上述要求，还应尽可能满足：每一位女友只有一张或少量的图片，以避免二次人工筛选。
+首先，该优质网站上的图片除了满足上述要求，还应尽可能满足：每位女友只有一张或少量的图片，以避免二次人工筛选。
 
-如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issues 告诉我地址即可。
+如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issue 告诉我地址即可。
 
 ### 更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配简体中文 / 繁体中文 / 日文姓名<br>
 ✔ 高斯模糊处理以匹配 Emby 的特殊尺寸（需使用 Gfriends Inputer 导入）<br>
-✔ AI 算法放大并优化低分辨率头像（仅后述标注 *➡*）
+✔ AI 算法放大并优化低分辨率头像（仅后述标注 ➡）
 
 ## 图片来源
 排序不分前后<br>
-标注🌟的图片为原生高质量大图，标注*➡*的图片为经过 AI 算法放大优化的图片。
+标注🌟的图片为原生高质量大图，标注➡的图片为经过 AI 算法放大优化的图片。
 
 ### 第三方内容商
 | 品牌 | 尺寸 |女友数量|简介|备注|
