@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 # Gfriends Inputer / 女友头像仓库导入工具
+# Licensed under the MIT license
 # By xinxin8816, Many thanks for junerain123, ddd354, moyy996.
 
 import requests, os, sys
