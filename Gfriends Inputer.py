@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 # Gfriends Inputer / 女友头像仓库导入工具
-# Licensed under the MIT license
-# By xinxin8816, Many thanks for junerain123, ddd354, moyy996.
+# Licensed under the MIT license.
+# Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
+version = 'v2.4'
 
 import requests, os, sys
 from configparser import RawConfigParser
@@ -11,14 +12,21 @@ from json import loads
 from PIL import Image,ImageFilter
 from alive_progress import alive_bar
 
-def fix_size(path):
+def fix_size(type,path):
 	pic = Image.open(path)
 	(x,y) = pic.size
 	if not 2/3-0.05 <= x/y <= 2/3+0.05: #仅处理会过度拉伸的图片
-		fixed_pic = pic.resize((int(x), int(3/2*x))) #拉伸图片
-		fixed_pic = fixed_pic.filter(ImageFilter.GaussianBlur(radius=50)) #高斯模糊
-		fixed_pic.paste(pic,(0,int((3/2*x-y)/2))) #粘贴原图
-		fixed_pic.save(path)
+		if type == '1':
+			fixed_pic = pic.resize((int(x),int(3/2*x))) #拉伸图片
+			fixed_pic = fixed_pic.filter(ImageFilter.GaussianBlur(radius=50)) #高斯模糊
+			fixed_pic.paste(pic,(0,int((3/2*x-y)/2))) #粘贴原图
+			fixed_pic.save(path)
+		elif type == '2':
+			fixed_pic = pic.crop((int(x/2-1/3*y),0,int(x/2+1/3*y),int(y)))
+			fixed_pic.save(path)
+		else:
+			print('头像处理配置错误，没有此选项：' + str(type))
+			sys.exit()
 
 def get_gfriends_map(repository_url):
 	print('下载头像仓库文件树...')
@@ -34,9 +42,12 @@ def get_gfriends_map(repository_url):
 			response = session.get(request_url)
 		else:
 			response = session.get(request_url, proxies = proxies)
+		# 修复部分服务端返回 header 未指明编码使后续解析错误
+		response.encoding = 'utf-8' 
 	except:
-		print(format_exc())
-		print('网络连接异常且重试 ' + max_retries + ' 次失败')
+		if debug:
+			print(format_exc())
+		print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 		print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
 		sys.exit()
 	if response.status_code != 200:
@@ -69,31 +80,32 @@ def read_config():
 	if os.path.exists('config.ini'):
 		config_settings = RawConfigParser()
 		try:
-			config_settings.read('config.ini', encoding='UTF-8-SIG')
+			config_settings.read('config.ini', encoding='UTF-8-SIG') # UTF-8-SIG 适配 Windows 记事本
 			repository_url = config_settings.get("下载设置", "repository url")
 			host_url = config_settings.get("媒体服务器", "host url")
 			api_key = config_settings.get("媒体服务器", "api id")
 			max_retries = config_settings.get("下载设置", "max retry")
 			proxy = config_settings.get("下载设置", "proxy")
 			aifix = True if config_settings.get("下载设置", "AI fix") == '是' else False
-			overwrite = True if config_settings.get("导入设置", "是否覆盖以前上传的头像？") == '是' else False
-			fixsize = True if config_settings.get("导入设置", "是否处理下载的头像？") == '是' else False
+			overwrite = True if config_settings.get("导入设置", "覆盖以前上传的头像") == '是' else False
+			debug = True if config_settings.get("调试功能", "更详尽的错误输出") == '是' else False
+			fixsize = config_settings.get("导入设置", "处理下载的头像")
 			# 修正用户的URL
 			if not host_url.endswith('/'):
 				host_url += '/'
 			if not repository_url.endswith('/'):
 				repository_url += '/'
-			return (repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix)
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug)
 		except:
 			print(format_exc())
 			print('无法读取 config.ini')
 			os.system('pause')
 	else:
 		content='''[媒体服务器]
-# Emby/Jellyfin 服务器地址
+# Emby / Jellyfin 服务器地址
 host url = http://localhost:8096/
 	
-# Emby/Jellyfin API 密匙
+# Emby / Jellyfin API 密匙
 api id = 
 
 [下载设置]
@@ -110,10 +122,20 @@ proxy = 不使用
 max retry = 3
 
 [导入设置]
-# 高斯模糊处理尺寸不合规的头像，能避免这些头像被拉伸但会牺牲一定质量
-是否处理下载的头像？ = 是
+# Emby / Jellyfin 会拉伸比例不符合 2:3 的头像，通过处理功能来避免拉伸
+# 0 - 不处理直接导入
+# 1 - 图片放大并模糊（推荐）
+# 2 - 图片放大并裁剪
+处理下载的头像 = 1
 
-是否覆盖以前上传的头像？ = 是'''
+覆盖以前上传的头像 = 是
+
+[调试功能]
+# 下载仓库全部头像并导入服务器，这至少会消耗 6GB 流量和空间
+导入仓库所有头像 = 否
+
+# 这有助于出现BUG时快速定位问题
+更详尽的错误输出 = 否'''
 		write_txt("config.ini",content)
 		print('没有找到配置文件 config.ini，已为阁下生成，请修改配置后重新运行程序\n')
 		os.system('pause')
@@ -129,7 +151,8 @@ def read_persons(host_url,api_key):
 		print('连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
 		sys.exit()
 	except:
-		print(format_exc())
+		if debug:
+			print(format_exc())
 		print('连接 Emby / Jellyfin 服务器未知错误', host_url, '\n')
 		sys.exit()
 	if rqs_emby.status_code == 401:
@@ -142,7 +165,8 @@ def read_persons(host_url,api_key):
 			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 			rqs_emby = requests.get(url=host_url_persons)
 		except:
-			print(format_exc())
+			if debug:
+				print(format_exc())
 			print('读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本', host_url, '\n')
 			sys.exit()
 	output = loads(rqs_emby.text)['Items']
@@ -155,16 +179,16 @@ def write_txt(filename,content):
 	txt.close()
 
 
-os.system('title Gfriends 一键导入工具')
-print('读取配置文件 config.ini')
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix) = read_config()
+os.system('title Gfriends 一键导入工具 '+version)
+print('尝试读取配置文件...')
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug) = read_config()
 os.system('cls')
 
 num_suc = 0
 num_fail = 0
 num_exist = 0
 try:
-	print('Gfriends 一键导入工具')
+	print('Gfriends 一键导入工具 '+version)
 	print('https://github.com/xinxin8816/gfriends')
 	#局部代理
 	if proxy == '不使用':
@@ -211,16 +235,17 @@ try:
 					sys.exit()
 				except:
 					with bar.pause():
-						print(format_exc())
-						print('网络连接异常且重试 ' + max_retries + ' 次失败')
+						if debug:
+							print(format_exc())
+						print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 						print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
 						print('继续运行则跳过下载此头像：'+ actor_name)
 						os.system('pause')
 					continue
 				with open("Downloads/"+actor_name+".jpg","wb") as code:
 					code.write(pic.content)
-				if fixsize:
-					fix_size("Downloads/"+actor_name+".jpg")
+				if fixsize != '0':
+					fix_size(fixsize,"Downloads/"+actor_name+".jpg")
 				pic = open("Downloads/"+actor_name+".jpg", 'rb')
 				b6_pic = b64encode(pic.read())
 				pic.close()
@@ -238,6 +263,7 @@ except (KeyboardInterrupt, SystemExit):
 	print('强制停止或已知致命错误！')
 	os.system('pause')
 except:
-	print(format_exc())
+	if debug:
+		print(format_exc())
 	print('未知致命错误！')
 	os.system('pause')
