@@ -89,13 +89,14 @@ def read_config():
 			aifix = True if config_settings.get("下载设置", "AI fix") == '是' else False
 			overwrite = True if config_settings.get("导入设置", "覆盖以前上传的头像") == '是' else False
 			debug = True if config_settings.get("调试功能", "更详尽的错误输出") == '是' else False
+			deleteall = True if config_settings.get("调试功能", "删除服务器中所有头像") == '是' else False
 			fixsize = config_settings.get("导入设置", "处理下载的头像")
 			# 修正用户的URL
 			if not host_url.endswith('/'):
 				host_url += '/'
 			if not repository_url.endswith('/'):
 				repository_url += '/'
-			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug)
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall)
 		except:
 			print(format_exc())
 			print('无法读取 config.ini')
@@ -131,8 +132,8 @@ max retry = 3
 覆盖以前上传的头像 = 是
 
 [调试功能]
-# 下载仓库全部头像并导入服务器，这至少会消耗 6GB 流量和空间
-导入仓库所有头像 = 否
+# 谨慎操作！
+删除服务器中所有头像 = 否
 
 # 这有助于出现BUG时快速定位问题
 更详尽的错误输出 = 否'''
@@ -178,11 +179,30 @@ def write_txt(filename,content):
 	txt.write(content)
 	txt.close()
 
+def del_all():
+	print('【调试模式】删除所有头像\n')
+	(list_persons,emby) = read_persons(host_url,api_key)
+	os.system('pause')
+	for dic_each_actor in list_persons:
+		if dic_each_actor['ImageTags']:
+			actor_name = dic_each_actor['Name']
+			print('>> 删除：', actor_name)
+			if emby:
+				url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+			else:
+				url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+			requests.delete(url=url_post_img)
+	print('删除完成')
+	os.system('pause')	
+	sys.exit()
 
 os.system('title Gfriends 一键导入工具 '+version)
 print('尝试读取配置文件...')
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall) = read_config()
 os.system('cls')
+
+if deleteall:
+	del_all()
 
 num_suc = 0
 num_fail = 0
