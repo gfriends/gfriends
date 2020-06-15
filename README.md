@@ -7,28 +7,22 @@
 
 ### Emby / Jellyfin
 
-无需预先下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+由 JavScraper 提供
+
+无需下载本仓库的女友头像，仅需为你的 Emby / Jellyfin 服务器安装 [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
 <details>
+<summary>使用 Gfriends Inputer 导入的备用方案</summary>
+<p>
 
-<summary>从本地导入的备选方案</summary>
-<p>由 JavScraper 提供。不推荐下载全部头像，这样会消耗大量时间。<p>
-
-1. 根据需求下载本仓库中的女友头像，并下载 [Windows 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-Windows.zip "导入工具") 或 [Linux / Mac 导入工具](https://github.com/JavScraper/Emby.Plugins.JavScraper/releases/download/v1.22.27.1109/Emby.Actress@20200202-dotnet_core.zip "导入工具")，编辑 `Config.json`文件
-- **url**：Emby / Jellyfin 服务器的地址
-- **api_key**：Emby / Jellyfin 服务器的 API 密钥
-- **dir**：女友头像所在文件夹，如果填入完整路径请使用 "/" 替换 "\\"
-
-2. 执行程序导入头像
-- Windows 运行 `Emby.Actress.exe`，若无法运行请安装依赖 [.NET Framework 4.6.1](https://support.microsoft.com/zh-cn/help/3102436/the-net-framework-4-6-1-offline-installer-for-windows)
-- Linux / Mac 运行 `dotnet Emby.Actress.dll`，若无法运行请安装依赖 [.NET Core 3.1 Runtime](https://dotnet.microsoft.com/download/dotnet-core/current/runtime)
+下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 </details>
 
 ### Plex
 由 ddd354 提供
 
-无需预先下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器。
+无需下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
 ## 进阶说明
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
