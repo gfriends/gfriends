@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-2.86w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--12-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.19w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--17-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 快速开始
@@ -7,13 +7,10 @@
 
 ### Emby / Jellyfin
 
-
-
 无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
-
-
 <details>
+
 <summary>或者试试安装插件导入？</summary>
 <p>由 JavScraper 提供<p>
 
@@ -62,15 +59,16 @@
 标注🌟的图片为原生高质量大图，标注➡的图片为经过 AI 算法放大优化的图片。
 
 ### 第三方内容商
-| 品牌 | 尺寸 |女友数量|简介|备注|
+| 品牌 | 尺寸 |数量|简介|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360×508 | 600+ | 著名的美女摄影写真机构 | 🌟 |
 | [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640×960 | 30+ | X-City 旗下的写真分支 | 🌟 |
 | [LovePop](https://lovepop.net/ "Lovepop") | 384×576 | 70+ | 美少女写真摄影机构 | 🌟 |
-| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | DMM官方，仅作为补充 | ➡ *New Add!* |
+| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | DMM官方 | ➡ |
+| [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 著名的演员资料数据库 | ➡ *New Add!* |
 
 ### 品牌官方
-| 品牌 | 尺寸 |女友数量|旗下知名小姐姐|备注|
+| 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [S1 No. 1 Style](https://www.s1s1s1.com/ "S1 No. 1 Style") | 470×600 |300+|三上悠亜、羽咲みはる、桜羽のどか、架乃ゆら|🌟<br>人气与美形著称|
 | [MUTEKI](https://www.mutekimuteki.com/ "MUTEKI") | 640×906|50+|深山あすか、水瀬ちあき、松本菜奈実、夢川エマ|🌟|
