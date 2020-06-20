@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.4'
+version = 'v2.5'
 
 import requests, os, sys
 from configparser import RawConfigParser
@@ -45,8 +45,7 @@ def get_gfriends_map(repository_url):
 		# 修复部分服务端返回 header 未指明编码使后续解析错误
 		response.encoding = 'utf-8' 
 	except:
-		if debug:
-			print(format_exc())
+		if debug: print(format_exc())
 		print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 		print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
 		sys.exit()
@@ -86,17 +85,20 @@ def read_config():
 			api_key = config_settings.get("媒体服务器", "api id")
 			max_retries = config_settings.get("下载设置", "max retry")
 			proxy = config_settings.get("下载设置", "proxy")
+			download_path = config_settings.get("下载设置", "download_path")
+			local_path = config_settings.get("导入设置", "local_path")
 			aifix = True if config_settings.get("下载设置", "AI fix") == '是' else False
 			overwrite = True if config_settings.get("导入设置", "覆盖以前上传的头像") == '是' else False
 			debug = True if config_settings.get("调试功能", "更详尽的错误输出") == '是' else False
 			deleteall = True if config_settings.get("调试功能", "删除服务器中所有头像") == '是' else False
 			fixsize = config_settings.get("导入设置", "处理下载的头像")
 			# 修正用户的URL
-			if not host_url.endswith('/'):
-				host_url += '/'
-			if not repository_url.endswith('/'):
-				repository_url += '/'
-			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall)
+			if not host_url.endswith('/'): host_url += '/'
+			if not repository_url.endswith('/'): repository_url += '/'
+			# 创建文件夹
+			if not os.path.exists(download_path): os.makedirs(download_path)
+			if not os.path.exists(local_path): os.makedirs(local_path)
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path)
 		except:
 			print(format_exc())
 			print('无法读取 config.ini')
@@ -110,6 +112,9 @@ host url = http://localhost:8096/
 api id = 
 
 [下载设置]
+# 下载文件夹。
+download_path = ./Downloads/
+
 # 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/，备用镜像：https://gfriends.imfast.io/
 repository url = 默认
 
@@ -123,11 +128,14 @@ proxy = 不使用
 max retry = 3
 
 [导入设置]
+# 本地头像文件夹。将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持 jpg 格式。
+local_path = ./Avatar/
+
 # Emby / Jellyfin 会拉伸比例不符合 2:3 的头像，通过处理功能来避免拉伸
 # 0 - 不处理直接导入
-# 1 - 图片放大并模糊
+# 1 - 图片放大并模糊（推荐）
 # 2 - 图片放大并裁剪
-处理下载的头像 = 2
+处理下载的头像 = 1
 
 覆盖以前上传的头像 = 是
 
@@ -147,14 +155,13 @@ def read_persons(host_url,api_key):
 	emby = True
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
-		rqs_emby = requests.get(url=host_url_persons)
-	except requests.exceptions.ConnectionError:
+		rqs_emby = session.get(url=host_url_persons)
+	except session.exceptions.ConnectionError:
 		print('连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
 		sys.exit()
 	except:
-		if debug:
-			print(format_exc())
-		print('连接 Emby / Jellyfin 服务器未知错误', host_url, '\n')
+		if debug: print(format_exc())
+		print('连接 Emby / Jellyfin 服务器未知错误：', host_url, '\n')
 		sys.exit()
 	if rqs_emby.status_code == 401:
 		print('无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
@@ -164,11 +171,10 @@ def read_persons(host_url,api_key):
 			print('可能是新版 Jellyfin，尝试重新读取...')
 			emby = False
 			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
-			rqs_emby = requests.get(url=host_url_persons)
+			rqs_emby = session.get(url=host_url_persons)
 		except:
-			if debug:
-				print(format_exc())
-			print('读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本', host_url, '\n')
+			if debug: print(format_exc())
+			print('读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本：', host_url, '\n')
 			sys.exit()
 	output = loads(rqs_emby.text)['Items']
 	print('读取 Emby / Jellyfin 演员完成\n')
@@ -191,18 +197,22 @@ def del_all():
 				url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
 			else:
 				url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
-			requests.delete(url=url_post_img)
+			session.delete(url=url_post_img)
 	print('删除完成')
 	os.system('pause')	
 	sys.exit()
 
 os.system('title Gfriends 一键导入工具 '+version)
 print('尝试读取配置文件...')
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path) = read_config()
 os.system('cls')
 
-if deleteall:
-	del_all()
+#持久会话
+session = requests.Session()
+session.mount('http://', requests.adapters.HTTPAdapter(max_retries=max_retries))
+session.mount('https://', requests.adapters.HTTPAdapter(max_retries=max_retries))
+
+if deleteall: del_all()
 
 num_suc = 0
 num_fail = 0
@@ -215,66 +225,59 @@ try:
 		print('推荐开启全局代理以加快下载速度\n')
 	else:
 		print('已配置 HTTP 局部代理：' + proxy + '，请确保其可用\n')
-		proxies={
-		'http':'http://' + proxy,
-		'https':'https://' + proxy
-		}
+		proxies={'http':'http://' + proxy,'https':'https://' + proxy}
 	os.system('pause')
-	#持久会话
-	session = requests.Session()
-	session.mount('http://', requests.adapters.HTTPAdapter(max_retries=max_retries))
-	session.mount('https://', requests.adapters.HTTPAdapter(max_retries=max_retries))
 	(list_persons,emby) = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
-	#下载文件夹
-	folder_path = './Downloads/'
-	if os.path.exists(folder_path) == False:
-		os.makedirs(folder_path)
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
 			actor_name = dic_each_actor['Name']
 			bar()
-			if get_gfriends_link(actor_name) == None:
-				print('>> 未收录：', actor_name)
-				write_txt("未收录的演员清单.txt",actor_name + '\n')
-				num_fail += 1
-			else:
-				write_txt("已匹配的演员清单.txt",actor_name + '\n')
-				if dic_each_actor['ImageTags']:
-					num_exist += 1
-					if not overwrite:
-						print('>> 跳过：', actor_name)
-						continue
-				print('>> 下载并导入：',get_gfriends_link(actor_name))
-				try:
-					if proxy == '不使用':
-						pic = session.get(get_gfriends_link(actor_name))
-					else:
-						pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
-				except (KeyboardInterrupt):
-					sys.exit()
-				except:
-					with bar.pause():
-						if debug:
-							print(format_exc())
-						print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
-						print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-						print('继续运行则跳过下载此头像：'+ actor_name)
-						os.system('pause')
+			if not overwrite:
+				print('>> 跳过：', actor_name)
+				continue
+			if not os.path.exists(local_path+actor_name+".jpg"):
+				if get_gfriends_link(actor_name) == None:
+					print('>> 未收录：', actor_name)
+					write_txt("未收录的演员清单.txt",actor_name + '\n')
+					num_fail += 1
 					continue
-				with open("Downloads/"+actor_name+".jpg","wb") as code:
-					code.write(pic.content)
-				if fixsize != '0':
-					fix_size(fixsize,"Downloads/"+actor_name+".jpg")
-				pic = open("Downloads/"+actor_name+".jpg", 'rb')
-				b6_pic = b64encode(pic.read())
-				pic.close()
-				if emby:
-					url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
 				else:
-					url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
-				session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
-				num_suc += 1
+					write_txt("已匹配的演员清单.txt",actor_name + '\n')
+					if dic_each_actor['ImageTags']:
+						num_exist += 1
+						print('>> 下载并导入：',get_gfriends_link(actor_name))
+						try:
+							if proxy == '不使用':
+								pic = session.get(get_gfriends_link(actor_name))
+							else:
+								pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
+						except (KeyboardInterrupt):
+							sys.exit()
+						except:
+							with bar.pause():
+								if debug: print(format_exc())
+								print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
+								print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+								print('继续运行则跳过下载此头像：'+ actor_name)
+								os.system('pause')
+							continue
+					pic_path = download_path+actor_name+".jpg"
+					with open(pic_path,"wb") as code:
+						code.write(pic.content)
+			else:
+				pic_path = local_path+actor_name+".jpg"
+				print('>> 本地导入：', actor_name)
+			if fixsize != '0': fix_size(fixsize,pic_path)
+			pic = open(pic_path, 'rb')
+			b6_pic = b64encode(pic.read())
+			pic.close()
+			if emby:
+				url_post_img = host_url + 'emby/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+			else:
+				url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
+			session.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
+			num_suc += 1
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
 	print('本次成功导入', num_suc, '人')
 	print('仓库未收录', num_fail, '人\n')
@@ -283,7 +286,6 @@ except (KeyboardInterrupt, SystemExit):
 	print('强制停止或已知致命错误！')
 	os.system('pause')
 except:
-	if debug:
-		print(format_exc())
+	if debug: print(format_exc())
 	print('未知致命错误！')
 	os.system('pause')
