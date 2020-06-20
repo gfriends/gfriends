@@ -2,8 +2,13 @@
 ![TotalNumber](https://img.shields.io/badge/TotalNum-3.19w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--20-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
+## 剑网2020
+鉴于当前多数用户的归属，为积极配合中国大陆地区相关部门开展专项行动。女友仓库将通过 AI 算法鉴黄、删除露点头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
+
+投诉邮箱：gfriends#qxin.uu.me
+
 ## 快速开始
-对于一般用户来说，可以通过这些工具方便的导入头像。
+对于一般用户来说，可以通过以下方案导入头像。
 
 ### Emby / Jellyfin
 
