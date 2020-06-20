@@ -30,8 +30,7 @@ def fix_size(type,path):
 
 def get_gfriends_map(repository_url):
 	print('下载头像仓库文件树...')
-	if repository_url == '默认/':
-		repository_url = 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/'
+	if repository_url == '默认/': repository_url = 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/'
 	github_template = repository_url+'{}/{}/{}'
 	if aifix:
 		request_url = repository_url+'Filetree.json'
@@ -63,7 +62,6 @@ def get_gfriends_map(repository_url):
 		for second in second_lvls:
 			for k, v in map_json[first][second].items():
 				output[k[:-4]] = github_template.format(first, second, v)
-
 	print('读取头像仓库文件树完成')
 	print('当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
 	return output
@@ -112,7 +110,7 @@ host url = http://localhost:8096/
 api id = 
 
 [下载设置]
-# 下载文件夹。
+# 下载文件夹
 download_path = ./Downloads/
 
 # 女友头像仓库地址，"默认"使用主分支：https://raw.githubusercontent.com/xinxin8816/gfriends/master/，备用镜像：https://gfriends.imfast.io/
@@ -128,14 +126,14 @@ proxy = 不使用
 max retry = 3
 
 [导入设置]
-# 本地头像文件夹。将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持 jpg 格式。
+# 本地头像文件夹，将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持 jpg 格式。
 local_path = ./Avatar/
 
 # Emby / Jellyfin 会拉伸比例不符合 2:3 的头像，通过处理功能来避免拉伸
 # 0 - 不处理直接导入
-# 1 - 图片放大并模糊（推荐）
+# 1 - 图片放大并模糊
 # 2 - 图片放大并裁剪
-处理下载的头像 = 1
+处理下载的头像 = 2
 
 覆盖以前上传的头像 = 是
 
@@ -231,37 +229,37 @@ try:
 	gfriends_map = get_gfriends_map(repository_url)
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
-			actor_name = dic_each_actor['Name']
 			bar()
+			actor_name = dic_each_actor['Name']
+			if dic_each_actor['ImageTags']: num_exist += 1
 			if not overwrite:
 				print('>> 跳过：', actor_name)
 				continue
 			if not os.path.exists(local_path+actor_name+".jpg"):
-				if get_gfriends_link(actor_name) == None:
+				pic_link = get_gfriends_link(actor_name)
+				if pic_link == None:
 					print('>> 未收录：', actor_name)
 					write_txt("未收录的演员清单.txt",actor_name + '\n')
 					num_fail += 1
 					continue
 				else:
 					write_txt("已匹配的演员清单.txt",actor_name + '\n')
-					if dic_each_actor['ImageTags']:
-						num_exist += 1
-						print('>> 下载并导入：',get_gfriends_link(actor_name))
-						try:
-							if proxy == '不使用':
-								pic = session.get(get_gfriends_link(actor_name))
-							else:
-								pic = session.get(get_gfriends_link(actor_name), proxies = proxies)
-						except (KeyboardInterrupt):
-							sys.exit()
-						except:
-							with bar.pause():
-								if debug: print(format_exc())
-								print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
-								print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-								print('继续运行则跳过下载此头像：'+ actor_name)
-								os.system('pause')
-							continue
+					print('>> 下载并导入：', actor_name)
+					try:
+						if proxy == '不使用':
+							pic = session.get(pic_link)
+						else:
+							pic = session.get(pic_link, proxies = proxies)
+					except (KeyboardInterrupt):
+						sys.exit()
+					except:
+						with bar.pause():
+							if debug: print(format_exc())
+							print('网络连接异常且重试 ' + str(max_retries) + ' 次失败')
+							print('请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+							print('继续运行则跳过下载此头像：'+ pic_link)
+							os.system('pause')
+						continue
 					pic_path = download_path+actor_name+".jpg"
 					with open(pic_path,"wb") as code:
 						code.write(pic.content)
