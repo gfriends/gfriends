@@ -1,11 +1,8 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.19w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--20-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--20-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
-## 剑网2020
-鉴于当前多数用户的归属，为积极配合中国大陆地区相关部门开展专项行动。女友仓库将通过 AI 算法鉴黄、删除露点头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
-
-投诉邮箱：gfriends#qxin.uu.me
+有关中国大陆地区相关部门开展 [净网2020](https://github.com/xinxin8816/gfriends#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E%20%C2%B7%20%E5%87%80%E7%BD%912020) 专项行动的说明。
 
 ## 快速开始
 对于一般用户来说，可以通过以下方案导入头像。
@@ -101,6 +98,11 @@
 | [溜池ゴロー](http://www.tameikegoro.jp/ "溜池ゴロー") |100×100|500+|めぐり、本田岬、かすみ果穂、さとう遥希|MOODYZ 旗下公司<br>➡400×400|
 | [Das!](http://www.dasdas.jp/ "Das!") |280×280|300+|あべみかこ、冴月りん、跡美しゅり、一ノ瀬梓|➡560×560|
 | [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116×236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|➡332×472|
+
+## 扫黄打非 · 净网2020
+鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托 AI 算法，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
+
+投诉邮箱：gfriends#qxin.uu.me
 
 ## 免责声明
 1. 本项目作者旨在学习 Python 后端，提高编程水平。
