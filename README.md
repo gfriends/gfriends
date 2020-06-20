@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.19w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--19-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.19w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--20-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 ## 快速开始
@@ -29,10 +29,10 @@
 `Filetree.json` 为已按质量排序的文件树，可供程序调用搜索。女友仓库不能保证 AI 优化的图片完美无瑕，若您不想获取这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可。
 
 ### 上传新的演员图片
-欢迎提交优质的演员头像图片或写真。不过首先，优质头像应 **尽可能** 满足：
+欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
 
-1. 以女友为主体的特写或近景，且足够养眼。
-2. 接近 3:2 的长宽比，宽度宜在 300px 以上。
+1. 对应演员头像缺失或现有头像不堪入目。
+2. 新头像是以女友为主体的特写或近景、近似 3:2 的长宽比，且宽度宜在 300px 以上。
 
 如果您的图片符合上述要求，则可以：
 
@@ -44,7 +44,7 @@
 
 ### 提交来源网站
 
-首先，该优质网站上的图片除了满足上述要求，还应尽可能满足：每位女友只有一张或少量的图片，以避免二次人工筛选。
+首先，该优质网站上的图片除了满足上述条件，还应尽可能满足：每位女友只有一张或少量的图片，以避免二次人工筛选。
 
 如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issue 告诉我地址即可。
 
