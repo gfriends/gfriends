@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--20-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.08w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--21-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 有关中国大陆地区相关部门开展 [净网2020](https://github.com/xinxin8816/gfriends#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E--%E5%87%80%E7%BD%912020) 专项行动的说明。
@@ -100,7 +100,7 @@
 | [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116×236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|➡332×472|
 
 ## 扫黄打非 · 净网2020
-鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托 AI 算法，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
+鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托于 AI 算法，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
 
 投诉邮箱：gfriends#qxin.uu.me
 
