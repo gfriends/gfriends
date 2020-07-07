@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.08w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--7--5-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.08w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--7--7-green.svg)<br>
 媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 有关中国大陆地区相关部门开展 [净网2020](#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E--%E5%87%80%E7%BD%912020) 专项行动的说明。
@@ -43,8 +43,8 @@ Gfriends Inputer 已支持导入本地头像到媒体服务器。
 
 1. 轻击主仓库右上角 “Fork” 按钮，然后会自动克隆主仓库，并跳转到属于您的个人仓库。
 2. 移步至个人仓库 “Content” 下的 “人工存储 HandStorage” 目录，该目录拥有最高优先级，能保证上传的图片被优先使用。
-2. 轻击 “Add files” 菜单下的 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片，然后轻击 “Commit” 提交。
-3. 进入 “Pull Requests” 发起新的合并请求。在经过审核后，您的美图就可以和大家分享了。
+3. 轻击 “Add files” 菜单下的 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片，然后轻击 “Commit” 提交。
+4. 进入 “Pull Requests” 发起新的合并请求，请同时勾选 “Allow edits by maintainers”。在经过审核后，您的美图就可以和大家分享了。
 
 此外，如果您有大量的图片想要上传，则最好使用 Git 命令，也可以提交一个 issue 求助。
 
