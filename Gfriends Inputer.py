@@ -94,8 +94,13 @@ def read_config():
 			if not host_url.endswith('/'): host_url += '/'
 			if not repository_url.endswith('/'): repository_url += '/'
 			# 创建文件夹
-			if not os.path.exists(download_path): os.makedirs(download_path)
-			if not os.path.exists(local_path): os.makedirs(local_path)
+			if not os.path.exists(download_path):
+				os.makedirs(download_path)
+				write_txt(download_path+"/README.txt",'本目录自动生成，用于存放从仓库下载和处理过的头像。')
+			if not os.path.exists(local_path):
+				os.makedirs(local_path)
+				write_txt(local_path+"/README.txt",'本目录自动生成，您可以存放自己收集的头像，这些头像将被优先导入服务器。\n\n仅支持JPG格式，且请勿再创建子目录。\n\n如果您收集的头像位于子目录，可通过 Move To Here.bat（Only for Windows） 工具将其全部提取到根目录。')
+				write_txt(local_path+"/Move To Here.bat",'@echo off\necho This tool will help you move all files which in the subdirectory to this root directory\npause\nfor /f "delims=" %%a in ("dir /a-d /b /s ") do (\nmove "%%~a" ./ 2>nul\n)\n')
 			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path)
 		except:
 			print(format_exc())
@@ -126,7 +131,7 @@ proxy = 不使用
 max retry = 3
 
 [导入设置]
-# 本地头像文件夹，将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持 jpg 格式。
+# 本地头像文件夹，将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持非子目录下的 jpg 格式。
 local_path = ./Avatar/
 
 # Emby / Jellyfin 会拉伸比例不符合 2:3 的头像，通过处理功能来避免拉伸
@@ -227,6 +232,12 @@ try:
 	os.system('pause')
 	(list_persons,emby) = read_persons(host_url,api_key)
 	gfriends_map = get_gfriends_map(repository_url)
+	if os.path.exists('未收录的演员清单.txt'):
+		os.remove('未收录的演员清单.txt')
+		write_txt("未收录的演员清单.txt",'【未收录的演员清单】\n（!!该清单仅供参考，正规影片演员、非日本女友、导演、编导、作品系列名及一些稀奇古怪的名字均可能出现在该清单中。但这些人员，女友头像仓库不会收录!!）\n\n')
+	if os.path.exists('已匹配的演员清单.txt'):
+		os.remove('已匹配的演员清单.txt')
+		write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库下载并导入头像的演员!!）\n\n')
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
 			bar()
