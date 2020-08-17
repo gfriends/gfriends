@@ -1,6 +1,6 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--8--15-green.svg)<br>
-媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--8--17-green.svg)<br>
+媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
 
 有关中国大陆地区相关部门开展 [净网2020](#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E--%E5%87%80%E7%BD%912020) 专项行动的说明。
 
