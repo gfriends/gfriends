@@ -1,8 +1,19 @@
 # 女友头像仓库
 ![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--9--1-green.svg)<br>
-媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
+媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
-有关中国大陆地区相关部门开展 [净网2020](#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E--%E5%87%80%E7%BD%912020) 专项行动的说明。
+## 目录
+* [快速开始](#快速开始)
+    * [Emby / Jellyfin](#emby--jellyfin)
+    * [Plex](#plex)
+* [进阶说明](#进阶说明)
+    * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
+    * [上传新的头像图片到仓库](#上传新的头像图片到仓库)
+    * [共享头像图片来源网站](#共享头像图片来源网站)
+    * [对女友仓库的开发及调用](#对女友仓库的开发及调用)
+    * [仓库更新计划](#仓库更新计划)
+* [图片来源](#图片来源)
+* [法律信息](#法律信息及免责声明)
 
 ## 快速开始
 对于一般用户来说，可以通过以下方案导入头像。
@@ -27,6 +38,8 @@
 
 ## 进阶说明
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
+
+推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")。
 
 ### 导入本地头像图片到媒体服务器
 Gfriends Inputer 已支持导入本地头像到媒体服务器。
