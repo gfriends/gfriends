@@ -234,10 +234,10 @@ try:
 	gfriends_map = get_gfriends_map(repository_url)
 	if os.path.exists('未收录的演员清单.txt'):
 		os.remove('未收录的演员清单.txt')
-		write_txt("未收录的演员清单.txt",'【未收录的演员清单】\n（!!该清单仅供参考，正规影片演员、非日本女友、导演、编导、作品系列名及一些稀奇古怪的名字均可能出现在该清单中。但这些人员，女友头像仓库不会收录!!）\n\n')
+	write_txt("未收录的演员清单.txt",'【未收录的演员清单】\n（!!该清单仅供参考，正规影片演员、非日本女友、导演、编导、作品系列名及一些稀奇古怪的名字均可能出现在该清单中。但这些人员，女友头像仓库不会收录!!）\n\n')
 	if os.path.exists('已匹配的演员清单.txt'):
 		os.remove('已匹配的演员清单.txt')
-		write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库下载并导入头像的演员!!）\n\n')
+	write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库下载并导入头像的演员!!）\n\n')
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
 			bar()
