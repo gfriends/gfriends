@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.6'
+version = 'v2.61'
 
 import grequests, requests, os, sys
 from configparser import RawConfigParser
@@ -119,7 +119,7 @@ api id =
 # 下载文件夹
 download path = ./Downloads/
 
-# 下载线程数
+# 连接线程数
 # 请根据设备的国际网络质量酌情修改
 max connect = 5
 
@@ -252,10 +252,13 @@ if deleteall: del_all()
 if not proxy == '不使用': proxies={'http':'http://' + proxy,'https':'https://' + proxy}
 
 #检查更新
-#check_update()
+check_update()
 
 num_suc = num_fail = num_exist = 0
-name_list = link_list = post_list = []
+name_list = []
+link_list = []
+post_list = []
+actor_dict = {}
 
 print('Gfriends Inputer '+version)
 print('https://github.com/xinxin8816/gfriends')
@@ -278,6 +281,7 @@ try:
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
 			actor_name = dic_each_actor['Name']
+			actor_id = dic_each_actor['Id']
 			bar()
 			if dic_each_actor['ImageTags']: num_exist += 1
 			if not overwrite:
@@ -293,6 +297,7 @@ try:
 					write_txt("已匹配的演员清单.txt",'匹配：' + actor_name + '\n')
 					name_list.append(actor_name)
 					link_list.append(pic_link)
+					actor_dict[actor_name] = actor_id
 	name_list_block=func(name_list,max_connect)
 	link_list_block=func(link_list,max_connect)
 	for urls,names in zip(link_list_block,name_list_block):
@@ -324,7 +329,6 @@ try:
 				os.system('pause')			
 			continue
 	print('√ 下载完成')
-	#头像处理
 	if fixsize != '0':
 		print('\n>> 尺寸优化...')
 		for folderName, subfolders, filenames in os.walk(download_path):	
@@ -342,8 +346,7 @@ try:
 						pic_path = local_path+filename
 						fix_size(fixsize,pic_path)
 		print('√ 尺寸优化完成')
-	#头像导入
-	print('\n>> 导入头像...')
+	print('\n>> 校验头像...')
 	for folderName, subfolders, filenames in os.walk(download_path):		
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:
@@ -354,9 +357,9 @@ try:
 					b6_pic = b64encode(pic.read())
 					pic.close()
 					if emby:
-						url_post_img = host_url + 'emby/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
+						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
 					else:
-						url_post_img = host_url + 'jellyfin/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
+						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
 					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
 					num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
@@ -369,12 +372,14 @@ try:
 					b6_pic = b64encode(pic.read())
 					pic.close()
 					if emby:
-						url_post_img = host_url + 'emby/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
+						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
 					else:
-						url_post_img = host_url + 'jellyfin/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
+						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
 					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
 					num_suc += 1
-	grequests.map(post_list,size=5)
+	for t in ['', '>> 导入头像...']: 
+		sys.stdout.write('\033[K' + t + '\r')
+	grequests.map(post_list, size = 20)
 	print('√ 导入头像完成')
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
 	print('本次成功导入', num_suc, '人')
