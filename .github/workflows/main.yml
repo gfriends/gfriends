@@ -31,6 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
+        pip install -U --force-reinstall --no-binary :all: gevent
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
@@ -43,6 +44,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
+        pip install -U --force-reinstall --no-binary :all: gevent
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
