@@ -31,6 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
+        pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
         pyinstaller -F 'Gfriends Inputer.py'
