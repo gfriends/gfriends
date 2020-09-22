@@ -62,7 +62,7 @@ def get_gfriends_map(repository_url):
 		for second in second_lvls:
 			for k, v in map_json[first][second].items():
 				output[k[:-4]] = github_template.format(first, second, v)
-	print('>> 读取头像仓库文件树完成')
+	print('√ 读取头像仓库文件树完成')
 	print('当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
 	return output
 
@@ -190,7 +190,7 @@ def read_persons(host_url,api_key):
 			print('读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本：', host_url, '\n')
 			sys.exit()
 	output = loads(rqs_emby.text)['Items']
-	print('>> 读取 Emby / Jellyfin 演员完成\n')
+	print('√ 读取 Emby / Jellyfin 演员完成\n')
 	return (output,emby)
 
 def write_txt(filename,content):
@@ -255,8 +255,7 @@ if not proxy == '不使用': proxies={'http':'http://' + proxy,'https':'https://
 #check_update()
 
 num_suc = num_fail = num_exist = 0
-name_list = []
-link_list = []
+name_list = link_list = post_list = []
 
 print('Gfriends Inputer '+version)
 print('https://github.com/xinxin8816/gfriends')
@@ -275,7 +274,6 @@ try:
 	write_txt("未收录的演员清单.txt",'【未收录的演员清单】\n（!!该清单仅供参考，正规影片演员、非日本女友、导演、编导、作品系列名及一些稀奇古怪的名字均可能出现在该清单中。但这些人员，女友头像仓库不会收录!!）\n\n')
 	if os.path.exists('已匹配的演员清单.txt'): os.remove('已匹配的演员清单.txt')
 	write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库下载并导入头像的演员!!）\n\n')
-	
 	print('>> 初始化下载...')
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
@@ -325,6 +323,7 @@ try:
 				print('继续运行则跳过下载这些头像：'+ str(names))
 				os.system('pause')			
 			continue
+	print('√ 下载完成')
 	#头像处理
 	if fixsize != '0':
 		print('\n>> 尺寸优化...')
@@ -342,6 +341,7 @@ try:
 					if '.jpg' in filename:
 						pic_path = local_path+filename
 						fix_size(fixsize,pic_path)
+		print('√ 尺寸优化完成')
 	#头像导入
 	print('\n>> 导入头像...')
 	for folderName, subfolders, filenames in os.walk(download_path):		
@@ -357,7 +357,7 @@ try:
 						url_post_img = host_url + 'emby/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
 					else:
 						url_post_img = host_url + 'jellyfin/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
-					grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
+					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
 					num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
@@ -372,8 +372,10 @@ try:
 						url_post_img = host_url + 'emby/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
 					else:
 						url_post_img = host_url + 'jellyfin/Items/' + filename.replace('.jpg','') + '/Images/Primary?api_key=' + api_key
-					grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', })
+					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
 					num_suc += 1
+	grequests.map(post_list,size=5)
+	print('√ 导入头像完成')
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
 	print('本次成功导入', num_suc, '人')
 	print('仓库未收录', num_fail, '人\n')
