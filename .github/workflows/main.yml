@@ -18,10 +18,10 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - name: Set Up Python 3.7
-      uses: actions/setup-python@v1
+    - name: Set Up Python
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
 
     - name: Build For Windows
       if: matrix.os == 'windows-latest'
@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
-        pip install -U --force-reinstall --no-binary :all: gevent
+        pip install -U --force-reinstall gevent
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
@@ -44,7 +44,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install alive-progress
         pip install requests
-        pip install -U --force-reinstall --no-binary :all: gevent
+        pip install -U --force-reinstall gevent
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
