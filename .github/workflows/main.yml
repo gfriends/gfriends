@@ -32,6 +32,8 @@ jobs:
         pip install alive-progress
         pip install requests
         pip install -U --force-reinstall gevent
+        pip install setuptools
+        pip install cffi
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
@@ -45,6 +47,8 @@ jobs:
         pip install alive-progress
         pip install requests
         pip install -U --force-reinstall gevent
+        pip install setuptools
+        pip install cffi
         pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
