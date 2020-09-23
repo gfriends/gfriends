@@ -2,9 +2,9 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.62'
+version = 'v2.63'
 
-import grequests, requests, os, sys, time
+import grequests, requests, os, sys, time, re
 from configparser import RawConfigParser
 from base64 import b64encode
 from traceback import format_exc
@@ -107,7 +107,8 @@ def read_config():
 		except:
 			print(format_exc())
 			print('× 无法读取 config.ini。如果这是旧版本的配置文件，请删除后重试。\n')
-			os.system('pause')
+			print('按任意键退出程序...')
+			os.system('pause>nul')
 			sys.exit()
 	else:
 		content='''[媒体服务器]
@@ -122,19 +123,19 @@ API_ID =
 Download_Path = ./Downloads/
 
 # 下载线程数
-# 若网络不稳定、丢包率或延迟较高，可适当减小重试次数
+# 若网络不稳定、丢包率或延迟较高，可适当减小线程数
 MAX_DL = 5
 
-# 下载失败重试次数
-# 若网络不稳定、丢包率或延迟较高，可适当增加重试次数
+# 下载失败重试数
+# 若网络不稳定、丢包率或延迟较高，可适当增加重试数
 MAX_Retry = 3
 
 # 女友头像仓库源
-# "默认"使用主仓库：https://raw.githubusercontent.com/xinxin8816/gfriends/master/
-# 备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/
+# "默认"使用官方主仓库：https://raw.githubusercontent.com/xinxin8816/gfriends/master/
+# 官方备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/
 Repository_Url = 默认
 
-# AI 优化
+# AI 优化（仅支持官方源）
 # 在不可避免下载低质量头像时，自动挑选经 AI 算法放大优化的副本，质量更高但更占空间
 AI_Fix = 是
 
@@ -167,7 +168,8 @@ DEL_ALL = 否
 DeBug = 否'''
 		write_txt("config.ini",content)
 		print('× 没有找到 config.ini。已为阁下生成，请修改配置后重新运行程序。\n')
-		os.system('pause')
+		print('按任意键退出程序...')
+		os.system('pause>nul')
 		sys.exit()
 
 def read_persons(host_url,api_key):
@@ -216,7 +218,8 @@ def rewriteable_word(word):
 def del_all():
 	print('【调试模式】删除所有头像\n')
 	(list_persons,emby) = read_persons(host_url,api_key)
-	os.system('pause')
+	rewriteable_word('按任意键开始...')
+	os.system('pause>nul')
 	for dic_each_actor in list_persons:
 		if dic_each_actor['ImageTags']:
 			actor_name = dic_each_actor['Name']
@@ -227,7 +230,8 @@ def del_all():
 				url_post_img = host_url + 'jellyfin/Items/' + dic_each_actor['Id'] + '/Images/Primary?api_key=' + api_key
 			session.delete(url=url_post_img)
 	print('√ 删除完成')
-	os.system('pause')	
+	print('按任意键退出程序...')
+	os.system('pause>nul')
 	sys.exit()
 
 def check_update():
@@ -241,13 +245,16 @@ def check_update():
 		if response.status_code != 200:
 			print('× 检查更新失败！返回了一个错误： {}\n'.format(response.status_code))
 		if version.replace('v','') < loads(response.text)[0]['tag_name'].replace('v',''):
-			print(loads(response.text)[0]['tag_name']+' 新版本发布啦！请通过如下链接更新。')
-			print('https://github.com/xinxin8816/gfriends/releases\n')
-			print('10秒后启动程序...')
-			time.sleep(10)
+			print(loads(response.text)[0]['tag_name']+' 新版本发布啦！\n')
+			print(re.search('What\'s New?.*?(?=\r\n<details>)',loads(response.text)[0]['body'],flags=re.S).group(0).replace('*',''))
+			print('请通过如下链接更新：\nhttps://github.com/xinxin8816/gfriends/releases\n')
 	except:
 		if debug: print(format_exc())
 		print('× 检查更新失败！\n')
+	rewriteable_word('按任意键跳过更新...')
+	os.system('pause>nul')
+	print('即将跳过更新。不推荐跳过更新，如遇问题请及时更新。')
+	time.sleep(5)
 	os.system('cls')
 
 os.system('title Gfriends Inputer '+version)
@@ -259,12 +266,12 @@ session = requests.Session()
 session.mount('http://', requests.adapters.HTTPAdapter(max_retries=max_retries))
 session.mount('https://', requests.adapters.HTTPAdapter(max_retries=max_retries))
 
+#局部代理
+if not proxy == '不使用': proxies={'http': proxy,'https': proxy}
+
 #检查更新
 check_update()
 if deleteall: del_all()
-
-#局部代理
-if not proxy == '不使用': proxies={'http': proxy,'https': proxy}
 
 num_suc = num_fail = num_exist = 0
 name_list = []
@@ -279,7 +286,8 @@ if proxy == '不使用':
 else:
 	print('已配置局部代理 ' + proxy + '，请确保其可用\n')
 
-os.system('pause')
+rewriteable_word('按任意键开始...')
+os.system('pause>nul')
 
 try:
 	(list_persons,emby) = read_persons(host_url,api_key)
@@ -325,7 +333,7 @@ try:
 					pic_path = download_path+actor_name+".jpg"
 					with open(pic_path,"wb") as code:
 						code.write(res_list[index].content)
-					bar(actor_name)
+					bar(text=actor_name)
 			except (KeyboardInterrupt):
 				for actor_name in names:
 					if os.path.exists(download_path+actor_name+".jpg"): os.remove(download_path+actor_name+".jpg")	
@@ -339,8 +347,8 @@ try:
 						print(format_exc())
 					print('× 网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 					print('× 请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-					print('× 继续运行则跳过下载这些头像：'+ str(names)+'\n')
-					os.system('pause')			
+					print('× 按任意键继续运行则跳过下载这些头像：'+ str(names)+'\n')
+					os.system('pause>nul')	
 				continue
 	print('√ 下载完成')
 	if fixsize != '0':
@@ -398,11 +406,14 @@ try:
 	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
 	print('本次成功导入', num_suc, '人')
 	print('仓库未收录', num_fail, '人\n')
-	os.system('pause')
+	print('按任意键退出程序...')
+	os.system('pause>nul')
 except (KeyboardInterrupt, SystemExit):
-	print('强制停止或已知致命错误！')
-	os.system('pause')
+	print('× 强制停止或已知致命错误！')
+	print('按任意键退出程序...')
+	os.system('pause>nul')
 except:
 	if debug: print(format_exc())
-	print('未知致命错误！')
-	os.system('pause')
+	print('× 未知致命错误！')
+	print('按任意键退出程序...')
+	os.system('pause>nul')
