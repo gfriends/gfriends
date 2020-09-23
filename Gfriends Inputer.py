@@ -337,7 +337,7 @@ try:
 					pic_path = download_path+actor_name+".jpg"
 					with open(pic_path,"wb") as code:
 						code.write(res_list[index].content)
-					bar.text(actor_name)
+					bar(actor_name)
 			except (KeyboardInterrupt):
 				for actor_name in names:
 					if os.path.exists(download_path+actor_name+".jpg"): os.remove(download_path+actor_name+".jpg")	
