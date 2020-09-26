@@ -78,7 +78,7 @@ def read_config():
 	if os.path.exists('config.ini'):
 		config_settings = RawConfigParser()
 		try:
-			config_settings.read('config.ini', encoding='UTF-8-SIG') # UTF-8-SIG 适配 Windows 记事本
+			config_settings.read('config.ini', encoding='UTF-8-SIG')  # UTF-8-SIG 适配 Windows 记事本
 			repository_url = config_settings.get("下载设置", "Repository_Url")
 			host_url = config_settings.get("媒体服务器", "Host_Url")
 			api_key = config_settings.get("媒体服务器", "API_ID")
@@ -382,12 +382,14 @@ try:
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
-					if emby:
-						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					else:
-						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
-					num_suc += 1
+					actor_key_name = filename.replace('.jpg','')
+					if actor_key_name in actor_dict:
+						if emby:
+							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						else:
+							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:	
@@ -397,12 +399,14 @@ try:
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
-					if emby:
-						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					else:
-						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
-					num_suc += 1
+					actor_key_name = filename.replace('.jpg','')
+					if actor_key_name in actor_dict:
+						if emby:
+							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						else:
+							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						num_suc += 1
 	print('√ 校验完成')
 	rewriteable_word('\n>> 导入头像...')
 	grequests.map(post_list, size = 20)
