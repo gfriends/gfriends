@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.63'
+version = 'v2.64'
 
 import grequests, requests, os, sys, time, re
 from configparser import RawConfigParser
@@ -78,7 +78,7 @@ def read_config():
 	if os.path.exists('config.ini'):
 		config_settings = RawConfigParser()
 		try:
-			config_settings.read('config.ini', encoding='UTF-8-SIG')  # UTF-8-SIG 适配 Windows 记事本
+			config_settings.read('config.ini', encoding='UTF-8-SIG') # UTF-8-SIG 适配 Windows 记事本
 			repository_url = config_settings.get("下载设置", "Repository_Url")
 			host_url = config_settings.get("媒体服务器", "Host_Url")
 			api_key = config_settings.get("媒体服务器", "API_ID")
