@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.63'
+version = 'v2.64'
 
 import grequests, requests, os, sys, time, re
 from configparser import RawConfigParser
@@ -382,12 +382,14 @@ try:
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
-					if emby:
-						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					else:
-						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
-					num_suc += 1
+					actor_key_name = filename.replace('.jpg','')
+					if actor_key_name in actor_dict:
+						if emby:
+							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						else:
+							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:	
@@ -397,12 +399,14 @@ try:
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
-					if emby:
-						url_post_img = host_url + 'emby/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					else:
-						url_post_img = host_url + 'jellyfin/Items/' + actor_dict[filename.replace('.jpg','')] + '/Images/Primary?api_key=' + api_key
-					post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
-					num_suc += 1
+					actor_key_name = filename.replace('.jpg','')
+					if actor_key_name in actor_dict:
+						if emby:
+							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						else:
+							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						num_suc += 1
 	print('√ 校验完成')
 	rewriteable_word('\n>> 导入头像...')
 	grequests.map(post_list, size = 20)
