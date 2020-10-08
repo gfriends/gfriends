@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.64'
+version = 'v2.65'
 
 import grequests, requests, os, sys, time, re
 from configparser import RawConfigParser
