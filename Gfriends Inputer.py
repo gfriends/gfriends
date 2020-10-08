@@ -277,7 +277,7 @@ if not proxy == '不使用': proxies={'http': proxy,'https': proxy}
 check_update()
 if deleteall: del_all()
 
-num_suc = num_fail = num_exist = 0
+num_suc = num_fail = num_skip = num_exist = 0
 name_list = []
 link_list = []
 post_list = []
@@ -299,17 +299,19 @@ try:
 	if os.path.exists('未收录的演员清单.txt'): os.remove('未收录的演员清单.txt')
 	write_txt("未收录的演员清单.txt",'【未收录的演员清单】\n（!!该清单仅供参考，正规影片演员、非日本女友、导演、编导、作品系列名及一些稀奇古怪的名字均可能出现在该清单中。但这些人员，女友头像仓库不会收录!!）\n\n')
 	if os.path.exists('已匹配的演员清单.txt'): os.remove('已匹配的演员清单.txt')
-	write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库下载并导入头像的演员!!）\n\n')
+	write_txt("已匹配的演员清单.txt",'【已匹配的演员清单】\n（!!该清单仅记录从女友仓库找到了头像的演员。根据个人配置，可能会下载导入，也可能会跳过!!）\n\n')
 	print('>> 初始化...')
 	with alive_bar(len(list_persons), theme = 'ascii', enrich_print = False) as bar:
 		for dic_each_actor in list_persons:
 			actor_name = dic_each_actor['Name']
 			actor_id = dic_each_actor['Id']
 			bar()
-			if dic_each_actor['ImageTags']: num_exist += 1
-			if not overwrite:
-				write_txt("已匹配的演员清单.txt",'跳过：' + actor_name + '\n')
-				continue
+			if dic_each_actor['ImageTags']: 
+				num_exist += 1
+				if not overwrite:
+					write_txt("已匹配的演员清单.txt",'跳过：' + actor_name + '\n')
+					num_skip += 1
+					continue
 			if not os.path.exists(local_path+actor_name+".jpg"):
 				pic_link = get_gfriends_link(actor_name)
 				if pic_link == None:
@@ -317,7 +319,7 @@ try:
 					num_fail += 1
 					continue
 				else:
-					write_txt("已匹配的演员清单.txt",'匹配：' + actor_name + '\n')
+					write_txt("已匹配的演员清单.txt",'下载：' + actor_name + '\n')
 					name_list.append(actor_name)
 					link_list.append(pic_link)
 					actor_dict[actor_name] = actor_id
@@ -411,9 +413,9 @@ try:
 	rewriteable_word('\n>> 导入头像...')
 	grequests.map(post_list, size = 20)
 	print('√ 导入头像完成')
-	print('\nEmby / Jellyfin 拥有演员', len(list_persons), '人，当前已有头像', num_exist, '人')
-	print('本次成功导入', num_suc, '人')
-	print('仓库未收录', num_fail, '人\n')
+	print('\nEmby / Jellyfin 拥有演员 ' + str(len(list_persons)) + ' 人，其中 ' + str(num_exist) + ' 人之前已有头像')
+	print('本次导入 ' + str(num_suc) + ' 人，还有 ' + str(num_fail) + ' 人没有头像\n')
+	if not overwrite: print('!! 未开启覆盖已有头像，所以跳过了一些演员，详见运行日志')
 	print('按任意键退出程序...')
 	os.system('pause>nul')
 except (KeyboardInterrupt, SystemExit):
