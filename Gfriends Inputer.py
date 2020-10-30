@@ -132,7 +132,7 @@ MAX_Retry = 3
 
 # 女友头像仓库源
 # "默认"使用官方主仓库：https://raw.githubusercontent.com/xinxin8816/gfriends/master/
-# 官方备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/
+# 官方备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/，受服务提供商业务调整影响，镜像仓库将于 2020/12/31 关闭。
 Repository_Url = 默认
 
 # AI 优化（仅支持官方源）
