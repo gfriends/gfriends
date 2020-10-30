@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--10--13-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.10w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--10--30-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -76,7 +76,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 
 3. 女友仓库通过 AI 放大并优化的低质量头像图片，但不能保证经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
 
-4. 鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/
+4. ~鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/~ 受服务提供商业务调整影响，镜像仓库将于 2020/12/31 关闭。
 
 ### 仓库更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
