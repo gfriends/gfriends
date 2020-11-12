@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.10w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--11--6-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.10w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--11--12-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -131,7 +131,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 ## 扫黄打非 · 净网2020
 鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托于 AI 技术，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
 
-投诉邮箱：gfriends#qxin.uu.me
+投诉邮箱：Gfriends.Report#protonmail.com
 
 ## 法律信息及免责声明
 1. 本项目作者旨在学习 Python 后端，提高编程水平。
