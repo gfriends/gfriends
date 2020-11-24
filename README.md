@@ -8,6 +8,7 @@
     * [Plex](#plex)
 * [进阶说明](#进阶说明)
     * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
+    * [使用百度AI精准裁剪头像](#使用百度AI精准裁剪头像)
     * [上传新的头像图片到仓库](#上传新的头像图片到仓库)
     * [共享头像图片来源网站](#共享头像图片来源网站)
     * [对女友仓库的开发及调用](#对女友仓库的开发及调用)
@@ -42,9 +43,19 @@
 推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")。
 
 ### 导入本地头像图片到媒体服务器
-Gfriends Inputer 已支持导入本地头像到媒体服务器。
+Gfriends Inputer v2.5 及后续版本支持导入本地头像到媒体服务器。
 
 导入工具首次启动时会自动创建 `Avatar` 文件夹（可在配置文件中修改）。将本地头像图片重命名为`演员姓名.jpg`，或将第三方头像包移动至该文件夹。此后，导入工具优先从该文件夹查找并导入头像，本地路径中不存在的则会尝试从本仓库搜索并导入。
+
+### 使用百度AI精准裁剪头像
+Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
+
+您可以在通过如下途径申请相关 API：
+1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
+2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
+3. 进入 “人体分析” —— “管理应用”，得到 “BD_App_ID”、“BD_API_Key”、“BD_Secret_Key” 参数。编辑 `Config.ini` 文件并运行程序。
+
+该 API 对免费用户的限制为 QPS=2，可满足正常使用需求。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
