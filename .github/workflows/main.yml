@@ -34,6 +34,7 @@ jobs:
         pip install requests[socks]
         pip install -U --force-reinstall gevent
         pip install grequests
+        pip install baidu-aip==2.2.18.0
         pip install Pillow==7.1.1
         pip install pyinstaller
         pyinstaller -F 'Gfriends Inputer.py'
@@ -48,6 +49,7 @@ jobs:
         pip install requests[socks]
         pip install -U --force-reinstall gevent
         pip install grequests
+        pip install baidu-aip==2.2.18.0
         pip install Pillow==7.1.1
         pip install pyinstaller
         pyinstaller -F 'Gfriends Inputer.py'

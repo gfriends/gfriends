@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.65'
+version = 'v2.7'
 
 import grequests, requests, os, sys, time, re
 from configparser import RawConfigParser
@@ -10,22 +10,41 @@ from base64 import b64encode
 from traceback import format_exc
 from json import loads
 from PIL import Image,ImageFilter
+from aip import AipBodyAnalysis
 from alive_progress import alive_bar
 
 def fix_size(type,path):
 	pic = Image.open(path)
-	(x,y) = pic.size
-	if not 2/3-0.05 <= x/y <= 2/3+0.05: #仅处理会过度拉伸的图片
+	(wf,hf) = pic.size
+	if not 2/3-0.02 <= wf/hf <= 2/3+0.02: #仅处理会过度拉伸的图片
 		if type == '1':
-			fixed_pic = pic.resize((int(x),int(3/2*x))) #拉伸图片
-			fixed_pic = fixed_pic.filter(ImageFilter.GaussianBlur(radius=50)) #高斯模糊
-			fixed_pic.paste(pic,(0,int((3/2*x-y)/2))) #粘贴原图
-			fixed_pic.save(path)
+			fixed_pic = pic.resize((int(wf),int(3/2*wf))) #拉伸图片
+			fixed_pic = fixed_pic.filter(ImageFilter.GaussianBlur(radius=50)) #高斯平滑滤镜
+			fixed_pic.paste(pic,(0,int((3/2*wf-hf)/2))) #粘贴原图
+			fixed_pic.save(path, quality=95)
 		elif type == '2':
-			fixed_pic = pic.crop((int(x/2-1/3*y),0,int(x/2+1/3*y),int(y)))
-			fixed_pic.save(path)
+			fixed_pic = pic.crop((int(wf/2-1/3*hf),0,int(wf/2+1/3*hf),int(hf))) #像素中线向两边扩展
+			fixed_pic.save(path, quality=95)
+		elif type == '3':
+			with open(path, 'rb') as fp:
+				image = fp.read()
+			try:
+				x_nose = int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']) #返回鼻子位置
+				#time.sleep(0.5) # 免费用户等QPS
+			except:
+				print('× 人体分析出现错误，请参阅百度官方文档查找此错误：', int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']))
+				print('× 按任意键继续运行，并跳过处理：'+ str(path) +'\n')
+				os.system('pause>nul')	
+			if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
+				x_left = wf-2/3*hf #以右为边
+			elif x_nose - 1/3*hf < 0:
+				x_left = 0 #以左为边
+			else:
+				x_left = x_nose-1/3*hf #以鼻子为中线向两边扩展
+			fixed_pic = pic.crop((x_left,0,x_left+2/3*hf,hf))
+			fixed_pic.save(path, quality=95)
 		else:
-			print('× 头像处理配置错误，没有此选项：' + str(type))
+			print('× 头像处理功能配置错误，没有此选项：' + str(type))
 			sys.exit()
 
 def get_gfriends_map(repository_url):
@@ -43,13 +62,13 @@ def get_gfriends_map(repository_url):
 			response = session.get(request_url, proxies = proxies)
 		# 修复部分服务端返回 header 未指明编码使后续解析错误
 		response.encoding = 'utf-8' 
-		if response.status_code != 200:
-			print('× 女友仓库返回了一个错误： {}'.format(response.status_code))
-			sys.exit()
 	except:
 		if debug: print(format_exc())
 		print('× 网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 		print('× 请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
+		sys.exit()
+	if response.status_code != 200:
+		print('× 女友仓库返回了一个错误： {}'.format(response.status_code))
 		sys.exit()
 	if aifix:
 		map_json = loads(response.text)
@@ -81,12 +100,16 @@ def read_config():
 			config_settings.read('config.ini', encoding='UTF-8-SIG') # UTF-8-SIG 适配 Windows 记事本
 			repository_url = config_settings.get("下载设置", "Repository_Url")
 			host_url = config_settings.get("媒体服务器", "Host_Url")
-			api_key = config_settings.get("媒体服务器", "API_ID")
-			max_connect = config_settings.get("下载设置", "MAX_DL")
+			api_key = config_settings.get("媒体服务器", "Host_API")
+			max_download_connect = config_settings.get("下载设置", "MAX_DL")
 			max_retries = config_settings.get("下载设置", "MAX_Retry")
 			proxy = config_settings.get("下载设置", "Proxy")
 			download_path = config_settings.get("下载设置", "Download_Path")
+			max_upload_connect = config_settings.get("导入设置", "MAX_UL")
 			local_path = config_settings.get("导入设置", "Local_Path")
+			BD_App_ID = config_settings.get("导入设置", "BD_App_ID")
+			BD_API_Key = config_settings.get("导入设置", "BD_API_Key")
+			BD_Secret_Key = config_settings.get("导入设置", "BD_Secret_Key")
 			aifix = True if config_settings.get("下载设置", "AI_Fix") == '是' else False
 			overwrite = True if config_settings.get("导入设置", "OverWrite") == '是' else False
 			debug = True if config_settings.get("调试功能", "DeBug") == '是' else False
@@ -101,9 +124,10 @@ def read_config():
 				write_txt(download_path+"/README.txt",'本目录自动生成，用于存放从仓库下载和处理过的头像。')
 			if not os.path.exists(local_path):
 				os.makedirs(local_path)
-				write_txt(local_path+"/README.txt",'本目录自动生成，您可以存放自己收集的头像，这些头像将被优先导入服务器。\n\n仅支持JPG格式，且请勿再创建子目录。\n\n如果您收集的头像位于子目录，可通过 Move To Here.bat（Only for Windows） 工具将其全部提取到根目录。')
+				write_txt(local_path+"/README.txt",'本目录自动生成，您可以存放自己收集的头像，这些头像将被优先导入服务器。\n\n请自行备份您收集头像的副本，根据个人配置不同，该目录文件可能会被程序修改。\n\n仅支持JPG格式，且请勿再创建子目录。\n\n如果您收集的头像位于子目录，可通过 Move To Here.bat（Only for Windows） 工具将其全部提取到根目录。')
 				write_txt(local_path+"/Move To Here.bat",'@echo off\necho This tool will help you move all files which in the subdirectory to this root directory\npause\nfor /f "delims=" %%a in ("dir /a-d /b /s ") do (\nmove "%%~a" ./ 2>nul\n)\n')
-			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_connect))
+			if fixsize == '3': BD_AI_client = AipBodyAnalysis(BD_App_ID, BD_API_Key, BD_Secret_Key)
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client)
 		except:
 			print(format_exc())
 			print('× 无法读取 config.ini。如果这是旧版本的配置文件，请删除后重试。\n')
@@ -115,19 +139,19 @@ def read_config():
 # Emby / Jellyfin 服务器地址
 Host_Url = http://localhost:8096/
 	
-# Emby / Jellyfin API 密匙
-API_ID = 
+# Emby / Jellyfin API 密钥
+Host_API = 
 
 [下载设置]
 # 下载文件夹
 Download_Path = ./Downloads/
 
 # 下载线程数
-# 若网络不稳定、丢包率或延迟较高，可适当减小线程数
+# 若网络不稳定、丢包率或延迟较高，可适当减小下载线程数
 MAX_DL = 5
 
 # 下载失败重试数
-# 若网络不稳定、丢包率或延迟较高，可适当增加重试数
+# 若网络不稳定、丢包率或延迟较高，可适当增加失败重试数
 MAX_Retry = 3
 
 # 女友头像仓库源
@@ -150,15 +174,26 @@ Proxy = 不使用
 # 将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持非子目录下的 jpg 格式。
 Local_Path = ./Avatar/
 
+# 覆盖已有头像
+OverWrite = 是
+
+# 导入线程数
+# 导入至本地或内网服务器时，网络稳定可适当增大导入线程数（推荐：20-100）
+# 导入至远程服务器时，可适当减小导入线程数（推荐：5-20）
+max_upload_connect = 20
+
 # 头像尺寸优化
 # 避免媒体服务器拉伸比例不符合 2:3 的头像
 # 0 - 不处理直接导入
-# 1 - 图片放大并模糊
-# 2 - 图片放大并裁剪
+# 1 - 高斯平滑处理（填充毛玻璃样式）
+# 2 - 直接裁剪处理（可能会裁剪到演员面部）
+# 3 - AI检测并裁剪处理（需配置百度人体定位AI，免费用户QPS=2，处理速度慢）
 Size_Fix = 2
 
-# 覆盖已有头像
-OverWrite = 是
+# 百度人体定位 AI
+BD_App_ID = 
+BD_API_Key = 
+BD_Secret_Key = 
 
 [调试功能]
 # 删除所有头像
@@ -177,7 +212,7 @@ def read_persons(host_url,api_key):
 	emby = True
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
-		rqs_emby = session.get(url=host_url_persons)
+		rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
 	except session.exceptions.ConnectionError:
 		print('× 连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
 		sys.exit()
@@ -193,7 +228,7 @@ def read_persons(host_url,api_key):
 			rewriteable_word('>> 可能是新版 Jellyfin，尝试重新读取...')
 			emby = False
 			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
-			rqs_emby = session.get(url=host_url_persons)
+			rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
 		except:
 			if debug: print(format_exc())
 			print('× 读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本：', host_url, '\n')
@@ -246,7 +281,7 @@ def check_update():
 			print('× 检查更新失败！返回了一个错误： {}\n'.format(response.status_code))
 			rewriteable_word('按任意键跳过...')
 			os.system('pause>nul')	
-		if version.replace('v','') < loads(response.text)[0]['tag_name'].replace('v',''):
+		if version.replace('v','') < loads(response.text)[0]['tag_name'].replace('v','') and loads(response.text)[0]['prerelease'] == 'false':
 			print(loads(response.text)[0]['tag_name']+' 新版本发布啦！\n')
 			print(re.search('What\'s New?.*?(?=\r\n<details>)',loads(response.text)[0]['body'],flags=re.S).group(0).replace('*',''))
 			print('请通过如下链接更新：\nhttps://github.com/xinxin8816/gfriends/releases\n')		
@@ -262,7 +297,7 @@ def check_update():
 	os.system('cls')
 
 os.system('title Gfriends Inputer '+version)
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_connect) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_download_connect,max_upload_connect,BD_AI_client) = read_config()
 
 
 #持久会话
@@ -323,10 +358,10 @@ try:
 					name_list.append(actor_name)
 					link_list.append(pic_link)
 					actor_dict[actor_name] = actor_id
-	name_list_block=func(name_list,max_connect)
-	link_list_block=func(link_list,max_connect)
+	name_list_block=func(name_list,max_download_connect)
+	link_list_block=func(link_list,max_download_connect)
 	print('√ 初始化完成')
-	print('\n>> 开始下载...')
+	print('\n>> 下载头像...')
 	with alive_bar(len(name_list), theme = 'ascii', enrich_print = False) as bar:
 		for urls,names in zip(link_list_block,name_list_block):
 			try:
@@ -390,7 +425,7 @@ try:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
 							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
-						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}))
 						num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
@@ -407,11 +442,11 @@ try:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
 							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
-						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg', }))
+						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}))
 						num_suc += 1
 	print('√ 校验完成')
 	rewriteable_word('\n>> 导入头像...')
-	grequests.map(post_list, size = 20)
+	grequests.map(post_list, size = max_upload_connect)
 	print('√ 导入头像完成')
 	print('\nEmby / Jellyfin 拥有演员 ' + str(len(list_persons)) + ' 人，其中 ' + str(num_exist) + ' 人之前已有头像')
 	print('本次导入 ' + str(num_suc) + ' 人，还有 ' + str(num_fail) + ' 人没有头像\n')
