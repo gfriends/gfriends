@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.11w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--11--24-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.10w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--11--26-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -116,8 +116,8 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 | [MUTEKI](https://www.mutekimuteki.com/ "MUTEKI") | 640×906|50+|深山あすか、水瀬ちあき、松本菜奈実、夢川エマ|🌟|
 | [FaleNO](https://faleno.jp/ "FaleNO") | 1500×2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|🌟 <br> U-next 旗下公司|
 | [Attackers](https://www.attackers.net/ "Attackers") | 216×270|1000+|明里つむぎ、岬ななみ、二宮ひかり、結城のの|➡432×540|
-| [Moodyz](https://www.moodyz.com/ "MOODYZ") | 230×300 |1100+|高桥しょう子、西宫このみ、伊东ちなみ、千早希|➡460×600|
-| [Premium](http://www.premium-beauty.com/ "Premium") | 208×276 |100+|樱木凛、星野美优、冬月枫、二宫沙树|➡416×552|
+| [Moodyz](https://www.moodyz.com/ "MOODYZ") | 600x783 |1300+|高桥しょう子、西宫このみ、伊东ちなみ、千早希|🌟|
+| [Premium](http://www.premium-beauty.com/ "Premium") | 544x724 |100+|樱木凛、星野美优、冬月枫、二宫沙树|🌟|
 | [Idea Pocket](https://www.ideapocket.com/ "Idea Pocket") | 300×300 |100+|天海つばさ、相沢みなみ、桃乃木かな、希崎ジェシカ|➡600×600|
 | [KM Produce](https://www.km-produce.com/ "KM Produce") | 330×330|10+|川上优、麻生岬、麻仓忧、神咲诗织|➡660×660|
 | [kawaii*](https://www.kawaiikawaii.jp/ "kawaii*") | 640×896|300+|ひなみちゃん、伊藤舞雪、宇佐木あいか、有栖るる|🌟|
@@ -127,7 +127,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 | [桃太郎映像](http://www.indies-av.co.jp/ "桃太郎映像") |451×600 | 200+ |宝生リリー、泉りおん、入江愛美、阿部乃みく|🌟<br>专业企划制造商|
 | [えむっ娘ラボ](http://www.mko-labo.net/ "えむっ娘ラボ") | 168×191 |200+|有坂深雪、有村のぞみ、笹倉杏、上原亜衣|➡336×382|
 | [OPPAI](http://www.oppai-av.com/ "OPPAI") | 312×364 |100+|浜崎真緒、成海さやか、美緒みくる、柊るい|➡624×728|
-| [E-BODY](http://www.av-e-body.com/ "E-BODY") | 312×400|500+|Julia、红城まゆ、羽野理沙、蒂亚|➡624×800|
+| [E-BODY](http://www.av-e-body.com/ "E-BODY") | 702x900|500+|Julia、红城まゆ、羽野理沙、蒂亚|🌟|
 | [Wanz Factory](https://www.wanz-factory.com/ "Wanz Factory") | 280×280 |200+|椎名そら、つぼみ、水野朝陽、浅井ルリ子|➡560×560|
 | [Honnaka<br>本中](https://www.honnaka.jp/ "Honnaka<br>本中") | 335×375 |300+|さわきりほ、さくらみゆき、つくしみか、あいだ飛鳥|➡670×750|
 | [kira☆kira](https://www.kirakira-av.com/ "kira☆kira") |180×180|10+|加瀬エリナ、水谷心音、霧嶋りお、有村リア|➡360×360|
