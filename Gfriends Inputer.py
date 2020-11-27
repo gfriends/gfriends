@@ -31,18 +31,16 @@ def fix_size(type,path):
 			try:
 				x_nose = int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']) #返回鼻子位置
 				#time.sleep(0.5) # 免费用户等QPS
+				if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
+					x_left = wf-2/3*hf #以右为边
+				elif x_nose - 1/3*hf < 0:
+					x_left = 0 #以左为边
+				else:
+					x_left = x_nose-1/3*hf #以鼻子为中线向两边扩展
+				fixed_pic = pic.crop((x_left,0,x_left+2/3*hf,hf))
+				fixed_pic.save(path, quality=95)
 			except:
-				print('× 人体分析出现错误，请参阅百度官方文档查找此错误：', int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']))
-				print('× 按任意键继续运行，并跳过处理：'+ str(path) +'\n')
-				os.system('pause>nul')	
-			if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
-				x_left = wf-2/3*hf #以右为边
-			elif x_nose - 1/3*hf < 0:
-				x_left = 0 #以左为边
-			else:
-				x_left = x_nose-1/3*hf #以鼻子为中线向两边扩展
-			fixed_pic = pic.crop((x_left,0,x_left+2/3*hf,hf))
-			fixed_pic.save(path, quality=95)
+				print('× 跳过：'+ str(path) +'，AI 分析出现错误，百度返回了此错误码：'+ str(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x'])+ '\n')
 		else:
 			print('× 头像处理功能配置错误，没有此选项：' + str(type))
 			sys.exit()
