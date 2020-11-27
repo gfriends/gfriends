@@ -396,20 +396,15 @@ try:
 					else:
 						break
 			except (KeyboardInterrupt):
-				for actor_name in names:
-					if os.path.exists(download_path+actor_name+".jpg"): os.remove(download_path+actor_name+".jpg")	
 				sys.exit()
 			except:
 				with bar.pause():
-					for actor_name in names:
-						if os.path.exists(download_path+actor_name+".jpg"): os.remove(download_path+actor_name+".jpg")	
 					if debug: 
-						print(res_list)
 						print(format_exc())
 					print('× 网络连接异常且重试 ' + str(max_retries) + ' 次失败')
 					print('× 请尝试开启全局代理或配置 HTTP 局部代理；若已开启代理，请检查其可用性')
-					print('× 按任意键继续运行则跳过下载这些头像：'+ str(names)+'\n')
-					os.system('pause>nul')	
+					print('× 按任意键继续运行则跳过下载这些头像：'+ str(actor_name)+'\n')
+					os.system('pause>nul')
 				continue
 	print('√ 下载完成')
 	if fixsize != '0':
