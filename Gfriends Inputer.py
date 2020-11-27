@@ -2,9 +2,9 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.7'
+version = 'v2.71'
 
-import grequests, requests, os, sys, time, re
+import requests, os, sys, time, re, threading
 from configparser import RawConfigParser
 from base64 import b64encode
 from traceback import format_exc
@@ -26,21 +26,25 @@ def fix_size(type,path):
 			fixed_pic = pic.crop((int(wf/2-1/3*hf),0,int(wf/2+1/3*hf),int(hf))) #像素中线向两边扩展
 			fixed_pic.save(path, quality=95)
 		elif type == '3':
-			with open(path, 'rb') as fp:
-				image = fp.read()
 			try:
-				x_nose = int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']) #返回鼻子位置
-				#time.sleep(0.5) # 免费用户等QPS
-				if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
-					x_left = wf-2/3*hf #以右为边
-				elif x_nose - 1/3*hf < 0:
-					x_left = 0 #以左为边
-				else:
-					x_left = x_nose-1/3*hf #以鼻子为中线向两边扩展
-				fixed_pic = pic.crop((x_left,0,x_left+2/3*hf,hf))
-				fixed_pic.save(path, quality=95)
+				with open(path, 'rb') as fp:
+					image = fp.read()
+					x_nose = int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']) #返回鼻子横坐标
+					if BD_VIP == '否':
+						time.sleep(0.4) # 免费用户等QPS
+					else:
+						time.sleep( 1/int(BD_VIP+1) )
+					if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
+						x_left = wf-2/3*hf #以右为边
+					elif x_nose - 1/3*hf < 0:
+						x_left = 0 #以左为边
+					else:
+						x_left = x_nose-1/3*hf #以鼻子为中线向两边扩展
+					fixed_pic = pic.crop((x_left,0,x_left+2/3*hf,hf))
+					fixed_pic.save(path, quality=95)
 			except:
-				print('× 跳过：'+ str(path) +'，AI 分析出现错误，百度返回了此错误码：'+ str(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x'])+ '\n')
+				print('!! '+ str(path) +' AI 分析失败，跳过 AI 直接裁剪。\n')
+				fix_size('2',path)
 		else:
 			print('× 头像处理功能配置错误，没有此选项：' + str(type))
 			sys.exit()
@@ -83,6 +87,26 @@ def get_gfriends_map(repository_url):
 	print('  当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
 	return output
 
+def asyncc(f):
+    def wrapper(*args, **kwargs):
+        thr = threading.Thread(target=f, args=args, kwargs=kwargs)
+        thr.start()
+    return wrapper
+	
+@asyncc
+def download_avatar(url,actor_name):
+	if proxy == '不使用':
+		response = session.get(url)
+	else:
+		response = session.get(url, proxies = proxies)
+	pic_path = download_path+actor_name+".jpg"
+	with open(pic_path,"wb") as code:
+		code.write(response.content)
+
+@asyncc
+def input_avatar(url,data):
+	session.post(url, data=data, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+
 def get_gfriends_link(name):
 	if name in gfriends_map:
 		output = gfriends_map[name]
@@ -108,6 +132,7 @@ def read_config():
 			BD_App_ID = config_settings.get("导入设置", "BD_App_ID")
 			BD_API_Key = config_settings.get("导入设置", "BD_API_Key")
 			BD_Secret_Key = config_settings.get("导入设置", "BD_Secret_Key")
+			BD_VIP = config_settings.get("导入设置", "BD_VIP")
 			aifix = True if config_settings.get("下载设置", "AI_Fix") == '是' else False
 			overwrite = True if config_settings.get("导入设置", "OverWrite") == '是' else False
 			debug = True if config_settings.get("调试功能", "DeBug") == '是' else False
@@ -125,7 +150,7 @@ def read_config():
 				write_txt(local_path+"/README.txt",'本目录自动生成，您可以存放自己收集的头像，这些头像将被优先导入服务器。\n\n请自行备份您收集头像的副本，根据个人配置不同，该目录文件可能会被程序修改。\n\n仅支持JPG格式，且请勿再创建子目录。\n\n如果您收集的头像位于子目录，可通过 Move To Here.bat（Only for Windows） 工具将其全部提取到根目录。')
 				write_txt(local_path+"/Move To Here.bat",'@echo off\necho This tool will help you move all files which in the subdirectory to this root directory\npause\nfor /f "delims=" %%a in ("dir /a-d /b /s ") do (\nmove "%%~a" ./ 2>nul\n)\n')
 			if fixsize == '3': BD_AI_client = AipBodyAnalysis(BD_App_ID, BD_API_Key, BD_Secret_Key)
-			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client)
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client,BD_VIP)
 		except:
 			print(format_exc())
 			print('× 无法读取 config.ini。如果这是旧版本的配置文件，请删除后重试。\n')
@@ -185,10 +210,13 @@ MAX_UL = 20
 # 0 - 不处理直接导入
 # 1 - 高斯平滑处理（填充毛玻璃样式）
 # 2 - 直接裁剪处理（可能会裁剪到演员面部）
-# 3 - AI检测并裁剪处理（需配置百度人体定位AI，免费用户QPS=2，处理速度慢）
+# 3 - AI检测并裁剪处理（需配置百度人体定位 AI，免费用户QPS=2，处理速度慢）
 Size_Fix = 2
 
 # 百度人体定位 AI
+# 具体使用说明请参阅仓库项目 README
+# 免费个人用户 QPS=2 处理速度慢。付费个人用户和企业用户请修改 BD_VIP 为您购买的 QPS 额度值，免费个人用户修改后会报错。
+BD_VIP = 否
 BD_App_ID = 
 BD_API_Key = 
 BD_Secret_Key = 
@@ -295,7 +323,7 @@ def check_update():
 	os.system('cls')
 
 os.system('title Gfriends Inputer '+version)
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_download_connect,max_upload_connect,BD_AI_client) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_download_connect,max_upload_connect,BD_AI_client,BD_VIP) = read_config()
 
 
 #持久会话
@@ -313,7 +341,6 @@ if deleteall: del_all()
 num_suc = num_fail = num_skip = num_exist = 0
 name_list = []
 link_list = []
-post_list = []
 actor_dict = {}
 
 print('Gfriends Inputer '+version)
@@ -356,23 +383,18 @@ try:
 					name_list.append(actor_name)
 					link_list.append(pic_link)
 					actor_dict[actor_name] = actor_id
-	name_list_block=func(name_list,max_download_connect)
-	link_list_block=func(link_list,max_download_connect)
 	print('√ 初始化完成')
 	print('\n>> 下载头像...')
 	with alive_bar(len(name_list), theme = 'ascii', enrich_print = False) as bar:
-		for urls,names in zip(link_list_block,name_list_block):
+		for link,actor_name in zip(link_list,name_list):
 			try:
-				if proxy == '不使用':
-					rs = (grequests.get(u) for u in urls)
-				else:
-					rs = (grequests.get(u, proxies = proxies) for u in urls)
-				res_list = grequests.map(rs)
-				for index,actor_name in enumerate(names):
-					pic_path = download_path+actor_name+".jpg"
-					with open(pic_path,"wb") as code:
-						code.write(res_list[index].content)
-					bar(actor_name)
+				download_avatar(link,actor_name)
+				bar(actor_name)
+				while True:
+					if threading.activeCount() > max_download_connect + 1:
+						time.sleep(0.1)
+					else:
+						break
 			except (KeyboardInterrupt):
 				for actor_name in names:
 					if os.path.exists(download_path+actor_name+".jpg"): os.remove(download_path+actor_name+".jpg")	
@@ -395,19 +417,19 @@ try:
 		for folderName, subfolders, filenames in os.walk(download_path):	
 			with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 				for filename in filenames:
-					bar()
-					if '.jpg' in filename:
+					bar(filename)
+					if '.jpg' in filename and filename.replace('.jpg','') in name_list:
 						pic_path = download_path+filename
 						fix_size(fixsize,pic_path)
 		for folderName, subfolders, filenames in os.walk(local_path):
 			with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 				for filename in filenames:
-					bar()
-					if '.jpg' in filename:
+					bar(filename)
+					if '.jpg' in filename and filename.replace('.jpg','') in name_list:
 						pic_path = local_path+filename
 						fix_size(fixsize,pic_path)
 		print('√ 优化完成')
-	print('\n>> 校验头像...')
+	print('\n>> 导入头像...')
 	for folderName, subfolders, filenames in os.walk(download_path):		
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:
@@ -423,7 +445,12 @@ try:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
 							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
-						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}))
+						input_avatar(url_post_img,b6_pic)
+						while True:
+							if threading.activeCount() > max_upload_connect + 1:
+								time.sleep(0.1)
+							else:
+								break				
 						num_suc += 1
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
@@ -440,12 +467,14 @@ try:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
 							url_post_img = host_url + 'jellyfin/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
-						post_list.append(grequests.post(url=url_post_img, data=b6_pic, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}))
+						input_avatar(url_post_img,b6_pic)
+						while True:
+							if threading.activeCount() > max_upload_connect + 1:
+								time.sleep(0.1)
+							else:
+								break
 						num_suc += 1
-	print('√ 校验完成')
-	rewriteable_word('\n>> 导入头像...')
-	grequests.map(post_list, size = max_upload_connect)
-	print('√ 导入头像完成')
+	print('√ 导入完成')
 	print('\nEmby / Jellyfin 拥有演员 ' + str(len(list_persons)) + ' 人，其中 ' + str(num_exist) + ' 人之前已有头像')
 	print('本次导入 ' + str(num_suc) + ' 人，还有 ' + str(num_fail) + ' 人没有头像\n')
 	if not overwrite: print('!! 未开启覆盖已有头像，所以跳过了一些演员，详见运行日志')
