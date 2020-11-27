@@ -307,7 +307,7 @@ def check_update():
 			print('× 检查更新失败！返回了一个错误： {}\n'.format(response.status_code))
 			rewriteable_word('按任意键跳过...')
 			os.system('pause>nul')	
-		if version.replace('v','') < loads(response.text)[0]['tag_name'].replace('v','') and loads(response.text)[0]['prerelease'] == 'false':
+		if version.replace('v','') < loads(response.text)[0]['tag_name'].replace('v',''):
 			print(loads(response.text)[0]['tag_name']+' 新版本发布啦！\n')
 			print(re.search('What\'s New?.*?(?=\r\n<details>)',loads(response.text)[0]['body'],flags=re.S).group(0).replace('*',''))
 			print('请通过如下链接更新：\nhttps://github.com/xinxin8816/gfriends/releases\n')		
