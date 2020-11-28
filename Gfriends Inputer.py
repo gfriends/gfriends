@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.71'
+version = 'v2.72'
 
 import requests, os, sys, time, re, threading
 from configparser import RawConfigParser
@@ -31,9 +31,9 @@ def fix_size(type,path):
 					image = fp.read()
 					x_nose = int(BD_AI_client.bodyAnalysis(image)["person_info"][0]['body_parts']['nose']['x']) #返回鼻子横坐标
 					if BD_VIP == '否':
-						time.sleep(0.4) # 免费用户等QPS
+						time.sleep(0.4) # 免费用户QPS=2
 					else:
-						time.sleep( 1/int(BD_VIP+1) )
+						time.sleep( 1/int(1.1*BD_VIP) )
 					if x_nose + 1/3*hf > wf: #判断鼻子在图整体的位置
 						x_left = wf-2/3*hf #以右为边
 					elif x_nose - 1/3*hf < 0:
@@ -84,7 +84,7 @@ def get_gfriends_map(repository_url):
 			for k, v in map_json[first][second].items():
 				output[k[:-4]] = github_template.format(first, second, v)
 	print('√ 读取头像仓库文件树完成')
-	print('  当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
+	print('   当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
 	return output
 
 def asyncc(f):
@@ -267,14 +267,9 @@ def write_txt(filename,content):
 	txt = open(filename, 'a', encoding="utf-8")
 	txt.write(content)
 	txt.close()
-
-def func(listTemp, n):
-    for i in range(0, len(listTemp), n):
-        yield listTemp[i:i + n]
 		
 def rewriteable_word(word):
-	for t in ['', word]: 
-			sys.stdout.write('\033[K' + t + '\r')
+	for t in ['', word]: sys.stdout.write('\033[K' + t + '\r')
 		
 def del_all():
 	print('【调试模式】删除所有头像\n')
@@ -375,21 +370,27 @@ try:
 			if not os.path.exists(local_path+actor_name+".jpg"):
 				pic_link = get_gfriends_link(actor_name)
 				if pic_link == None:
-					write_txt("未收录的演员清单.txt",'未找到：' + actor_name + '\n')
-					num_fail += 1
-					continue
-				else:
-					write_txt("已匹配的演员清单.txt",'下载：' + actor_name + '\n')
-					name_list.append(actor_name)
-					link_list.append(pic_link)
-					actor_dict[actor_name] = actor_id
+					actor_name = re.sub(r'（.*）','',actor_name)
+					actor_name = re.sub(r'\(.*\)','',actor_name)
+					pic_link = get_gfriends_link(actor_name)
+					if pic_link == None:
+						write_txt("未收录的演员清单.txt",'未找到：' + actor_name + '\n')
+						num_fail += 1
+						continue
+				write_txt("已匹配的演员清单.txt",'下载：' + actor_name + '\n')
+				name_list.append(actor_name)
+				link_list.append(pic_link)
+				actor_dict[actor_name] = actor_id
 	print('√ 初始化完成')
 	print('\n>> 下载头像...')
 	with alive_bar(len(name_list), theme = 'ascii', enrich_print = False) as bar:
 		for link,actor_name in zip(link_list,name_list):
 			try:
 				download_avatar(link,actor_name)
-				bar(actor_name)
+				if '（' in actor_name:	
+					bar(re.sub(r'（.*）','',actor_name))
+				else:
+					bar(actor_name)
 				while True:
 					if threading.activeCount() > max_download_connect + 1:
 						time.sleep(0.1)
@@ -406,20 +407,31 @@ try:
 					print('× 按任意键继续运行则跳过下载这些头像：'+ str(actor_name)+'\n')
 					os.system('pause>nul')
 				continue
+	while True:
+		if threading.activeCount() > 1:	
+			time.sleep(0.1); 
+		else: 
+			break
 	print('√ 下载完成')
 	if fixsize != '0':
 		print('\n>> 尺寸优化...')
 		for folderName, subfolders, filenames in os.walk(download_path):	
 			with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 				for filename in filenames:
-					bar(filename)
+					if '（' in filename:	
+						bar(re.sub(r'（.*）','',filename).replace('.jpg',''))
+					else:
+						bar(filename.replace('.jpg',''))
 					if '.jpg' in filename and filename.replace('.jpg','') in name_list:
 						pic_path = download_path+filename
 						fix_size(fixsize,pic_path)
 		for folderName, subfolders, filenames in os.walk(local_path):
 			with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 				for filename in filenames:
-					bar(filename)
+					if '（' in filename:	
+						bar(re.sub(r'（.*）','',filename).replace('.jpg',''))
+					else:
+						bar(filename.replace('.jpg',''))
 					if '.jpg' in filename and filename.replace('.jpg','') in name_list:
 						pic_path = local_path+filename
 						fix_size(fixsize,pic_path)
@@ -428,14 +440,17 @@ try:
 	for folderName, subfolders, filenames in os.walk(download_path):		
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:
-				bar()
+				if '（' in filename:	
+					bar(re.sub(r'（.*）','',filename).replace('.jpg',''))
+				else:
+					bar(filename.replace('.jpg',''))
 				if '.jpg' in filename:
 					pic_path = download_path+filename		
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
 					actor_key_name = filename.replace('.jpg','')
-					if actor_key_name in actor_dict:
+					if actor_key_name in name_list:
 						if emby:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
@@ -450,14 +465,17 @@ try:
 	for folderName, subfolders, filenames in os.walk(local_path):
 		with alive_bar(len(filenames), theme = 'ascii', enrich_print = False) as bar:
 			for filename in filenames:	
-				bar()
+				if '（' in filename:	
+					bar(re.sub(r'（.*）','',filename).replace('.jpg',''))
+				else:
+					bar(filename.replace('.jpg',''))
 				if '.jpg' in filename:
 					pic_path = local_path+filename		
 					pic = open(pic_path, 'rb')
 					b6_pic = b64encode(pic.read())
 					pic.close()
 					actor_key_name = filename.replace('.jpg','')
-					if actor_key_name in actor_dict:
+					if actor_key_name in name_list:
 						if emby:
 							url_post_img = host_url + 'emby/Items/' + actor_dict[actor_key_name] + '/Images/Primary?api_key=' + api_key
 						else:
@@ -469,6 +487,11 @@ try:
 							else:
 								break
 						num_suc += 1
+	while True:	
+		if threading.activeCount() > 1:	
+			time.sleep(0.1); 
+		else: 
+			break
 	print('√ 导入完成')
 	print('\nEmby / Jellyfin 拥有演员 ' + str(len(list_persons)) + ' 人，其中 ' + str(num_exist) + ' 人之前已有头像')
 	print('本次导入 ' + str(num_suc) + ' 人，还有 ' + str(num_fail) + ' 人没有头像\n')
