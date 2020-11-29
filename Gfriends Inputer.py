@@ -149,7 +149,10 @@ def read_config():
 				os.makedirs(local_path)
 				write_txt(local_path+"/README.txt",'本目录自动生成，您可以存放自己收集的头像，这些头像将被优先导入服务器。\n\n请自行备份您收集头像的副本，根据个人配置不同，该目录文件可能会被程序修改。\n\n仅支持JPG格式，且请勿再创建子目录。\n\n如果您收集的头像位于子目录，可通过 Move To Here.bat（Only for Windows） 工具将其全部提取到根目录。')
 				write_txt(local_path+"/Move To Here.bat",'@echo off\necho This tool will help you move all files which in the subdirectory to this root directory\npause\nfor /f "delims=" %%a in ("dir /a-d /b /s ") do (\nmove "%%~a" ./ 2>nul\n)\n')
-			if fixsize == '3': BD_AI_client = AipBodyAnalysis(BD_App_ID, BD_API_Key, BD_Secret_Key)
+			if fixsize == '3': 
+				BD_AI_client = AipBodyAnalysis(BD_App_ID, BD_API_Key, BD_Secret_Key)
+			else:
+				BD_AI_client = None
 			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client,BD_VIP)
 		except:
 			print(format_exc())
