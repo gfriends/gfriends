@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.72'
+version = 'v2.73'
 
 import requests, os, sys, time, re, threading
 from configparser import RawConfigParser
@@ -82,7 +82,9 @@ def get_gfriends_map(repository_url):
 		second_lvls = map_json[first].keys()
 		for second in second_lvls:
 			for k, v in map_json[first][second].items():
-				output[k[:-4]] = github_template.format(first, second, v)
+				secondstr = re.sub(".*-", "", second)
+				if not secondstr in Black_List:
+					output[k[:-4]] = github_template.format(first, second, v)
 	print('√ 读取头像仓库文件树完成')
 	print('   当前仓库头像数量：' + str(response.text.count('\n')) + '枚\n')
 	return output
@@ -105,7 +107,10 @@ def download_avatar(url,actor_name):
 
 @asyncc
 def input_avatar(url,data):
-	session.post(url, data=data, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+	if proxy == '不使用' or '127.0.0.1' in host_url or 'localhost' in host_url or '192.168' in host_url:
+		session.post(url, data=data, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+	else:
+		session.post(url, data=data, headers={"Content-Type": 'image/jpeg',"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}, proxies = proxies)
 
 def get_gfriends_link(name):
 	if name in gfriends_map:
@@ -127,6 +132,7 @@ def read_config():
 			max_retries = config_settings.get("下载设置", "MAX_Retry")
 			proxy = config_settings.get("下载设置", "Proxy")
 			download_path = config_settings.get("下载设置", "Download_Path")
+			Black_List = config_settings.get("下载设置", "Black_List")
 			max_upload_connect = config_settings.get("导入设置", "MAX_UL")
 			local_path = config_settings.get("导入设置", "Local_Path")
 			BD_App_ID = config_settings.get("导入设置", "BD_App_ID")
@@ -153,7 +159,8 @@ def read_config():
 				BD_AI_client = AipBodyAnalysis(BD_App_ID, BD_API_Key, BD_Secret_Key)
 			else:
 				BD_AI_client = None
-			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client,BD_VIP)
+			Black_List = Black_List.split('、')
+			return (repository_url,host_url,api_key,overwrite,fixsize,int(max_retries),proxy,aifix,debug,deleteall,download_path,local_path,int(max_download_connect),int(max_upload_connect),BD_AI_client,BD_VIP,Black_List)
 		except:
 			print(format_exc())
 			print('× 无法读取 config.ini。如果这是旧版本的配置文件，请删除后重试。\n')
@@ -185,7 +192,7 @@ MAX_Retry = 3
 # 官方备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/，受服务提供商业务调整影响，镜像仓库将于 2020/12/31 关闭。
 Repository_Url = 默认
 
-# AI 优化（仅支持官方源）
+# AI 优化（仅支持官方仓库）
 # 在不可避免下载低质量头像时，自动挑选经 AI 算法放大优化的副本，质量更高但更占空间
 AI_Fix = 是
 
@@ -194,6 +201,11 @@ AI_Fix = 是
 # HTTP 代理格式为 http://IP:端口 , 如 http://localhost:8088
 # Socks 代理格式为 socks+协议版本://IP:端口 , 如 socks5://localhost:8087
 Proxy = 不使用
+
+# 厂牌黑名单（仅支持官方仓库）
+# 女友仓库已收录的厂牌：ラグジュTV、DMM(骑)、DMM(步)、痴女天堂、溜池ゴロー、无垢、WANZ、KMP、KiraKira、Ideapocket、DAS、BeFree、えむっ娘ラボ、OPPAI、Honnaka、桃太郎、Prestige、Madonna、Fitch、Attackers、未満、S1、Moodyz、Warashi、Premium、body、Kawaii、GRAPHIS、MUTEKI、Lovepop、Honey、FALENO
+# 女友仓库默认提供质量优先的头像。但是这其中，某些厂牌官方给演员的头像可能真的很难看，如果你不想从仓库下载到某些厂牌官网的头像，请填写其厂牌名。多个厂牌请使用中文顿号（、）分隔。
+Black_List = 无
 
 [导入设置]
 # 本地头像文件夹
@@ -241,7 +253,10 @@ def read_persons(host_url,api_key):
 	emby = True
 	host_url_persons = host_url + 'emby/Persons?api_key=' + api_key	 # &PersonTypes=Actor
 	try:
-		rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+		if proxy == '不使用' or '127.0.0.1' in host_url or 'localhost' in host_url or '192.168' in host_url:
+			rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+		else:
+			rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}, proxies = proxies)	
 	except session.exceptions.ConnectionError:
 		print('× 连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
 		sys.exit()
@@ -257,7 +272,10 @@ def read_persons(host_url,api_key):
 			rewriteable_word('>> 可能是新版 Jellyfin，尝试重新读取...')
 			emby = False
 			host_url_persons = host_url + 'jellyfin/Persons?api_key=' + api_key	 # &PersonTypes=Actor
-			rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+			if proxy == '不使用' or '127.0.0.1' in host_url or 'localhost' in host_url or '192.168' in host_url:
+				rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')})
+			else:
+				rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}, proxies = proxies)
 		except:
 			if debug: print(format_exc())
 			print('× 读取 Emby / Jellyfin 演员列表返回 404，可能是未适配的版本：', host_url, '\n')
@@ -321,7 +339,7 @@ def check_update():
 	os.system('cls')
 
 os.system('title Gfriends Inputer '+version)
-(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_download_connect,max_upload_connect,BD_AI_client,BD_VIP) = read_config()
+(repository_url,host_url,api_key,overwrite,fixsize,max_retries,proxy,aifix,debug,deleteall,download_path,local_path,max_download_connect,max_upload_connect,BD_AI_client,BD_VIP,Black_List) = read_config()
 
 
 #持久会话
