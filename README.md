@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.12w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--13-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--16-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -56,7 +56,7 @@ Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
 您可以在通过如下途径申请相关 API：
 1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
 2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
-3. 进入 “人体分析” —— “管理应用”，得到 “BD_App_ID”、“BD_API_Key”、“BD_Secret_Key” 参数。编辑 `Config.ini` 文件 “百度AI API” 部分并运行程序。
+3. 进入 “人体分析” —— “管理应用”，得到 “BD_App_ID”、“BD_API_Key”、“BD_Secret_Key” 参数。编辑 `Config.ini` 文件 “百度AI API” 并运行程序。
 
 该 API 对免费用户的限制为 QPS=2，可满足正常使用需求。百度 AI 付费用户可选使用高速通道。
 
@@ -66,7 +66,7 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 在仓库中，可能收录了多张不同来源的同一女友头像。这时，默认根据头像质量及尺寸，自动选优后导入头像。<br>
 但是，每个人的主观意识不同。比如，有的人可能不喜欢 Graphis 的头像，因为上面有标记女友名。有些人可能不喜欢 EBODY 的头像，因为女友衣着太暴露了。
 
-编辑 `Config.ini` 文件 “厂牌黑名单” 部分，相应厂牌的头像将不会被获取。
+编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌的头像将不会被获取。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
@@ -107,7 +107,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 ✔ AI 鉴别并移除违法违规头像
 
 ## 图片来源
-排序不分前后<br>
+排序不分前后 表格非即时更新<br>
 标注🌟的图片为原生高质量大图，标注➡的图片为经过 AI 算法放大优化的图片。
 
 ### 第三方内容商
@@ -117,7 +117,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 | [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640×960 | 30+ | X-City 旗下的写真分支 | 🌟 |
 | [LovePop](https://lovepop.net/ "Lovepop") | 384×576 | 70+ | 美少女写真摄影机构 | 🌟 |
 | [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | DMM官方 | ➡ |
-| [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 著名的演员资料数据库 | ➡ *New Add!* |
+| [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 知名演员资料数据库 | ➡ *New Add!* |
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
@@ -149,7 +149,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 | [Das!](http://www.dasdas.jp/ "Das!") |280×280|300+|あべみかこ、冴月りん、跡美しゅり、一ノ瀬梓|➡560×560|
 | [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116×236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|➡332×472|
 
-## 扫黄打非 · 净网2020
+## 扫黄打非 · 净网行动
 鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托于 AI 技术，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
 
 投诉邮箱：Gfriends#keemail.me
