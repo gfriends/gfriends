@@ -418,14 +418,15 @@ try:
 	
 	rewriteable_word('>> 引擎初始化...')
 	proc_con = False
-	md5_persons = md5(str(list_persons).encode(encoding='UTF-8')).hexdigest()
+	md5_persons = md5(str(list_persons).encode('UTF-8')).hexdigest()
+	md5_config = md5(open('config.ini','r',encoding="UTF-8-SIG").read().encode('UTF-8')).hexdigest() # 解码再编码，记事本的SIG编码无法直接用作md5计算
 	if os.path.exists('proc.tmp'): # 有中断记录
 		proc_list = file2list('proc.tmp')
-		if md5_persons in proc_list: # 上次中断后，服务器的演员列表没有变化才尝试续传
+		if md5_persons in proc_list and md5_config in proc_list: # 上次中断后，演员列表和配置文件没有变化才尝试续传
 			proc_con = True
 			proc_list.remove(md5_persons)
 	proc_log = open('proc.tmp', 'w', encoding="utf-8")
-	proc_log.write(md5_persons + '\n')
+	proc_log.write(md5_persons + '\n' + md5_config + '\n')
 	for dic_each_actor in list_persons:
 		actor_name = dic_each_actor['Name']
 		actor_id = dic_each_actor['Id']
@@ -460,7 +461,10 @@ try:
 				else:
 					proc_log.write(actor_name+'+1\n')
 				while True:
-					if not threading.activeCount() > max_download_connect + 1: break
+					if threading.activeCount() > max_download_connect + 1:
+						time.sleep(0.02)
+					else:
+						break
 			except (KeyboardInterrupt):
 				sys.exit()
 			except:
@@ -485,7 +489,7 @@ try:
 			pic_path_dict[filename] = download_path + filename
 	for filename in os.listdir(local_path):
 		if '.jpg' in filename and filename.replace('.jpg','') in actor_dict:
-			pic_path_dict[filename] = download_path + filename
+			pic_path_dict[filename] = local_path + filename
 	
 	if fixsize != '0':
 		print('\n>> 尺寸优化...')
@@ -511,7 +515,10 @@ try:
 				input_avatar(url_post_img,b6_pic)
 			proc_log.write(filename+'+3\n')
 			while True:
-				if not threading.activeCount() > max_download_connect + 1: break
+				if threading.activeCount() > max_upload_connect + 1:
+					time.sleep(0.02)
+				else:
+					break
 			num_suc += 1
 	rewriteable_word('>> 即将完成')
 	for thr_status in threading.enumerate(): # 等待子线程运行结束
