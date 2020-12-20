@@ -239,7 +239,7 @@ AI_Fix = 是
 Proxy = 不使用
 
 # 厂牌黑名单（仅支持官方仓库）
-# 女友仓库已收录的厂牌：ラグジュTV、DMM(骑)、DMM(步)、痴女天堂、溜池ゴロー、无垢、WANZ、KMP、KiraKira、Ideapocket、DAS、BeFree、えむっ娘ラボ、OPPAI、Honnaka、桃太郎、Prestige、Madonna、Fitch、Attackers、未満、S1、Moodyz、Warashi、Premium、body、Kawaii、GRAPHIS、MUTEKI、Lovepop、Honey、FALENO
+# 请访问女友仓库 Content 文件夹确认最新的已收录的厂牌列表，下述收录列表更新有延迟：ラグジュTV、DMM(骑)、DMM(步)、痴女天堂、溜池ゴロー、无垢、WANZ、KMP、KiraKira、Ideapocket、DAS、BeFree、えむっ娘ラボ、OPPAI、Honnaka、桃太郎、Prestige、Madonna、Fitch、Attackers、未満、S1、Moodyz、Warashi、Premium、body、Kawaii、GRAPHIS、MUTEKI、Lovepop、Honey、FALENO、AVDBS、Derekhsu、Javrave、Nanairo
 # 女友仓库默认提供质量优先的头像。但是这其中，某些厂牌官方给演员的头像可能真的很难看，如果你不想从仓库下载到某些厂牌官网的头像，请填写其厂牌名。多个厂牌请使用中文顿号（、）分隔。
 Black_List = 无
 

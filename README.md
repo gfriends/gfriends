@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.20w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--16-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-4.95w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--20-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -11,12 +11,13 @@
       * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
       * [使用百度AI精准裁剪头像](#使用百度AI精准裁剪头像)
       * [自定义头像来源](#自定义头像来源不导入某些来源的头像)
-   * 为女友头像仓库做贡献
-      * [上传新的头像图片到仓库](#上传新的头像图片到仓库)
-      * [共享头像图片来源网站](#共享头像图片来源网站)
-      * [对女友仓库的开发及调用](#对女友仓库的开发及调用)
-   * [仓库更新计划](#仓库更新计划)
+   * 成为女友头像仓库的贡献者
+      * [上传新的头像到仓库](#上传新的头像图片到仓库)
+      * [开发及调用](#对女友仓库的开发及调用)
+      * [更新计划](#更新计划)
 * [图片来源](#图片来源)
+   * [第三方内容商](#第三方内容商)
+   * [品牌官方](#品牌官方)
 * [法律信息](#法律信息及免责声明)
 
 ## 快速开始
@@ -64,9 +65,9 @@ Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
 Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 
 在仓库中，可能收录了多张不同来源的同一女友头像。这时，默认根据头像质量及尺寸，自动选优后导入头像。<br>
-但是，每个人的主观意识不同。比如，有的人可能不喜欢 Graphis 的头像，因为上面有标记女友名。有些人可能不喜欢 EBODY 的头像，因为女友衣着太暴露了。
+但是，每个人的喜好不同。比如，有的人可能不喜欢 Graphis 的头像，因为上面有标记女友名。有些人可能不喜欢 EBODY 的头像，因为女友衣着太暴露了。
 
-编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌的头像将不会被获取。
+编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌后，相应的头像将不会被获取。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
@@ -83,41 +84,72 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 
 P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue 告诉我她的日文姓名和译名。
 
-### 共享头像图片来源网站
-
-首先，该优质网站上的图片除了满足上述条件，还应尽可能满足：每位女友只有一张或少量的图片，以避免二次人工筛选。
-
-如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issue 告诉我地址即可。
-
 ### 对女友仓库的开发及调用
 请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
 
-1. `Filetree.json` 为 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 目录的 Json 文件树，在头像图片变化时将自动更新。该文件已按头像质量降序排列且已匹配多语言女友姓名，可供程序调用搜索。
+基于 Python 的 [Gfriends Inputer](https://github.com/xinxin8816/gfriends/blob/master/Gfriends%20Inputer.py) 官方工具和 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 第三方插件，基于 C# 的 [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper) 第三方插件均已开源，可供阁下参考。
 
-2. 女友仓库通过 AI 移除违法头像（基于中国大陆法律）至 [回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录，如果想调用该目录的头像请自行遍历。下述仓库镜像中不包含此回收站目录。
+#### Json 文件树
+位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的 Json 文件树，在头像图片变化时自动更新。
 
-3. 女友仓库通过 AI 放大并优化的低质量头像图片，但不能保证经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
+该文件已按头像质量升序排列，且已匹配女友姓名的多语种（如`三上悠亜`和`三上悠亚`）、多艺名（如`宝生莉莉`和`芽森滴`），可供程序调用搜索。
 
-4. ~鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/~ 受服务提供商业务调整影响，镜像仓库将于 2020/12/31 关闭。
+以下是该文件的格式示例。
+
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
+      "ActorNameB.jpg": "ActorNameB.jpg"
+    },
+    "CompanyNameB": {
+      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
+      "ActorNameB.jpg": "ActorNameB.jpg"
+    },
+}
+```
+
+#### Recycled 回收站
+[回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录是通过 AI 鉴别并移除的违法头像（基于中国大陆法律）。
+
+上述 Json 文件树中不包含该目录，如有调用该目录需求请自行遍历。
+
+#### AI 技术的应用
+除了通过 AI 鉴别并移除的违法头像，女友仓库还借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
+
+女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
+
+#### CDN 加速的镜像仓库
+~鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/~
+
+受服务提供商业务调整影响，镜像仓库于 2020/12/31 关闭。
 
 ### 仓库更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配多语种姓名（简体中文 / 繁体中文 / 日文）<br>
+✔ 匹配女友的多个艺名<br>
 ✔ AI 放大并优化低分辨率头像（仅后述标注 ➡）<br>
-✔ AI 鉴别并移除违法违规头像
+✔ AI 鉴别并移除违法违规头像<br>
+✔ AI 移除头像水印
 
 ## 图片来源
-排序不分前后 表格非即时更新<br>
-标注🌟的图片为原生高质量大图，标注➡的图片为经过 AI 算法放大优化的图片。
+排序不分前后，表格更新可能滞后。<br>
+标注🌟的图片为原生高质量大图，标注➡的图片为经过 AI 算法放大优化的图片。<br>
+除下表外，仓库中还收录了热心网友提供或上传的头像，位于 `人工存储 HandStorage` 目录，后述法律信息同样适用于此。
 
 ### 第三方内容商
 | 品牌 | 尺寸 |数量|简介|备注|
 | :----: | :----: | :----: | :----: | :----: |
-| [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360×508 | 600+ | 著名的美女摄影写真机构 | 🌟 |
+| [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360×508 | 600+ | 知名的美女摄影写真机构 | 🌟 |
 | [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640×960 | 30+ | X-City 旗下的写真分支 | 🌟 |
 | [LovePop](https://lovepop.net/ "Lovepop") | 384×576 | 70+ | 美少女写真摄影机构 | 🌟 |
-| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | DMM官方 | ➡ |
-| [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 知名演员资料数据库 | ➡ *New Add!* |
+| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | FANZA 官方（原DMM） | ➡ |
+| [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 来自法国的演员数据库 | ➡ |
+| [Javrave](https://javrave.club/ "Javrave") | *inconsistent* | 6800+ | 知名的演员资料数据库 | ➡ *New Add!* |
+| [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 *New Add!* |
+| [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ *New Add!* |
+| [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | *New Add!* |
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
