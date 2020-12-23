@@ -29,6 +29,29 @@
 
 <details>
 
+<summary>Gfriends Inputer 基本说明</summary>
+
+**Windows 用户** 解压后直接运行可执行程序 `Gfriends Inputer.exe` <br>
+**Mac / Linux 用户** 解压后打开命令终端：运行 `chmod +x "Gfriends Inputer"` 来赋予权限，然后执行 `./"Gfriends Inputer"` 启动程序
+
+程序首次运行将自动生成配置文件 `Config.ini`。配置文件必填项为媒体服务器的地址和 API 密钥。<br>
+媒体服务器 API 密钥的获取：进入 Emby / Jellyfin 控制台，`高级` — `API 密钥`  — `新 API 密钥` ，根据提示即可生成 API 密钥。
+
+```
+命令: Gfriends Inputer [-h] [-c [CONFIG]] [-q] [-v]
+
+选项说明:
+  -h, --help            显示本帮助信息。
+  -c [CONFIG], --config [CONFIG]
+                        指定配置文件路径。
+  -q, --quiet           静默模式运行，并保存日志到文件。
+  -v, --version         显示当前版本。
+```
+
+</details>
+
+<details>
+
 <summary>或者试试安装插件导入？</summary>
 <p>由 JavScraper 提供<p>
 
