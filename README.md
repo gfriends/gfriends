@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-4.95w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--20-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.18w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--23-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -29,7 +29,7 @@
 
 <details>
 
-<summary>Gfriends Inputer 基本说明</summary>
+<summary>Gfriends Inputer 基础使用说明</summary>
 
 **Windows 用户** 解压后直接运行可执行程序 `Gfriends Inputer.exe` <br>
 **Mac / Linux 用户** 解压后打开命令终端：运行 `chmod +x "Gfriends Inputer"` 来赋予权限，然后执行 `./"Gfriends Inputer"` 启动程序
