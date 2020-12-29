@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-4.63w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--24-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.29w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--29-green.svg)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -38,7 +38,7 @@
 媒体服务器 API 密钥的获取：进入 Emby / Jellyfin 控制台，`高级` — `API 密钥`  — `新 API 密钥` ，根据提示即可生成 API 密钥。
 
 ```
-命令: Gfriends Inputer [-h] [-c [CONFIG]] [-q] [-v]
+命令: "Gfriends Inputer" [-h] [-c [CONFIG]] [-q] [-v]
 
 选项说明:
   -h, --help            显示本帮助信息。
@@ -148,7 +148,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 
 受服务提供商业务调整影响，镜像仓库于 2020/12/31 关闭。
 
-### 仓库更新计划
+### 更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配多语种姓名（简体中文 / 繁体中文 / 日文）<br>
 ✔ 匹配女友的多个艺名<br>
