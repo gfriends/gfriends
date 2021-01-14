@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.81'
+version = 'v2.82'
 
 import requests, os, io, sys, time, re, threading, argparse
 from alive_progress import alive_bar
@@ -68,16 +68,13 @@ def fix_size(type,path):
 def get_gfriends_map(repository_url):
 	rewriteable_word('>> 连接 Gfriends 女友头像仓库...')
 	if repository_url == '默认/': repository_url = 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/'
-	github_template = repository_url+'{}/{}/{}'
-	if aifix:
-		request_url = repository_url+'Filetree.json'
-	else:
-		request_url = repository_url+'Filetree-NonFix.json'
+	gfriends_template = repository_url + '{}/{}/{}'
+	filetree_url = repository_url + 'Filetree.json'
 	try:
 		if proxy == '不使用':
-			response = session.get(request_url)
+			response = session.get(filetree_url)
 		else:
-			response = session.get(request_url, proxies = proxies)
+			response = session.get(filetree_url, proxies = proxies)
 		# 修复部分服务端返回 header 未指明编码使后续解析错误
 		response.encoding = 'utf-8' 
 	except:
@@ -100,7 +97,7 @@ def get_gfriends_map(repository_url):
 			for k, v in map_json[first][second].items():
 				secondstr = re.sub(".*-", "", second)
 				if not secondstr in Black_List:
-					output[k[:-4]] = github_template.format(first, second, v)
+					output[k[:-4]] = gfriends_template.format(first, second, v)
 	print('√ 连接 Gfriends 女友头像仓库成功')
 	print('   库存头像：' + str(response.text.count('\n')) + '枚\n')
 	return output
@@ -205,66 +202,66 @@ def read_config(config_file):
 			sys.exit()
 	else:
 		content='''[媒体服务器]
-# Emby / Jellyfin 服务器地址
+### Emby / Jellyfin 服务器地址 ###
 Host_Url = http://localhost:8096/
 	
-# Emby / Jellyfin API 密钥
+### Emby / Jellyfin API 密钥 ###
 Host_API = 
 
 [下载设置]
-# 下载文件夹
+### 下载文件夹 ###
 Download_Path = ./Downloads/
 
-# 下载线程数
+### 下载线程数 ###
 # 若网络不稳定、丢包率或延迟较高，可适当减小下载线程数
 MAX_DL = 5
 
-# 下载失败重试数
+### 下载失败重试数 ###
 # 若网络不稳定、丢包率或延迟较高，可适当增加失败重试数
 MAX_Retry = 3
 
-# 女友头像仓库源
+### 女友头像仓库源 ###
 # "默认"使用官方主仓库（已禁止浏览器访问）：https://raw.githubusercontent.com/xinxin8816/gfriends/master/
-# 官方备用镜像（镜像下载线程数不允许大于5）：https://gfriends.imfast.io/，受服务提供商业务调整影响，镜像仓库将于 2020/12/31 关闭。
+# 获取更多官方备用镜像，详见项目首页
 Repository_Url = 默认
 
-# AI 优化（仅支持官方仓库）
+### AI 优化（仅支持官方仓库）###
 # 在不可避免下载低质量头像时，自动挑选经 AI 算法放大优化的副本，质量更高但更占空间
 AI_Fix = 是
 
-# HTTP / Socks 局部代理
+### HTTP / Socks 局部代理 ###
 # 推荐开启全局代理而不是使用此局部代理
 # HTTP 代理格式为 http://IP:端口 , 如 http://localhost:8088
 # Socks 代理格式为 socks+协议版本://IP:端口 , 如 socks5://localhost:8087
 Proxy = 不使用
 
-# 厂牌黑名单（仅支持官方仓库）
+### 厂牌黑名单（仅支持官方仓库）###
 # 请访问女友仓库 Content 文件夹确认最新的已收录的厂牌列表，下述收录列表更新有延迟：ラグジュTV、DMM(骑)、DMM(步)、痴女天堂、溜池ゴロー、无垢、WANZ、KMP、KiraKira、Ideapocket、DAS、BeFree、えむっ娘ラボ、OPPAI、Honnaka、桃太郎、Prestige、Madonna、Fitch、Attackers、未満、S1、Moodyz、Warashi、Premium、body、Kawaii、GRAPHIS、MUTEKI、Lovepop、Honey、FALENO、AVDBS、Derekhsu、Javrave、Nanairo
 # 女友仓库默认提供质量优先的头像。但是这其中，某些厂牌官方给演员的头像可能真的很难看，如果你不想从仓库下载到某些厂牌官网的头像，请填写其厂牌名。多个厂牌请使用中文顿号（、）分隔。
 Black_List = 无
 
 [导入设置]
-# 本地头像文件夹
+### 本地头像文件夹 ###
 # 将第三方头像包或自己收集的头像移动至该目录，可优先于仓库导入服务器。仅支持非子目录下的 jpg 格式。
 Local_Path = ./Avatar/
 
-# 覆盖已有头像
+### 覆盖已有头像 ###
 OverWrite = 是
 
-# 导入线程数
+### 导入线程数 ###
 # 导入至本地或内网服务器时，网络稳定可适当增大导入线程数（推荐：20-100）
 # 导入至远程服务器时，可适当减小导入线程数（推荐：5-20）
 MAX_UL = 20
 
-# 头像尺寸优化
+### 头像尺寸优化 ###
 # 避免媒体服务器拉伸比例不符合 2:3 的头像
 # 0 - 不处理直接导入
 # 1 - 高斯平滑处理（填充毛玻璃样式）
 # 2 - 直接裁剪处理（可能会裁剪到演员面部）
-# 3 - AI检测并裁剪处理（需配置百度人体定位 AI，免费用户QPS=2，处理速度慢）
+# 3 - AI检测并裁剪处理（效果最好，需配置百度人体定位 AI）
 Size_Fix = 2
 
-# 百度人体定位 AI
+### 百度人体定位 AI ###
 # 具体使用说明请参阅仓库项目 README
 # 免费个人用户 QPS=2 处理速度慢。付费个人用户和企业用户请修改 BD_VIP 为您购买的 QPS 额度值，免费个人用户修改后会报错。
 BD_VIP = 否
@@ -273,10 +270,11 @@ BD_API_Key =
 BD_Secret_Key = 
 
 [调试功能]
-# 删除所有头像
+### 删除所有头像 ###
+# 删除媒体服务器中所有演员的头像
 DEL_ALL = 否
 
-# 输出详尽错误
+### 输出详尽错误 ###
 DeBug = 否'''
 		write_txt("config.ini", content)
 		print('× 没有找到 config.ini。已为阁下生成，请修改配置后重新运行程序。\n')
