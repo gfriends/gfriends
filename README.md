@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.29w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--12--29-green.svg)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.29w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--13-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -43,7 +43,7 @@
 选项说明:
   -h, --help            显示本帮助信息。
   -c [CONFIG], --config [CONFIG]
-                        指定配置文件路径。
+                        指定配置文件路径，默认为运行目录。
   -q, --quiet           静默模式运行，并保存日志到文件。
   -v, --version         显示当前版本。
 ```
@@ -143,7 +143,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 英文译名：Hiduki Rui
 素人佚名：Rui
 简中译名：妃月由衣
-繁中译名：妃月留衣
+繁中译名：紀月留衣
 曾 用 名：川島今日子、如月るい、日向美月、森平みさき、石原美紀、紀月るい
 ```
 
@@ -163,6 +163,8 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 受服务提供商业务调整影响，镜像仓库于 2020/12/31 关闭。
 
 ### 更新计划
+女友仓库目前已趋于稳定，一段时间内不会有大型更新迭代。GfriendBot 将自动定期更新仓库内容。
+
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配多语种姓名（简体中文 / 繁体中文 / 日文）<br>
 ✔ 匹配女友的多个艺名<br>
