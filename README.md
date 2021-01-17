@@ -1,10 +1,10 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.29w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.29w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--17-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
 * [快速开始](#快速开始)
-   * [Emby / Jellyfin](#emby--jellyfimn)
+   * [Emby / Jellyfin](#emby--jellyfin)
    * [Plex](#plex)
 * [进阶说明](#进阶说明)
    * Gfriends Inputer 进阶玩法
@@ -14,7 +14,7 @@
    * 成为女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
-      * [更新计划](#更新计划)
+* [更新计划](#更新计划)
 * [图片来源](#图片来源)
    * [第三方内容商](#第三方内容商)
    * [品牌官方](#品牌官方)
@@ -34,7 +34,7 @@
 **Windows 用户** 解压后直接运行可执行程序 `Gfriends Inputer.exe` <br>
 **Mac / Linux 用户** 解压后打开命令终端：运行 `chmod +x "Gfriends Inputer"` 来赋予权限，然后执行 `./"Gfriends Inputer"` 启动程序
 
-程序首次运行将自动生成配置文件 `Config.ini`。配置文件必填项为媒体服务器的地址和 API 密钥。<br>
+程序首次运行将自动生成配置文件 `Config.ini`。配置文件的必填项为 “媒体服务器的地址” 和 “API 密钥”。<br>
 媒体服务器 API 密钥的获取：进入 Emby / Jellyfin 控制台，`高级` — `API 密钥`  — `新 API 密钥` ，根据提示即可生成 API 密钥。
 
 ```
@@ -103,14 +103,15 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 1. 轻击主仓库右上角 `Fork` 按钮，然后会自动克隆主仓库，并跳转到属于您的个人仓库。
 2. 移步至个人仓库 `Content` 下的 `人工存储 HandStorage` 目录，该目录拥有最高优先级，能保证上传的图片被优先使用。
 3. 轻击 `Add files` 菜单下的 `Upload files` 按钮，然后上传头像图片到仓库，图片应该以`演员日文姓名.jpg`来命名，女友仓库会自动匹配多语种姓名。在上传等待过程中，可以随便写一点 `Commit Changes` 说明，比如上传了哪些女友的图片。上传完成后轻击 `Commit` 提交。
-4. 进入 `Pull Requests` 发起新的合并请求，请同时勾选 `Allow edits by maintainers`。在经过审核后，您的美图就可以和大家分享了。
+4. 进入 `Pull Requests` 板块下，点击 `New Pull Requests` 发起新的合并请求。稍等片刻，待仓库自动检查完成后，点击 `Create Pull Requests` 并轻击 `Commit`提交，请同时勾选 `Allow edits by maintainers`。
+5. 至此，在经过人工审核和文件树自动刷新后，您的美图就可以和大家分享了。
 
 P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue 告诉我她的日文姓名和译名。
 
 ### 对女友仓库的开发及调用
 请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
 
-基于 Python 的 [Gfriends Inputer](https://github.com/xinxin8816/gfriends/blob/master/Gfriends%20Inputer.py) 官方工具和 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 第三方插件，基于 C# 的 [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper) 第三方插件均已开源，可供阁下参考。
+[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
 
 #### Json 文件树
 位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的 Json 文件树，在头像图片变化时自动更新。
@@ -162,7 +163,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 
 受服务提供商业务调整影响，镜像仓库于 2020/12/31 关闭。
 
-### 更新计划
+## 更新计划
 女友仓库目前已趋于稳定，一段时间内不会有大型更新迭代。GfriendBot 将自动定期更新仓库内容。
 
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
