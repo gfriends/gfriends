@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--28-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--30-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -80,7 +80,7 @@ Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
 您可以在通过如下途径申请相关 API：
 1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
 2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
-3. 进入 “人体分析” —— “管理应用”，得到 “BD_App_ID”、“BD_API_Key”、“BD_Secret_Key” 参数。编辑 `Config.ini` 文件 “百度AI API” 并运行程序。
+3. 进入 “人体分析” —— “管理应用”，得到 `BD_App_ID`、`BD_API_Key`、`BD_Secret_Key` 参数。编辑 `Config.ini` 文件 `百度AI API` 并运行程序。
 
 该 API 对免费用户的限制为 QPS=2，可满足正常使用需求。百度 AI 付费用户可选使用高速通道。
 
@@ -106,7 +106,8 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 4. 进入 `Pull Requests` 板块下，点击 `New Pull Requests` 发起新的合并请求。稍等片刻，待仓库自动检查完成后，点击 `Create Pull Requests` 并轻击 `Commit`提交，请同时勾选 `Allow edits by maintainers`。
 5. 至此，在经过人工审核和文件树自动刷新后，您的美图就可以和大家分享了。
 
-P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue 告诉我她的日文姓名和译名。
+P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉我她的日文姓名和别名。<br>
+您可以使用 [文件检索](https://github.com/xinxin8816/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
 
 ### 对女友仓库的开发及调用
 请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
@@ -134,17 +135,17 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 
 #### 多姓名匹配
 
-仓库已匹配女友姓名的多语种、多艺名、片假名，甚至是素人佚名。
+仓库已匹配女友的多语种姓名、艺名、片假名，甚至是素人佚名等别名。
 
 使用任一姓名，均可在上述 Json 文件树 中搜索到对应女友，示例如下：
 
 ```
-片 假 名：るいぺち
 艺    名：妃月るい
-英文译名：Hiduki Rui
-素人佚名：Rui
 简中译名：妃月由衣
 繁中译名：紀月留衣
+片 假 名：るいぺち
+罗马拼音：Hiduki Rui
+素人佚名：Rui
 曾 用 名：川島今日子、如月るい、日向美月、森平みさき、石原美紀、紀月るい
 ```
 
@@ -154,7 +155,7 @@ P.S. 如果您发现某些女友未自动匹配多语种姓名，请提交 issue
 上述 Json 文件树中不包含该目录，如有调用该目录需求请自行遍历。
 
 #### AI 技术的应用
-除了通过 AI 鉴别并移除的违法头像，女友仓库还借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
+除了上述的通过 AI 鉴别并移除的违法头像，女友仓库还借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
 
 女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
 
