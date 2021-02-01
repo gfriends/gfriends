@@ -1,5 +1,5 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--1--30-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--2--1-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -160,9 +160,9 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
 
 #### CDN 加速的镜像仓库
-~鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/~
+鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://cdn.jsdelivr.net/gh/xinxin8816/gfriends/
 
-受服务提供商业务调整影响，镜像仓库于 2020/12/31 关闭。
+该链接仅供调用，无法使用浏览器直接访问
 
 ## 更新计划
 女友仓库目前已趋于稳定，一段时间内不会有大型更新迭代。GfriendBot 将自动定期更新仓库内容。
