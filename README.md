@@ -1,5 +1,5 @@
-# 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--2--7-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+# Gfriends 女友头像仓库
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.31w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--2--10-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -11,7 +11,7 @@
       * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
       * [使用百度AI精准裁剪头像](#使用百度AI精准裁剪头像)
       * [自定义头像来源](#自定义头像来源不导入某些来源的头像)
-   * 成为女友头像仓库的贡献者
+   * 成为 Gfriends 女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
 * [更新计划](#更新计划)
@@ -77,6 +77,8 @@ Gfriends Inputer v2.5 及后续版本支持导入本地头像到媒体服务器�
 ### 使用百度AI精准裁剪头像
 Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
 
+*请注意，使用此服务需理解并同意百度智能云的 [服务协议](https://cloud.baidu.com/doc/Agreements/s/yjwvy1x03) 、[隐私政策](https://cloud.baidu.com/doc/Agreements/s/Kjwvy245m) 以及百度AI开放平台的 [服务协议](https://ai.baidu.com/ai-doc/REFERENCE/kk3dwjg7d)。*
+
 您可以在通过如下途径申请相关 API：
 1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
 2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
@@ -90,7 +92,7 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 在仓库中，可能收录了多张不同来源的同一女友头像。这时，默认根据头像质量及尺寸，自动选优后导入头像。<br>
 但是，每个人的喜好不同。比如，有的人可能不喜欢 Graphis 的头像，因为上面有标记女友名。有些人可能不喜欢 EBODY 的头像，因为女友衣着太暴露了。
 
-编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌后，相应的头像将不会被获取。
+编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌后，相应的头像将不会被获取。具体厂牌名可以在下述 [图片来源](#图片来源) 或从 [`Content`](https://github.com/xinxin8816/gfriends/tree/master/Content) 目录获取。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
@@ -117,7 +119,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 #### Json 文件树
 位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的 Json 文件树，在头像图片变化时自动更新。
 
-该文件已按头像质量升序排列，可供程序调用搜索。以下是 Json 文件树 的格式示例：
+该文件已按头像 **质量升序** 排列，可供程序调用搜索。以下是 Json 文件树 的格式示例：
 
 ```json
 {
@@ -137,7 +139,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 
 仓库已匹配女友的多语种姓名、艺名、片假名，甚至是素人佚名等别名。
 
-使用任一姓名，均可在上述 Json 文件树 中搜索到对应女友，示例如下：
+使用任一姓名，均可在上述 Json 文件树 `Filetree.json` 中搜索到对应女友，示例如下：
 
 ```
 艺    名：妃月るい
