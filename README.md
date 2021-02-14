@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-5.32w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--2--13-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-5.56w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--2--14-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
 ## 目录
@@ -215,11 +215,11 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [E-BODY](http://www.av-e-body.com/ "E-BODY") | 702x900|500+|Julia、红城まゆ、羽野理沙、蒂亚|🌟|
 | [Wanz Factory](https://www.wanz-factory.com/ "Wanz Factory") | 280×280 |200+|椎名そら、つぼみ、水野朝陽、浅井ルリ子|➡560×560|
 | [Honnaka<br>本中](https://www.honnaka.jp/ "Honnaka<br>本中") | 335×375 |300+|さわきりほ、さくらみゆき、つくしみか、あいだ飛鳥|➡670×750|
-| [kira☆kira](https://www.kirakira-av.com/ "kira☆kira") |180×180|10+|加瀬エリナ、水谷心音、霧嶋りお、有村リア|➡360×360|
+| [kira☆kira](https://www.kirakira-av.com/ "kira☆kira") |180×180|170+|加瀬エリナ、水谷心音、霧嶋りお、有村リア|➡360×360|
 | [BeFree](https://www.befreebe.com/ "BeFree") | 215×215|100+|つぼみ、浜崎真緒、安藤美奈子、坂口れな|➡430×430|
 | [痴女天堂](https://www.bi-av.com/ "痴女天堂") | 300×300|300+|大槻ひびき、沖田杏梨、大浦真奈美、渚みつき|➡600×600|
 | [Fitch](https://www.fitch-av.com/ "Fitch") | 300×392|500+|春菜はな、美園和花、月森ゆの、河北はるな|➡600×786|
-| [Madonna](https://www.madonna-av.com/ "Madonna") | 230×300|30+|美森けい、谷花紗耶、桜井ゆみ、今井ひまり|➡792×800|
+| [Madonna](https://www.madonna-av.com/ "Madonna") | 230×420|1700+|美森けい、谷花紗耶、桜井ゆみ、今井ひまり|🌟|
 | [溜池ゴロー](http://www.tameikegoro.jp/ "溜池ゴロー") |100×100|500+|めぐり、本田岬、かすみ果穂、さとう遥希|MOODYZ 旗下公司<br>➡400×400|
 | [Das!](http://www.dasdas.jp/ "Das!") |280×280|300+|あべみかこ、冴月りん、跡美しゅり、一ノ瀬梓|➡560×560|
 | [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116×236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|➡332×472|
