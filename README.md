@@ -1,6 +1,7 @@
 # Gfriends 女友头像仓库
 ![TotalNumber](https://img.shields.io/badge/TotalNum-5.58w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2021--6--18-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
-媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
+媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
+> *There is no correlation between this repo and Korean girl group GFRIEND.*
 
 ## 目录
 * [快速开始](#快速开始)
@@ -77,14 +78,12 @@ Gfriends Inputer v2.5 及后续版本支持导入本地头像到媒体服务器�
 ### 使用百度AI精准裁剪头像
 Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
 
-*请注意，使用此服务需理解并同意百度智能云的 [服务协议](https://cloud.baidu.com/doc/Agreements/s/yjwvy1x03) 、[隐私政策](https://cloud.baidu.com/doc/Agreements/s/Kjwvy245m) 以及百度AI开放平台的 [服务协议](https://ai.baidu.com/ai-doc/REFERENCE/kk3dwjg7d)。*
+> *此服务需使用中国大陆居民身份证进行实名认证、并理解同意百度智能云的 [服务协议](https://cloud.baidu.com/doc/Agreements/s/yjwvy1x03) 、[隐私政策](https://cloud.baidu.com/doc/Agreements/s/Kjwvy245m) 以及百度AI开放平台的 [服务协议](https://ai.baidu.com/ai-doc/REFERENCE/kk3dwjg7d)。*
 
 您可以在通过如下途径申请相关 API：
 1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
 2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
-3. 进入 “人体分析” —— “管理应用”，得到 `BD_App_ID`、`BD_API_Key`、`BD_Secret_Key` 参数。编辑 `Config.ini` 文件 `百度AI API` 并运行程序。
-
-该 API 对免费用户的限制为 QPS=2，可满足正常使用需求。百度 AI 付费用户可选使用高速通道。
+3. 进入 “人体分析” —— “管理应用”，获取 `BD_App_ID`、`BD_API_Key`、`BD_Secret_Key`。编辑 `Config.ini` 文件中 `百度AI API` 部分并运行程序。
 
 ### 自定义头像来源（不导入某些来源的头像）
 Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
