@@ -103,7 +103,7 @@ Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
 
 1. 轻击主仓库右上角 `Fork` 按钮，然后会自动克隆主仓库，并跳转到属于您的个人仓库。
 2. 移步至个人仓库 `Content` 下的 `人工存储 HandStorage` 目录，该目录拥有最高优先级，能保证上传的图片被优先使用。
-3. 轻击 `Add files` 菜单下的 `Upload files` 按钮，然后上传头像图片到仓库，图片应该以`演员日文姓名.jpg`来命名，女友仓库会自动匹配多语种姓名。在上传等待过程中，可以随便写一点 `Commit Changes` 说明，比如上传了哪些女友的图片。上传完成后轻击 `Commit` 提交。
+3. 轻击 `Add files` 菜单下的 `Upload files` 按钮，然后上传头像图片到仓库，图片应该以`演员日文姓名.jpg`来命名（请注意，仅支持*jpg*），女友仓库会自动匹配多语种姓名。在上传等待过程中，可以随便写一点 `Commit Changes` 说明，比如上传了哪些女友的图片。上传完成后轻击 `Commit` 提交。
 4. 进入 `Pull Requests` 板块下，点击 `New Pull Requests` 发起新的合并请求。稍等片刻，待仓库自动检查完成后，点击 `Create Pull Requests` 并轻击 `Commit`提交，请同时勾选 `Allow edits by maintainers`。
 5. 至此，在经过人工审核和文件树自动刷新后，您的美图就可以和大家分享了。
 
