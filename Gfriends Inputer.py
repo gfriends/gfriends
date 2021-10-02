@@ -2,7 +2,7 @@
 # Gfriends Inputer / 女友头像仓库导入工具
 # Licensed under the MIT license.
 # Designed by xinxin8816, many thanks for junerain123, ddd354, moyy996.
-version = 'v2.90'
+version = 'v2.91'
 
 import requests, os, io, sys, time, re, threading, argparse
 from alive_progress import alive_bar
@@ -77,7 +77,7 @@ def get_gfriends_map(repository_url):
 		else:
 			response = session.get(filetree_url, proxies = proxies, timeout = 15)
 		# 修复部分服务端返回 header 未指明编码使后续解析错误
-		response.encoding = 'utf-8' 
+		response.encoding = 'utf-8'
 	except requests.exceptions.RequestException:
 		print('× 连接 Gfriends 女友头像仓库超时，请检查网络连接\n')
 		sys.exit()
@@ -115,18 +115,19 @@ def asyncc(f):
 @asyncc
 def check_avatar(url,actor_name,proc_md5):
 	try:
-		if Proxy_Range in ['NO','HOST']:
-			gfriends_response = session.head(url, timeout = 1)
-		else:
-			gfriends_response = session.head(url, proxies = proxies, timeout = 1)	
-		actor_md5 = md5(actor_name.encode('UTF-8')).hexdigest()[12:-12]
 		if actor_name in exist_list: # 没有头像的演员跳过检测
-			if actor_md5 in inputed_dict and inputed_dict[actor_md5] == gfriends_response.headers['Content-Length']:
-				del link_dict[actor_name]
-			else:
-				inputed_dict[actor_md5] = gfriends_response.headers['Content-Length']
-		else:
-			inputed_dict[actor_md5] = gfriends_response.headers['Content-Length']
+			actor_md5 = md5(actor_name.encode('UTF-8')).hexdigest()[12:-12]
+			if actor_md5 in inputed_dict: # 没有下载过的演员跳过检测
+				if Proxy_Range in ['NO','HOST']:
+					gfriends_response = session.head(url, timeout = 1)
+				else:
+					gfriends_response = session.head(url, proxies = proxies, timeout = 1)
+				if inputed_dict[actor_md5] == gfriends_response.headers['Content-Length']:
+					del link_dict[actor_name]
+			#else:
+				#inputed_dict[actor_md5] = gfriends_response.headers['Content-Length']
+		#else: # 有头像的演员先不保存日志，避免二次请求
+			#inputed_dict[actor_md5] = gfriends_response.headers['Content-Length']
 		proc_log.write(proc_md5+'\n')
 	except (requests.exceptions.ConnectTimeout):
 		print('!! '+ actor_name +' 头像更新检查超时，可能是网络不稳定。')
@@ -141,9 +142,10 @@ def download_avatar(url,actor_name,proc_md5):
 		gfriends_response = session.get(url, proxies = proxies)
 	pic_path = download_path+actor_name+".jpg"
 	try:
-		Image.open(io.BytesIO(gfriends_response.content)).verify() # 校验下载的图片是否损坏
+		Image.open(io.BytesIO(gfriends_response.content)).verify() # 校验下载的图片
 		with open(pic_path,"wb") as code:	
 			code.write(gfriends_response.content)
+		inputed_dict[actor_md5] = gfriends_response.headers['Content-Length'] # 写入图片版本日志
 		proc_log.write(proc_md5+'\n')
 	except:
 		print('!! '+ pic_path +' 校验失败，可能是仓库收录的头像已损坏。')
@@ -367,17 +369,17 @@ def read_persons(host_url,api_key,emby_flag):
 		else:
 			rqs_emby = session.get(url=host_url_persons, headers={"User-Agent": 'Gfriends_Inputer/'+version.replace('v','')}, proxies = proxies, timeout = 5)
 	except requests.exceptions.ConnectionError:
-		print('× 连接 Emby / Jellyfin 服务器失败，请检查：', host_url, '\n')
+		print('× 连接 Emby / Jellyfin 服务器失败，请检查地址是否正确：', host_url, '\n')
 		sys.exit()
 	except requests.exceptions.RequestException:
-		print('× 连接 Emby / Jellyfin 服务器超时，请检查：', host_url, '\n')
+		print('× 连接 Emby / Jellyfin 服务器超时，请检查地址是否正确：', host_url, '\n')
 		sys.exit()
 	except:
 		if debug: print(format_exc())
 		print('× 连接 Emby / Jellyfin 服务器未知错误：', host_url, '\n')
 		sys.exit()
 	if rqs_emby.status_code == 401:
-		print('× 无权访问 Emby / Jellyfin 服务器，请检查 API 密匙\n')
+		print('× 无权访问 Emby / Jellyfin 服务器，请检查 API 密匙是否正确\n')
 		sys.exit()
 	if rqs_emby.status_code == 404 and emby_flag:
 		rewriteable_word('>> 可能是新版 Jellyfin，尝试重新连接...')
@@ -388,13 +390,17 @@ def read_persons(host_url,api_key,emby_flag):
 	if rqs_emby.status_code != 200:
 		print('× 连接 Emby / Jellyfin 服务器成功，但是服务器内部错误：' + str(response.status_code))
 		sys.exit()
-	if 'json' not in rqs_emby.headers['Content-Type']:
+	#if 'json' not in rqs_emby.headers['Content-Type']: # 群辉返回的类型是 text/html？
+		#print('× 连接 Emby / Jellyfin 服务器成功，但是服务器的演员列表不能识别：' + rqs_emby.headers['Content-Type'])
+		#sys.exit()
+	try:
+		output = sorted(loads(rqs_emby.text)['Items'], key = lambda x:x['Name']) # 按姓名排序
+		print('√ 连接 Emby / Jellyfin 服务器成功')
+		print('   演职人员：' + str(len(output)) + '人\n')
+		return (output,emby_flag)
+	except:
 		print('× 连接 Emby / Jellyfin 服务器成功，但是服务器的演员列表不能识别：' + rqs_emby.headers['Content-Type'])
 		sys.exit()
-	output = sorted(loads(rqs_emby.text)['Items'], key = lambda x:x['Name']) # 按姓名排序
-	print('√ 连接 Emby / Jellyfin 服务器成功')
-	print('   演职人员：' + str(len(output)) + '人\n')
-	return (output,emby_flag)
 
 def write_txt(filename,content):
 	txt = open(filename, 'a', encoding="utf-8")
@@ -518,7 +524,7 @@ else:
 	if public_ip and 'CN' in public_ip:
 		print(public_ip, '已连通局部代理，但这个代理似乎不具有科学加速的功效，不过还是会尝试', Proxy_Range.replace('ALL','所有场景均经由代理连接').replace('HOST','媒体服务器经由代理连接').replace('REPO','女友仓库经由代理连接'), '\n')
 	elif public_ip and 'CN' not in public_ip:
-		print(public_ip, '已连通局部代理', Proxy_Range.replace('ALL','所有场景均经由代理连接').replace('HOST','媒体服务器会经由代理连接').replace('REPO','女友仓库会经由代理连接'), '\n')
+		print(public_ip, '已连通局部代理', Proxy_Range.replace('ALL','所有场景均经由代理连接').replace('HOST','媒体服务器经由代理连接').replace('REPO','女友仓库经由代理连接'), '\n')
 	else:
 		print('已配置局部代理 ' + Proxy_Link + '，但似乎无法连通，请检查其格式和可用性\n')
 
