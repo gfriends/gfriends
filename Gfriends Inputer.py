@@ -145,6 +145,7 @@ def download_avatar(url,actor_name,proc_md5):
 		Image.open(io.BytesIO(gfriends_response.content)).verify() # 校验下载的图片
 		with open(pic_path,"wb") as code:	
 			code.write(gfriends_response.content)
+		actor_md5 = md5(actor_name.encode('UTF-8')).hexdigest()[12:-12]
 		inputed_dict[actor_md5] = gfriends_response.headers['Content-Length'] # 写入图片版本日志
 		proc_log.write(proc_md5+'\n')
 	except:
