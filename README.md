@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-7.33w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--2--3-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-9.65w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--2--6-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -145,7 +145,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 简中译名：妃月由衣
 繁中译名：紀月留衣
 片 假 名：るいぺち
-罗马拼音：Hiduki Rui
+罗马拼音：Hiduki Rui、Rui Hiduki
 素人佚名：Rui
 曾 用 名：川島今日子、如月るい、日向美月、森平みさき、石原美紀、紀月るい
 ```
