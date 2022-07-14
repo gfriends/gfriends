@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-15.12w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--13-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-6.56w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--14-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -18,30 +18,44 @@
 * [法律信息](#法律信息及免责声明)
 
 ## 快速开始
-对于一般用户来说，可以通过以下方案导入头像。
+对于一般用户来说，可以通过以下方案导入头像。这些项目都以本仓库作为数据源。
 
 ### Emby / Jellyfin
+**[Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)**
 
-无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/gfriends/gfriends-inputer/releases)，编辑 `Config.ini` 文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。现已单独立项，详见 [Gfriends Inputer](https://github.com/gfriends/gfriends-inputer) 项目。
+无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/gfriends/gfriends-inputer/releases)，编辑 `Config.ini` 文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 <details>
-
 <summary>或者试试安装插件导入？</summary>
-<p>由 JavScraper 提供<p>
 
-无需下载本仓库的女友头像，仅需为你的 Emby / Jellyfin 服务器安装 [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+**[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper)**<br>*由 JavScraper 提供*
+
+一个 Jellyfin/Emby 的日本电影刮削器插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+
+**[Javtube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 Javtube 提供*
+
+另一个为 Jellyfin/Emby 开发的超级好用的 JAV 插件。（后端闭源）<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
 </details>
 
 ### Plex
-由 ddd354 提供
+**[JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle)**<br>*由 ddd354 提供*
 
 无需下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
+### 更多工具
+推荐与 Gfriends Inputer 搭配刮削整理项目，神兵利器助您事半功倍。
+
+[Movie Data Capture](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")、
+[AVDC GUI](https://github.com/moyy996/AVDC "AVDC GUI")、
+[MDCx](https://github.com/anyabc/something "MDCx")、
+[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、
+[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")
+
+*您知道其他相似的开源工具？欢迎提交 issues 告诉我。*
+
 ## 进阶说明
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
-
-推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
@@ -61,32 +75,64 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 您可以使用 [文件检索](https://github.com/xinxin8816/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
 
 ### 对女友仓库的开发及调用
-请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
-
+请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)；
 [快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
 
-#### Json 文件树
-位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的 Json 文件树，在头像图片变化时自动更新。
+#### 【Json 文件树】
 
-该文件已按头像 **质量升序** 排列，可供程序调用搜索。以下是 Json 文件树 的格式示例：
+位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的文件树，在头像图片变化时自动更新，可供程序调用搜索。
+
+以下是文件树格式示例：
+
+```json
+{
+  "Information": {
+    "TotalNum": "TotalNum",
+    "TotalSize": "TotalSize",
+    "Timestamp": "Timestamp"
+  },
+  "Content": {
+    "CompanyNameA": {
+      "ActorNameA.jpg": "ActorNameA.jpg",
+      "ActorNameB.jpg": "ActorNameB.jpg",
+    },
+    "CompanyNameB": {
+      "ActorNameA.jpg": "ActorNameA.jpg",
+      "ActorNameB.jpg": "ActorNameB.jpg",
+    },
+}
+```
+这些值得留意：
+1. `Information` 对象内字段依次为 头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的时间戳 `Timestamp`。
+2. `Content` 对象内字段按头像图片 **质量升序** 排列，更多细节请继续往下阅读。
+
+**1. 多头像匹配**
+
+部分女友可能在多个厂牌下任职，亦或者参与过写真拍摄等，不排除同一位女友在仓库中存储了多张图片的情况。
 
 ```json
 {
   "Content": {
     "CompanyNameA": {
-      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg"
+      "三上悠亚.jpg": "三上悠亚.jpg",
+      "三上悠亚-1.jpg": "三上悠亚-1.jpg",
+      "三上悠亚-2.jpg": "三上悠亚-2.jpg",
     },
     "CompanyNameB": {
-      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg"
+      "三上悠亚.jpg": "三上悠亚.jpg",
+      "三上悠亚-1.jpg": "三上悠亚-1.jpg",
+    },
+    "CompanyNameC": {
+      "三上悠亚.jpg": "三上悠亚.jpg",
     },
 }
 ```
 
-#### 多姓名匹配
+**2. 多姓名匹配**
 
 仓库已匹配女友的多语种姓名、艺名、片假名，甚至是素人佚名等别名。
+
+但提请注意：无论何时，都应首先使用 **主流艺名** 为关键词进行搜索。
 
 使用任一姓名，均可在上述 Json 文件树 `Filetree.json` 中搜索到对应女友，示例如下：
 
@@ -99,18 +145,44 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 素人佚名：Rui
 曾 用 名：川島今日子、如月るい、日向美月、森平みさき、石原美紀、紀月るい
 ```
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "妃月るい.jpg": "妃月るい.jpg",
+      "妃月由衣.jpg": "妃月るい.jpg",
+      "るいぺち.jpg": "妃月るい.jpg",
+      "Hiduki Rui.jpg": "妃月るい.jpg",
+      "川島今日子.jpg": "妃月るい.jpg",
+}
+```
 
-#### Recycled 回收站
+**3. AI 技术的应用**
+
+女友仓库通过 AI 鉴别并移除的违法头像，还会借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
+
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "吉高寧々.jpg": "AI-Fix-吉高寧々.jpg",
+}
+```
+女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "吉高寧々.jpg": "吉高寧々.jpg",
+}
+```
+
+#### 【Recycled 回收站】
 [回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录是通过 AI 鉴别并移除的违法头像（基于中国大陆法律）。
 
-上述 Json 文件树中不包含该目录，如有调用该目录需求请自行遍历。
+文件树中不包含该目录，如有调用该目录需求请自行遍历。
 
-#### AI 技术的应用
-除了上述的通过 AI 鉴别并移除的违法头像，女友仓库还借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
-
-女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
-
-#### CDN 加速的镜像仓库
+#### 【CDN 加速的镜像仓库】
 鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://cdn.jsdelivr.net/gh/xinxin8816/gfriends/
 
 该链接仅供调用，无法使用浏览器直接访问
