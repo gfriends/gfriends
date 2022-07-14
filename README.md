@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-6.56w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--14-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-6.56w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--15-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -7,7 +7,8 @@
 * [快速开始](#快速开始)
    * [Emby / Jellyfin](#emby--jellyfin)
    * [Plex](#plex)
-* [进阶说明](#进阶说明)
+* [进阶玩法](#进阶说明)
+   * [手动搜索头像](https://github.com/xinxin8816/gfriends/find/master) (日文姓名)
    * 成为 Gfriends 女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
@@ -75,8 +76,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 您可以使用 [文件检索](https://github.com/xinxin8816/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
 
 ### 对女友仓库的开发及调用
-请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)；
-[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
+请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)；[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
 
 #### 【Json 文件树】
 
@@ -102,6 +102,9 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
     },
 }
 ```
+
+通过拼接 URL，您可以获得对应女友头像的下载链接。
+
 这些值得留意：
 1. `Information` 对象内字段依次为 头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的时间戳 `Timestamp`。
 2. `Content` 对象内字段按头像图片 **质量升序** 排列，更多细节请继续往下阅读。
