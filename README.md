@@ -12,6 +12,9 @@
    * 成为 Gfriends 女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
+   * 衍生项目
+     * [Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)
+     * [PornChecker](https://github.com/gfriends/pornchecker)
 * [更新计划](#更新计划)
 * [图片来源](#图片来源)
    * [第三方内容商](#第三方内容商)
@@ -137,8 +140,6 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 
 但提请注意：无论何时，都应首先使用 **主流艺名** 为关键词进行搜索。
 
-使用任一姓名，均可在上述 Json 文件树 `Filetree.json` 中搜索到对应女友，示例如下：
-
 ```
 艺    名：妃月るい
 简中译名：妃月由衣
@@ -154,9 +155,16 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
     "CompanyNameA": {
       "妃月るい.jpg": "妃月るい.jpg",
       "妃月由衣.jpg": "妃月るい.jpg",
+      "紀月留衣.jpg": "妃月るい.jpg",
       "るいぺち.jpg": "妃月るい.jpg",
       "Hiduki Rui.jpg": "妃月るい.jpg",
+      "Rui Hiduki.jpg": "妃月るい.jpg",
       "川島今日子.jpg": "妃月るい.jpg",
+      "如月るい.jpg": "妃月るい.jpg",
+      "日向美月.jpg": "妃月るい.jpg",
+      "森平みさき.jpg": "妃月るい.jpg",
+      "石原美紀.jpg": "妃月るい.jpg",
+      "紀月るい.jpg": "妃月るい.jpg",
 }
 ```
 
