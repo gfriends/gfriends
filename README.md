@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-6.58w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-65942-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -18,6 +18,7 @@
 * [更新计划](#更新计划)
 * [图片来源](#图片来源)
    * [第三方内容商](#第三方内容商)
+   * [经纪公司](#经纪公司)
    * [品牌官方](#品牌官方)
 * [法律信息](#法律信息及免责声明)
 
@@ -221,10 +222,15 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [LovePop](https://lovepop.net/ "Lovepop") | 384×576 | 70+ | 美少女写真摄影机构 | 🌟 |
 | [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | FANZA 官方（原DMM） | ➡ |
 | [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 来自法国的演员数据库 | ➡ |
-| [Javrave](https://javrave.club/ "Javrave") | *inconsistent* | 6800+ | 知名的演员资料数据库 | ➡ *New Add!* |
-| [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 *New Add!* |
-| [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ *New Add!* |
-| [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | *New Add!* |
+| [Javrave](https://javrave.club/ "Javrave") | *inconsistent* | 6800+ | 知名的演员资料数据库 | ➡ |
+| [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 |
+| [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ |
+| [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | |
+
+### 经纪公司
+| 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
+| :----: | :----: | :----: | :----: | :----: |
+| [T-powers](https://www.t-powers.co.jp/ "T-powers") | 948×948 | 130+ | 最大的女友经纪公司 | 🌟 *New Add!* |
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
