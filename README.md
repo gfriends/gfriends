@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-65986-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-66126-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -230,9 +230,10 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 ### 经纪公司
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
-| [Diaz Group](http://diaz-g.com/ "Diaz-z") | 2880×1800 | 10+ | 友田彩也香、東凛、卯水咲流、長瀬麻美 | 🌟 *New Add!* <br> |
+| [Diaz Group](http://diaz-g.com/ "Diaz-z") | 2880×1800 | 10+ | 友田彩也香、東凛、卯水咲流、長瀬麻美 | 🌟 *New Add!*|
 | [T-powers](https://www.t-powers.co.jp/ "T-powers") | 948×948 | 130+ | 天海つばさ、野々浦暖、河合あすな、结城のの | 🌟 *New Add!* <br> 最大的女友经纪公司|
-| [Bambi](https://bambi.ne.jp/ "Bambi") | 500×500 | 30+ | 星奈あい、藍芽みずき、西村ニーナ、天音ゆい | 🌟 *New Add!* <br> |
+| [Bambi](https://bambi.ne.jp/ "Bambi") | 500×500 | 30+ | 星奈あい、藍芽みずき、西村ニーナ、天音ゆい | 🌟 *New Add!*|
+| [Eightman](http://www.8man.jp/ "Eightman") | 600×800 | 50+ | 星奈あい、藍芽みずき、西村ニーナ、天音ゆい | 🌟 *New Add!* <br> 位于关西的事务所|
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
