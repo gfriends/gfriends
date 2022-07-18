@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-66178-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--18-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-66211-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--18-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -235,6 +235,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [Bambi](https://bambi.ne.jp/ "Bambi") | 500×500 | 30+ | 星奈あい、藍芽みずき、西村ニーナ、天音ゆい | 🌟 *New Add!*|
 | [Eightman](http://www.8man.jp/ "Eightman") | 600×800 | 50+ | 葵つかさ、吉高寧々、七海ティナ、つばさ舞 | 🌟 *New Add!* <br> 位于关西的事务所|
 | [Mine's](https://mines-pro.jp/ "Mine's") | 300×300 | 40+ | 明里ともか、朝倉ここな、あさみ潤、幾田まち | 🌟 *New Add!*|
+| [C-more](https://cmore.jp/ "C-more") | 1920×1080 | 30+ | JULIA、明里つむぎ、本庄鈴、桐谷まつり | 🌟 *New Add!*|
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
