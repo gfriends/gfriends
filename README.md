@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-97,123-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--24-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-97,150-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--24-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -226,7 +226,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 |
 | [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ |
 | [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | |
-| [Digi-Gra](https://digi-gra.net/ "Digi-Gra") | 380x576 | 750+ | ImageBox 旗下流媒体 | 🌟 *New Add!* |
+| [DigiGra](https://digi-gra.net/ "DigiGra") | 380x576 | 750+ | ImageBox 旗下流媒体 | 🌟 *New Add!* |
 
 ### 经纪公司
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
@@ -239,13 +239,14 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [C-more](https://cmore.jp/ "C-more") | 1920×1080 | 30+ | JULIA、明里つむぎ、本庄鈴、桐谷まつり | 🌟 *New Add!*|
 | [Arrows](https://arrowsweb.net/ "Arrows") | 720×1000 | 10+ | 松本いちか、七嶋舞、今井夏帆、月野かすみ | 🌟 *New Add!*|
 | [Capsule](https://capsule.bz/ "Capsule") | 1920×2560 | 30+ | 七沢みあ、香坂紗梨、稲森美優、結菜さき | 🌟 *New Add!*|
+| [AllPro](https://all-p.jp/ "AllPro") | *inconsistent* | 30+ | 佐知子、八乃つばさ、加藤ツバキ、夏川うみ | 🌟 *New Add!* <br> [AllGroup](https://all-grp.com/ "AllGroup") 集团旗下企业|
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [S1 No. 1 Style](https://www.s1s1s1.com/ "S1 No. 1 Style") | 470×600 |300+|三上悠亜、羽咲みはる、桜羽のどか、架乃ゆら|🌟<br>人气与美形著称|
 | [MUTEKI](https://www.mutekimuteki.com/ "MUTEKI") | 640×906|50+|深山あすか、水瀬ちあき、松本菜奈実、夢川エマ|🌟|
-| [FaleNO](https://faleno.jp/ "FaleNO") | 1500×2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|🌟 <br> U-next 旗下公司|
+| [FaleNO](https://faleno.jp/ "FaleNO") | 1500×2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|🌟 <br> AllPro 旗下公司|
 | [Attackers](https://www.attackers.net/ "Attackers") | 216×270|1000+|明里つむぎ、岬ななみ、二宮ひかり、結城のの|➡432×540|
 | [Moodyz](https://www.moodyz.com/ "MOODYZ") | 600x783 |1300+|高桥しょう子、西宫このみ、伊东ちなみ、千早希|🌟|
 | [Premium](http://www.premium-beauty.com/ "Premium") | 544x724 |100+|樱木凛、星野美优、冬月枫、二宫沙树|🌟|
