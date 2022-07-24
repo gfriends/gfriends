@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-96,389-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--20-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-97,123-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--7--24-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -226,6 +226,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 |
 | [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ |
 | [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | |
+| [Digi-Gra](https://digi-gra.net/ "Digi-Gra") | 380x576 | 750+ | ImageBox 旗下流媒体 | 🌟 *New Add!* |
 
 ### 经纪公司
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
