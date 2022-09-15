@@ -1,5 +1,5 @@
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-97,362-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--9--15-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-97,364-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--9--16-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -85,6 +85,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 #### 【Json 文件树】
 
 位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的文件树，在头像图片变化时自动更新，可供程序调用搜索。
+*P.S. 在请求头中开启 Gzip 压缩可以大幅减少下载文件树所需的流量*
 
 以下是文件树格式示例：
 
@@ -111,7 +112,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 
 这些值得留意：
 1. `Information` 对象内字段依次为：头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的微秒级时间戳 `Timestamp`。
-2. `Content` 对象内字段按头像图片 **质量升序** 排列，参数t为头像文件更新时间的秒级时间戳 `FileTimestamp`。更多细节请继续往下阅读。
+2. `Content` 对象内字段按头像图片 **质量升序** 排列，参数 `t` 为头像文件更新时间的秒级时间戳 `FileTimestamp`。更多细节请继续往下阅读。
 
 **1. 多头像匹配**
 
