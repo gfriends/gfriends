@@ -97,12 +97,12 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
   },
   "Content": {
     "CompanyNameA": {
-      "ActorNameA.jpg": "ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg",
+      "ActorNameA.jpg": "ActorNameA.jpg?t=FileATimestamp",
+      "ActorNameB.jpg": "ActorNameB.jpg?t=FileBTimestamp",
     },
     "CompanyNameB": {
-      "ActorNameA.jpg": "ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg",
+      "ActorNameA.jpg": "ActorNameA.jpg?t=FileATimestamp",
+      "ActorNameB.jpg": "ActorNameB.jpg?t=FileBTimestamp",
     },
 }
 ```
@@ -110,8 +110,8 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 通过拼接 URL，您可以获得对应女友头像的下载链接。
 
 这些值得留意：
-1. `Information` 对象内字段依次为 头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的时间戳 `Timestamp`。
-2. `Content` 对象内字段按头像图片 **质量升序** 排列，更多细节请继续往下阅读。
+1. `Information` 对象内字段依次为：头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的微秒级时间戳 `Timestamp`。
+2. `Content` 对象内字段按头像图片 **质量升序** 排列，参数t为头像文件更新时间的秒级时间戳 `FileTimestamp`。更多细节请继续往下阅读。
 
 **1. 多头像匹配**
 
