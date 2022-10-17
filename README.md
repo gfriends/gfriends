@@ -39,9 +39,9 @@
 
 一个 Jellyfin/Emby 的日本电影刮削器插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
-**[Javtube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 Javtube 提供*
+**[JavTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 JavTube 提供*
 
-另一个为 Jellyfin/Emby 开发的超级好用的 JAV 插件。（后端闭源）<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+另一个为 Jellyfin/Emby 开发的超级好用的 JAV 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
 
 </details>
 
