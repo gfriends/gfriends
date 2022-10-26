@@ -10,7 +10,7 @@
    * [Emby / Jellyfin](#emby--jellyfin)
    * [Plex](#plex)
 * [进阶玩法](#进阶说明)
-   * [手动搜索头像](https://github.com/xinxin8816/gfriends/find/master) (日文姓名)
+   * [手动搜索头像](https://github.com/axunrun/gfriends/find/master) (日文姓名)
    * 成为 Gfriends 女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
@@ -79,14 +79,14 @@
 5. 至此，在经过人工审核和文件树自动刷新后，您的美图就可以和大家分享了。
 
 P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉我她的日文姓名和别名。<br>
-您可以使用 [文件检索](https://github.com/xinxin8816/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
+您可以使用 [文件检索](https://github.com/axunrun/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
 
 ### 对女友仓库的开发及调用
 请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)；[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
 
 #### 【Json 文件树】
 
-位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的文件树，在头像图片变化时自动更新，可供程序调用搜索。
+位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/axunrun/gfriends/tree/master/Content) 文件夹的文件树，在头像图片变化时自动更新，可供程序调用搜索。
 *P.S. 在请求头中开启 Gzip 压缩可以大幅减少下载文件树所需的流量*
 
 以下是文件树格式示例：
@@ -193,7 +193,7 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 ```
 
 #### 【Recycled 回收站】
-[回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录是通过 AI 鉴别并移除的违法头像（基于中国大陆法律）。
+[回收站 Recycled](https://github.com/axunrun/gfriends/tree/master/.Recycled) 目录是通过 AI 鉴别并移除的违法头像（基于中国大陆法律）。
 
 文件树中不包含该目录，如有调用该目录需求请自行遍历。
 
