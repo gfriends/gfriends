@@ -25,39 +25,47 @@
 * [法律信息](#法律信息及免责声明)
 
 ## 快速开始
-对于一般用户来说，可以通过以下方案导入头像。这些项目都以本仓库作为数据源。
+已有多款软件使用女友仓库作为数据源。对于一般用户来说，无需手动下载头像，即可通过以下方案导入头像。
 
 ### Emby / Jellyfin
-**[Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)**
+**1. [Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)**<br>*由 Gfriends 提供*
 
-无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/gfriends/gfriends-inputer/releases)，编辑 `Config.ini` 文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+> 官方维护的 Jellyfin/Emby 头像导入工具，兼容女友仓库所有特性，全平台支持。
+
+**2. [MDCx](https://github.com/anyabc/something)**<br>*由 Hermit 提供*
+
+> 演化自 MDC 的图形化刮削软件，支持带桌面的 Windows 和 MacOS。
 
 <details>
 <summary>或者试试安装插件导入？</summary>
 
-**[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper)**<br>*由 JavScraper 提供*
+**3. [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper)**<br>*由 JavScraper 提供*
 
-一个 Jellyfin/Emby 的日本电影刮削器插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+> 一个 Jellyfin/Emby 的日本电影刮削器插件，Emby JAV 刮削器元老。
 
-**[JavTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 JavTube 提供*
+**4. [JavTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 JavTube 提供*
 
-另一个为 Jellyfin/Emby 开发的超级好用的 JAV 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+> 另一个为 Jellyfin/Emby 开发的好用插件，插件前端与刮削器后端分离，上手稍难。
 
 </details>
 
 ### Plex
-**[JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle)**<br>*由 ddd354 提供*
+**1. [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle)**<br>*由 ddd354 提供*
 
-无需下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+> 基于 XBMCnfoMoviesImporter 修改的插件，增加了女友头像功能。
+
+**2. [JAV.bundle](https://github.com/Xavier-Lam/JAV.bundle)**<br>*由 Xavier-Lam 提供*
+
+> 受 JAVLibrary.bundle 启发而开发的新插件，亦提供了 JAV 元数据刮削功能。
 
 ### 更多工具
 推荐与 Gfriends Inputer 搭配刮削整理项目，神兵利器助您事半功倍。
 
 [Movie Data Capture](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")、
 [AVDC GUI](https://github.com/moyy996/AVDC "AVDC GUI")、
-[MDCx](https://github.com/anyabc/something "MDCx")、
 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、
-[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")
+[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、
+[Avutil](https://github.com/Lqlsoftware/Avutil "Avutil")
 
 *您知道其他相似的开源工具？欢迎提交 issues 告诉我。*
 
