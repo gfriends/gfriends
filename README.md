@@ -43,7 +43,7 @@
 
 > 一个 Jellyfin/Emby 的日本电影刮削器插件，Emby JAV 刮削器元老。
 
-**4. [JavTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 JavTube 提供*
+**4. [MetaTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 MetaTube 提供*
 
 > 另一个为 Jellyfin/Emby 开发的好用插件，插件前端与刮削器后端分离，上手稍难。
 
