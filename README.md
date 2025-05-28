@@ -1,7 +1,7 @@
 <img src="https://avatars.githubusercontent.com/u/109220009?s=200" alt="logo" width="140" height="140" align="right">
 
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-103,781-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2025--5--28-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-103,782-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2025--5--29-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
