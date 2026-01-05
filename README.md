@@ -1,5 +1,7 @@
+<img src="https://avatars.githubusercontent.com/u/109220009?s=200" alt="logo" width="140" height="140" align="right">
+
 # Gfriends 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-14.89w-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2022--4--27-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
+![TotalNumber](https://img.shields.io/badge/TotalNum-104,264-blueviolet.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2026--1--5-brightgreen.svg)  ![GfriendBot](https://img.shields.io/badge/GfriendBot-Working-blue.svg?logo=Dependabot)<br>
 媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。<br>
 > *There is no correlation between this repo and Korean girl group GFRIEND.*
 
@@ -7,91 +9,68 @@
 * [快速开始](#快速开始)
    * [Emby / Jellyfin](#emby--jellyfin)
    * [Plex](#plex)
-* [进阶说明](#进阶说明)
-   * Gfriends Inputer 进阶玩法
-      * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
-      * [使用百度AI精准裁剪头像](#使用百度AI精准裁剪头像)
-      * [自定义头像来源](#自定义头像来源不导入某些来源的头像)
+* [进阶玩法](#进阶说明)
+   * [手动搜索头像](https://github.com/xinxin8816/gfriends/find/master) (日文姓名)
    * 成为 Gfriends 女友头像仓库的贡献者
       * [上传新的头像到仓库](#上传新的头像图片到仓库)
       * [开发及调用](#对女友仓库的开发及调用)
+   * 衍生项目
+     * [Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)
+     * [PornChecker](https://github.com/gfriends/pornchecker)
 * [更新计划](#更新计划)
 * [图片来源](#图片来源)
    * [第三方内容商](#第三方内容商)
+   * [经纪公司](#经纪公司)
    * [品牌官方](#品牌官方)
 * [法律信息](#法律信息及免责声明)
 
 ## 快速开始
-对于一般用户来说，可以通过以下方案导入头像。
+已有多款软件使用女友仓库作为数据源。对于一般用户来说，无需手动下载头像，即可通过以下方案导入头像。
 
 ### Emby / Jellyfin
+**1. [Gfriends Inputer](https://github.com/gfriends/gfriends-inputer)**<br>*由 Gfriends 提供*
 
-无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini` 文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+> 官方维护的 Jellyfin/Emby 头像导入工具，兼容女友仓库所有特性，全平台支持。
 
-<details>
+**2. [MDCx](https://github.com/anyabc/something)**<br>*由 Hermit 提供*
 
-<summary>Gfriends Inputer 基础使用说明</summary>
-
-**Windows 用户** 解压后直接运行可执行程序 `Gfriends Inputer.exe` <br>
-**Mac / Linux 用户** 解压后打开命令终端：运行 `chmod +x "Gfriends Inputer"` 来赋予权限，然后执行 `./"Gfriends Inputer"` 启动程序
-
-程序首次运行将自动生成配置文件 `Config.ini`。配置文件的必填项为 “媒体服务器的地址” 和 “API 密钥”。<br>
-媒体服务器 API 密钥的获取：进入 Emby / Jellyfin 控制台，`高级` — `API 密钥`  — `新 API 密钥` ，根据提示即可生成 API 密钥。
-
-```
-命令: "Gfriends Inputer" [-h] [-c [CONFIG]] [-q] [-v]
-
-选项说明:
-  -h, --help            显示本帮助信息。
-  -c [CONFIG], --config [CONFIG]
-                        指定配置文件路径，默认为运行目录。
-  -q, --quiet           静默模式运行，并保存日志到文件。
-  -v, --version         显示当前版本。
-```
-
-</details>
+> 演化自 MDC 的图形化刮削软件，支持带桌面的 Windows 和 MacOS。
 
 <details>
-
 <summary>或者试试安装插件导入？</summary>
-<p>由 JavScraper 提供<p>
 
-无需下载本仓库的女友头像，仅需为你的 Emby / Jellyfin 服务器安装 [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+**3. [JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper)**<br>*由 JavScraper 提供*
+
+> 一个 Jellyfin/Emby 的日本电影刮削器插件，Emby JAV 刮削器元老。
+
+**4. [MetaTube](https://github.com/javtube/jellyfin-plugin-javtube)**<br>*由 MetaTube 提供*
+
+> 另一个为 Jellyfin/Emby 开发的好用插件，插件前端与刮削器后端分离，上手稍难。
 
 </details>
 
 ### Plex
-由 ddd354 提供
+**1. [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle)**<br>*由 ddd354 提供*
 
-无需下载本仓库的女友头像，仅需为你的 Plex 服务器安装 [JAVnfoMoviesImporter](https://github.com/ddd354/JAVnfoMoviesImporter.bundle) 插件。<br>该插件将自动从本仓库搜索头像并导入你的服务器，亦提供了元数据刮削功能。
+> 基于 XBMCnfoMoviesImporter 修改的插件，增加了女友头像功能。
+
+**2. [JAV.bundle](https://github.com/Xavier-Lam/JAV.bundle)**<br>*由 Xavier-Lam 提供*
+
+> 受 JAVLibrary.bundle 启发而开发的新插件，亦提供了 JAV 元数据刮削功能。
+
+### 更多工具
+推荐与 Gfriends Inputer 搭配刮削整理项目，神兵利器助您事半功倍。
+
+[Movie Data Capture](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")、
+[AVDC GUI](https://github.com/moyy996/AVDC "AVDC GUI")、
+[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、
+[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、
+[Avutil](https://github.com/Lqlsoftware/Avutil "Avutil")
+
+*您知道其他相似的开源工具？欢迎提交 issues 告诉我。*
 
 ## 进阶说明
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
-
-推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")。
-
-### 导入本地头像图片到媒体服务器
-Gfriends Inputer v2.5 及后续版本支持导入本地头像到媒体服务器。
-
-程序首次启动时会自动创建 `Avatar` 文件夹（可在配置文件中修改）。将本地头像图片重命名为`演员姓名.jpg`，或将第三方头像包移动至该文件夹。此后，导入工具优先从该文件夹查找并导入头像，本地路径中不存在的则会尝试从本仓库搜索并导入。
-
-### 使用百度AI精准裁剪头像
-Gfriends Inputer v2.7 及后续版本支持使用百度AI精准裁剪头像。
-
-> *此服务需使用中国大陆居民身份证进行实名认证、并理解同意百度智能云的 [服务协议](https://cloud.baidu.com/doc/Agreements/s/yjwvy1x03) 、[隐私政策](https://cloud.baidu.com/doc/Agreements/s/Kjwvy245m) 以及百度AI开放平台的 [服务协议](https://ai.baidu.com/ai-doc/REFERENCE/kk3dwjg7d)。*
-
-您可以在通过如下途径申请相关 API：
-1. 访问 https://ai.baidu.com 百度 AI 开放平台，登录并进入控制台。
-2. 进入 “人体分析” —— “创建应用”，按要求填写表单，并勾选 “人体分析” 接口。
-3. 进入 “人体分析” —— “管理应用”，获取 `BD_App_ID`、`BD_API_Key`、`BD_Secret_Key`。编辑 `Config.ini` 文件中 `百度AI API` 部分并运行程序。
-
-### 自定义头像来源（不导入某些来源的头像）
-Gfriends Inputer v2.73 及后续版本支持自定义头像来源。
-
-在仓库中，可能收录了多张不同来源的同一女友头像。这时，默认根据头像质量及尺寸，自动选优后导入头像。<br>
-但是，每个人的喜好不同。比如，有的人可能不喜欢 Graphis 的头像，因为上面有标记女友名。有些人可能不喜欢 EBODY 的头像，因为女友衣着太暴露了。
-
-编辑 `Config.ini` 文件 “厂牌黑名单”，填入厂牌后，相应的头像将不会被获取。具体厂牌名可以在下述 [图片来源](#图片来源) 或从 [`Content`](https://github.com/xinxin8816/gfriends/tree/master/Content) 目录获取。
 
 ### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
@@ -111,34 +90,67 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 您可以使用 [文件检索](https://github.com/xinxin8816/gfriends/find/master) 来搜索仓库中存储的头像文件，该功能仅支持日文名。
 
 ### 对女友仓库的开发及调用
-请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
+请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)；[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
 
-[快速开始](#快速开始) 所列出的工具均已开源，可供阁下在开发时参考。
+#### 【Json 文件树】
 
-#### Json 文件树
-位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的 Json 文件树，在头像图片变化时自动更新。
+位于根目录的`Filetree.json`，是 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 文件夹的文件树，在头像图片变化时自动更新，可供程序调用搜索。
+*P.S. 在请求头中开启 Gzip 压缩可以大幅减少下载文件树所需的流量*
 
-该文件已按头像 **质量升序** 排列，可供程序调用搜索。以下是 Json 文件树 的格式示例：
+以下是文件树格式示例：
+
+```json
+{
+  "Information": {
+    "TotalNum": "TotalNum",
+    "TotalSize": "TotalSize",
+    "Timestamp": "Timestamp"
+  },
+  "Content": {
+    "CompanyNameA": {
+      "ActorNameA.jpg": "ActorNameA.jpg?t=FileATimestamp",
+      "ActorNameB.jpg": "ActorNameB.jpg?t=FileBTimestamp",
+    },
+    "CompanyNameB": {
+      "ActorNameA.jpg": "ActorNameA.jpg?t=FileATimestamp",
+      "ActorNameB.jpg": "ActorNameB.jpg?t=FileBTimestamp",
+    },
+}
+```
+
+通过拼接 URL，您可以获得对应女友头像的下载链接。
+
+这些值得留意：
+1. `Information` 对象内字段依次为：头像总数量 `TotalNum`、头像大小之和 `TotalSize`、文件树完成生成的微秒级时间戳 `Timestamp`。
+2. `Content` 对象内字段按头像图片 **质量升序** 排列，参数 `t` 为头像文件更新时间的秒级时间戳 `FileTimestamp`。更多细节请继续往下阅读。
+
+**1. 多头像匹配**
+
+部分女友可能在多个厂牌下任职，亦或者参与过写真拍摄等，不排除同一位女友在仓库中存储了多张图片的情况。
 
 ```json
 {
   "Content": {
     "CompanyNameA": {
-      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg"
+      "三上悠亚.jpg": "三上悠亚.jpg",
+      "三上悠亚-1.jpg": "三上悠亚-1.jpg",
+      "三上悠亚-2.jpg": "三上悠亚-2.jpg",
     },
     "CompanyNameB": {
-      "ActorNameA.jpg": "AI-Fix-ActorNameA.jpg",
-      "ActorNameB.jpg": "ActorNameB.jpg"
+      "三上悠亚.jpg": "三上悠亚.jpg",
+      "三上悠亚-1.jpg": "三上悠亚-1.jpg",
+    },
+    "CompanyNameC": {
+      "三上悠亚.jpg": "三上悠亚.jpg",
     },
 }
 ```
 
-#### 多姓名匹配
+**2. 多姓名匹配**
 
 仓库已匹配女友的多语种姓名、艺名、片假名，甚至是素人佚名等别名。
 
-使用任一姓名，均可在上述 Json 文件树 `Filetree.json` 中搜索到对应女友，示例如下：
+但提请注意：无论何时，都应首先使用 **主流艺名** 为关键词进行搜索。
 
 ```
 艺    名：妃月るい
@@ -149,18 +161,51 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 素人佚名：Rui
 曾 用 名：川島今日子、如月るい、日向美月、森平みさき、石原美紀、紀月るい
 ```
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "妃月るい.jpg": "妃月るい.jpg",
+      "妃月由衣.jpg": "妃月るい.jpg",
+      "紀月留衣.jpg": "妃月るい.jpg",
+      "るいぺち.jpg": "妃月るい.jpg",
+      "Hiduki Rui.jpg": "妃月るい.jpg",
+      "Rui Hiduki.jpg": "妃月るい.jpg",
+      "川島今日子.jpg": "妃月るい.jpg",
+      "如月るい.jpg": "妃月るい.jpg",
+      "日向美月.jpg": "妃月るい.jpg",
+      "森平みさき.jpg": "妃月るい.jpg",
+      "石原美紀.jpg": "妃月るい.jpg",
+      "紀月るい.jpg": "妃月るい.jpg",
+}
+```
 
-#### Recycled 回收站
+**3. AI 技术的应用**
+
+女友仓库通过 AI 鉴别并移除的违法头像，还会借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
+
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "吉高寧々.jpg": "AI-Fix-吉高寧々.jpg",
+}
+```
+女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
+```json
+{
+  "Content": {
+    "CompanyNameA": {
+      "吉高寧々.jpg": "吉高寧々.jpg",
+}
+```
+
+#### 【Recycled 回收站】
 [回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录是通过 AI 鉴别并移除的违法头像（基于中国大陆法律）。
 
-上述 Json 文件树中不包含该目录，如有调用该目录需求请自行遍历。
+文件树中不包含该目录，如有调用该目录需求请自行遍历。
 
-#### AI 技术的应用
-除了上述的通过 AI 鉴别并移除的违法头像，女友仓库还借助 AI 无损放大并优化的低质量头像图片、去除图片中的水印（如果有）。
-
-女友仓库无法保证这些经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
-
-#### CDN 加速的镜像仓库
+#### 【CDN 加速的镜像仓库】
 鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://cdn.jsdelivr.net/gh/xinxin8816/gfriends/
 
 该链接仅供调用，无法使用浏览器直接访问
@@ -186,19 +231,36 @@ P.S. 如果您发现某些女友未自动匹配别名，请提交 issue 告诉�
 | [GRAPHIS](http://graphis.ne.jp/ "GRAPHIS") | 360×508 | 600+ | 知名的美女摄影写真机构 | 🌟 |
 | [Juicy Honey](http://juicy-honey.com/ "Juicy Honey") | 640×960 | 30+ | X-City 旗下的写真分支 | 🌟 |
 | [LovePop](https://lovepop.net/ "Lovepop") | 384×576 | 70+ | 美少女写真摄影机构 | 🌟 |
-| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 1.5W+ | FANZA 官方（原DMM） | ➡ |
+| [FANZA](http://dmm.co.jp/ "FANZA") | *inconsistent* | 15,000+ | FANZA 官方（原DMM） | ➡ |
 | [Warashi](http://warashi-asian-pornstars.fr/ "Warashi") | 250×300 | 2800+ | 来自法国的演员数据库 | ➡ |
-| [Javrave](https://javrave.club/ "Javrave") | *inconsistent* | 6800+ | 知名的演员资料数据库 | ➡ *New Add!* |
-| [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 *New Add!* |
-| [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ *New Add!* |
-| [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | *New Add!* |
+| [Javrave](https://javrave.club/ "Javrave") | *inconsistent* | 6800+ | 知名的演员资料数据库 | ➡ |
+| [Nanairo](https://nanairo.co/ "Nanairo") | 400×400 | 700+ | S-cute 旗下流媒体 | 🌟 |
+| [AVDBS](https://www.avdbs.com/ "AVDBS") | 380×460 | 800+ | 来自韩国的演员数据库 | ➡ |
+| [Derekhsu](http://wiki.derekhsu.net/ "Derekhsu") | *inconsistent* | 3700+ | 来自中国台湾的演员维基 | |
+| [Minnano](http://www.minnano-av.com/ "Minnano") | *inconsistent* | 19,000+ | 来自日本的信息交流站 | ➡ *New Add!* |
+| [DigiGra](https://digi-gra.net/ "DigiGra") | 380x576 | 750+ | ImageBox 旗下流媒体 | 🌟 *New Add!* |
+
+### 经纪公司
+| 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
+| :----: | :----: | :----: | :----: | :----: |
+| [Diaz Group](http://diaz-g.com/ "Diaz-z") | 2880×1800 | 10+ | 友田彩也香、東凛、卯水咲流、長瀬麻美 | 🌟 *New Add!*|
+| [T-powers](https://www.t-powers.co.jp/ "T-powers") | 948×948 | 130+ | 天海つばさ、野々浦暖、河合あすな、结城のの | 🌟 *New Add!* <br> 最大的女友经纪公司|
+| [Bambi](https://bambi.ne.jp/ "Bambi") | 500×500 | 30+ | 星奈あい、藍芽みずき、西村ニーナ、天音ゆい | 🌟 *New Add!*|
+| [Eightman](http://www.8man.jp/ "Eightman") | 600×800 | 50+ | 葵つかさ、吉高寧々、七海ティナ、つばさ舞 | 🌟 *New Add!* <br> 位于关西的事务所|
+| [Mine's](https://mines-pro.jp/ "Mine's") | 300×300 | 40+ | 明里ともか、朝倉ここな、あさみ潤、幾田まち | 🌟 *New Add!*|
+| [C-more](https://cmore.jp/ "C-more") | 1920×1080 | 30+ | JULIA、明里つむぎ、本庄鈴、桐谷まつり | 🌟 *New Add!*|
+| [Arrows](https://arrowsweb.net/ "Arrows") | 720×1000 | 10+ | 松本いちか、七嶋舞、今井夏帆、月野かすみ | 🌟 *New Add!*|
+| [Capsule](https://capsule.bz/ "Capsule") | 1920×2560 | 30+ | 七沢みあ、香坂紗梨、稲森美優、結菜さき | 🌟 *New Add!*|
+| [AllPro](https://all-p.jp/ "AllPro") | *inconsistent* | 30+ | 佐知子、八乃つばさ、加藤ツバキ、夏川うみ | 🌟 *New Add!* <br> [AllGroup](https://all-grp.com/ "AllGroup") 旗下企业|
+| [Attractive](https://attractive-llc.net/ "Attractive") | *inconsistent* | 20+ | 永瀬ゆい、楓ふうあ、葵いぶき、皆瀬あかり | 🌟 *New Add!*|
 
 ### 品牌官方
 | 品牌 | 尺寸 |数量|旗下知名小姐姐|备注|
 | :----: | :----: | :----: | :----: | :----: |
 | [S1 No. 1 Style](https://www.s1s1s1.com/ "S1 No. 1 Style") | 470×600 |300+|三上悠亜、羽咲みはる、桜羽のどか、架乃ゆら|🌟<br>人气与美形著称|
 | [MUTEKI](https://www.mutekimuteki.com/ "MUTEKI") | 640×906|50+|深山あすか、水瀬ちあき、松本菜奈実、夢川エマ|🌟|
-| [FaleNO](https://faleno.jp/ "FaleNO") | 1500×2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|🌟 <br> U-next 旗下公司|
+| [FaleNO](https://faleno.jp/ "FaleNO") | 1500×2125 |10+|桥本有菜、吉高寧々、美乃すずめ、佐藤ゆか|🌟 <br> AllPro 旗下公司|
+| [Dahlia](https://dahlia-av.jp/ "Dahlia") | 1500×2125 |10+|水川潤、徳永しおり、月見伊織、本田もも|🌟 *New Add!* <br> FaleNO 旗下品牌|
 | [Attackers](https://www.attackers.net/ "Attackers") | 216×270|1000+|明里つむぎ、岬ななみ、二宮ひかり、結城のの|➡432×540|
 | [Moodyz](https://www.moodyz.com/ "MOODYZ") | 600x783 |1300+|高桥しょう子、西宫このみ、伊东ちなみ、千早希|🌟|
 | [Premium](http://www.premium-beauty.com/ "Premium") | 544x724 |100+|樱木凛、星野美优、冬月枫、二宫沙树|🌟|
