@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="EUC-JP" />
+<title>403 Forbidden</title>
+<meta name="copyright" content="Copyright XSERVER Inc.">
+<meta name="robots" content="INDEX,FOLLOW" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0;
+}
+ul {
+    padding-left: 2em;
+}
+html {
+    overflow-y: scroll;
+    background: #3b79b7;
+}
+body {
+    font-family: "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+    margin: 0;
+    line-height: 1.4;
+    font-size: 75%;
+    text-align: center;
+    color: white;
+}
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+h1 {
+    font-weight: bold;
+    line-height: 1;
+    padding-bottom: 20px;
+    font-family: Helvetica, sans-serif;
+}
+h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 27px;
+}
+p {
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+.explain {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    line-height: 1.5;
+    margin: 30px auto;
+    padding: 17px;
+}
+#cause {
+    text-align: left;
+}
+#cause li {
+    color: #666;
+}
+h3 {
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 0;
+}
+#white_box {
+    margin: 15px auto 0;
+    background-color: white;
+}
+
+/* ====================
+
+  スマートフォン
+
+======================= */
+@media only screen and (min-width: 0) and (max-width: 767px) {
+	#base {
+		padding: 30px 10px;
+	}
+	h1 {
+		font-size: 26px;
+	}
+	h1 span {
+		font-size: 60px;
+	}
+	h2 {
+		font-size: 16px;
+	}
+	.explain {
+		font-size: 14px;
+	}
+	h3 {
+		margin-top: 45px;
+		font-size: 16px;
+	}
+	#cause {
+		padding: 20px;
+		font-size: 12px;
+	}
+}
+
+/* ====================
+
+   パソコン＆タブレット
+
+======================= */
+
+@media only screen and (min-width: 768px) {
+	#base {
+		margin-top: 80px;
+	}
+	h1 {
+		font-size: 50px;
+	}
+	h1 span {
+		font-size: 110px;
+	}
+	.explain {
+		font-size: 16px;
+		width: 660px;
+	}
+	#white_box {
+		width: 680px;
+		margin-bottom: 50px;
+	}
+	h3 {
+		font-size: 20px;
+		margin-top: 80px;
+	}
+	#cause {
+		padding: 30px;
+		font-size: 14px;
+	}
+}
+</style>
+</head>
+
+<body>
+<div id="base">
+    <h1><span>403</span><br />
+        Forbidden</h1>
+    <h2>アクセスしようとしたページは表示できませんでした。</h2>
+    <p class="explain">このエラーは、表示するページへのアクセス許可がなかったことを意味します。</p>
+    <h3>以下のような原因が考えられます。</h3>
+    <div id="white_box">
+        <div id="cause">
+            <ul>
+                <li>アクセスが許可されていない（パーミッション等によって禁止されている）。</li>
+                <li>デフォルトドキュメント（index.html, index.htm 等）が存在しない。</li>
+            </ul>
+        </div>
+    </div>
+    <!--//base--></div>
+</body>
+</html>
